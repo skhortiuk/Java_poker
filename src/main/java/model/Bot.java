@@ -3,16 +3,6 @@ package model;
 import java.util.ArrayList;
 
 public interface Bot {
-    /**
-     * Class combinations can be use to calculate
-     * power of your cards.
-     * Use method "SetCards(ArrayList<Card> cards)" to add cards
-     * in object, and then you can use method
-     * "calculate()" to calculate power.
-     * For get power of combinations, after using
-     * method calculate use method "getPower()" it return
-     * double value of power.
-     */
 
     /**
      * Main function for bots
