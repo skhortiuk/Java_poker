@@ -15,7 +15,7 @@ class CardTest {
 
     @Test
     void getNameValue() {
-        assertEquals("Two", card.getNameValue());
+        assertEquals("T2wo", card.getNameValue());
     }
 
     @Test
