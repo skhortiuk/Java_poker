@@ -12,6 +12,15 @@ repositories {
     mavenCentral()
 }
 
+compileJava {
+    sourceCompatibility = '9'
+    targetCompatibility = '9'
+    options.with {
+        fork = true
+        forkOptions.javaHome = new File('/usr/lib/jvm/java-9-oracle/')
+        compilerArgs.addAll(['--add-exports', 'jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED'])
+    }
+}
 
 // Junit5
 buildscript {
