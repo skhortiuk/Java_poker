@@ -10,7 +10,7 @@ class CardTest {
 
     @BeforeEach
     void setUp() {
-        card = new Card(3,2);
+        card = new Card(2,2);
     }
 
     @Test
