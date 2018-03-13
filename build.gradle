@@ -33,14 +33,19 @@ buildscript {
     }
 }
 
-//Coverage
-task codeCoverageReport(type: JacocoReport) {
-    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
-}
-
 apply plugin: 'org.junit.platform.gradle.plugin'
 dependencies {
     testCompile("org.junit.jupiter:junit-jupiter-api:5.1.0")
     testRuntime("org.junit.jupiter:junit-jupiter-engine:5.1.0")
 }
 // Junit5
+
+//Coverage
+jacocoTestReport {
+    group = "Reporting"
+    reports {
+        xml.enabled true
+        csv.enabled false
+        html.destination "${buildDir}/reports/coverage"
+    }
+}
