@@ -6,11 +6,13 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CardTest {
-    Card card;
+    private Deck deck = new Deck();
+    private Card card;
 
     @BeforeEach
     void setUp() {
-        card = new Card(2,2);
+        deck.refill();
+        card = new Card(2, 2);
     }
 
     @Test
@@ -20,9 +22,11 @@ class CardTest {
 
     @Test
     void getSuitValue() {
+        assertEquals(2, card.getSuitValue());
     }
 
     @Test
     void getValue() {
+        assertEquals(2, card.getValue());
     }
 }
