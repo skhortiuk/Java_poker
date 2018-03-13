@@ -16,6 +16,11 @@ class CardTest {
     }
 
     @Test
+    void Card(){
+        assertEquals(2, new Card(2,1).getValue());
+    }
+
+    @Test
     void getNameValue() {
         assertEquals("Two", card.getNameValue());
     }
