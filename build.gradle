@@ -24,13 +24,12 @@ compileJava {
 }
 
 sourceSets {
-    integrationTest {
-        java {
-            compileClasspath += main.output + test.output
-            runtimeClasspath += main.output + test.output
-            srcDir file('src/test/java')
-        }
-        resources.srcDir file('src/test/resources')
+    main {
+        java.srcDir("src/java")
+        resources.srcDir("src/resources")
+    }
+    test {
+        java.srcDir("src/test")
     }
 }
 
