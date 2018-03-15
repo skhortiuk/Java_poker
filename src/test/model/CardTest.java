@@ -9,10 +9,11 @@ import static org.junit.Assert.*;
 
 public class CardTest {
 
-
+    private Card card;
 
     @Before
     public void setUp() throws Exception {
+        card = new Card(2, 2);
     }
 
     @Test
@@ -25,5 +26,6 @@ public class CardTest {
 
     @Test
     public void getValue() {
+        assertEquals(2, card.getValue());
     }
 }
