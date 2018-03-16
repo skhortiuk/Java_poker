@@ -9,6 +9,8 @@ import static org.junit.Assert.*;
 
 public class CardTest {
 
+    /*dasd*/
+
     private Card card;
 
     @Before
