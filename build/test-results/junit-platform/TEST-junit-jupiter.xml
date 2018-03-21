@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="JUnit Jupiter" tests="6" skipped="0" failures="0" errors="0" time="0.15" hostname="mrluck-asus" timestamp="2018-03-14T09:03:19">
+<properties>
+<property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
+<property name="file.encoding" value="UTF-8"/>
+<property name="file.encoding.pkg" value="sun.io"/>
+<property name="file.separator" value="/"/>
+<property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
+<property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
+<property name="java.class.path" value="/university/Java/Poker/build/classes/java/test:/university/Java/Poker/build/resources/test:/university/Java/Poker/build/classes/java/main:/university/Java/Poker/build/resources/main:/home/mrluck/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-engine/5.1.0/c54b96b465bb5b49c7708d734a4180dd95422754/junit-jupiter-engine-5.1.0.jar:/home/mrluck/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.1.0/370218fbc7ce9cf0600c4b5db400bccdf0c01a48/junit-jupiter-api-5.1.0.jar:/home/mrluck/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-engine/1.1.0/2596bd4d909e7ea8d029272db4338075445d731b/junit-platform-engine-1.1.0.jar:/home/mrluck/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-commons/1.1.0/d6aa21029f9cedfb4cc8a9e9efc0bd97987205b8/junit-platform-commons-1.1.0.jar:/home/mrluck/.gradle/caches/modules-2/files-2.1/org.apiguardian/apiguardian-api/1.0.0/3ef5276905e36f4d8055fe3cb0bdcc7503ffc85d/apiguardian-api-1.0.0.jar:/home/mrluck/.gradle/caches/modules-2/files-2.1/org.opentest4j/opentest4j/1.0.0/6f09c598e9ff64bf0ce2fa7e7de49a99ba83c0b4/opentest4j-1.0.0.jar:/home/mrluck/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-console/1.1.0/1ea376db54ab4ec0018c5e99d414e1c7c034387/junit-platform-console-1.1.0.jar:/home/mrluck/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-launcher/1.1.0/ba098edde4e59cacd9225e238ea3ad9c946684ab/junit-platform-launcher-1.1.0.jar"/>
+<property name="java.class.version" value="53.0"/>
+<property name="java.home" value="/usr/lib/jvm/java-9-oracle"/>
+<property name="java.io.tmpdir" value="/tmp"/>
+<property name="java.library.path" value="/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib"/>
+<property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+<property name="java.runtime.version" value="9.0.4+11"/>
+<property name="java.specification.name" value="Java Platform API Specification"/>
+<property name="java.specification.vendor" value="Oracle Corporation"/>
+<property name="java.specification.version" value="9"/>
+<property name="java.vendor" value="Oracle Corporation"/>
+<property name="java.vendor.url" value="http://java.oracle.com/"/>
+<property name="java.vendor.url.bug" value="http://bugreport.java.com/bugreport/"/>
+<property name="java.version" value="9.0.4"/>
+<property name="java.vm.compressedOopsMode" value="32-bit"/>
+<property name="java.vm.info" value="mixed mode"/>
+<property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+<property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+<property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+<property name="java.vm.specification.version" value="9"/>
+<property name="java.vm.vendor" value="Oracle Corporation"/>
+<property name="java.vm.version" value="9.0.4+11"/>
+<property name="jdk.debug" value="release"/>
+<property name="line.separator" value="
+"/>
+<property name="os.arch" value="amd64"/>
+<property name="os.name" value="Linux"/>
+<property name="os.version" value="4.13.0-36-generic"/>
+<property name="path.separator" value=":"/>
+<property name="sun.arch.data.model" value="64"/>
+<property name="sun.boot.library.path" value="/usr/lib/jvm/java-9-oracle/lib"/>
+<property name="sun.cpu.endian" value="little"/>
+<property name="sun.cpu.isalist" value=""/>
+<property name="sun.desktop" value="gnome"/>
+<property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+<property name="sun.java.command" value="org.junit.platform.console.ConsoleLauncher --details NONE --scan-class-path /university/Java/Poker/build/classes/java/main:/university/Java/Poker/build/resources/main:/university/Java/Poker/build/classes/java/test:/university/Java/Poker/build/resources/test -n ^.*Tests?$ --reports-dir /university/Java/Poker/build/test-results/junit-platform"/>
+<property name="sun.java.launcher" value="SUN_STANDARD"/>
+<property name="sun.jnu.encoding" value="UTF-8"/>
+<property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+<property name="sun.os.patch.level" value="unknown"/>
+<property name="user.country" value="US"/>
+<property name="user.dir" value="/university/Java/Poker"/>
+<property name="user.home" value="/home/mrluck"/>
+<property name="user.language" value="en"/>
+<property name="user.name" value="mrluck"/>
+<property name="user.timezone" value="Europe/Kiev"/>
+<property name="user.variant" value=""/>
+</properties>
+<testcase name="getSuitValue()" classname="model.CardTest" time="0.041">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:model.CardTest]/[method:getSuitValue()]
+display-name: getSuitValue()
+]]></system-out>
+</testcase>
+<testcase name="Card()" classname="model.CardTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:model.CardTest]/[method:Card()]
+display-name: Card()
+]]></system-out>
+</testcase>
+<testcase name="getNameValue()" classname="model.CardTest" time="0.002">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:model.CardTest]/[method:getNameValue()]
+display-name: getNameValue()
+]]></system-out>
+</testcase>
+<testcase name="getValue()" classname="model.CardTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:model.CardTest]/[method:getValue()]
+display-name: getValue()
+]]></system-out>
+</testcase>
+<testcase name="myFirstTest()" classname="FirstJUnit5Tests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:FirstJUnit5Tests]/[method:myFirstTest()]
+display-name: myFirstTest()
+]]></system-out>
+</testcase>
+<testcase name="start()" classname="TableTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:TableTest]/[method:start()]
+display-name: start()
+]]></system-out>
+</testcase>
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]
+display-name: JUnit Jupiter
+]]></system-out>
+</testsuite>

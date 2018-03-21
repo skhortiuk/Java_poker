@@ -1,6 +1,6 @@
 Combinations.png
-#.gradle/
-build/
+.gradle/
+#build/
 .idea/
 *.iml
 out/
