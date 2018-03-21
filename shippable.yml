@@ -7,4 +7,7 @@ build:
   ci:
     # - gradle build
     - JAVA_HOME='/usr/lib/jvm/java-9-oracle'
+    - mkdir -p shippable/testresults
+    - cp -r build/reports/tests/test shippable/testresults
     - gradle build
+    - gradle check
