@@ -4,14 +4,8 @@ jdk:
   - oraclejdk9
   - openjdk9
 
-env:
-  global:
-    - TEST_RESULTS_DIR=$SHIPPABLE_REPO_DIR/shippable/testresults
-    - CODE_COVERAGE_DIR=$SHIPPABLE_REPO_DIR/shippable/codecoverage
-    - TESTS_LOC_DIR=$SHIPPABLE_REPO_DIR/src/tests
-    
-
 build:
   ci:
-    - gradle build
+    # - gradle build
     - java -version
+    - echo $JAVA_HOME
