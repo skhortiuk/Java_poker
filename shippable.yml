@@ -5,5 +5,5 @@ jdk:
 
 build:
   ci:
-    - gradlew build
+    - gradle build
     - java -version
