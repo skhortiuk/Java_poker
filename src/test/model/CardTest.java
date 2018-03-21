@@ -9,6 +9,6 @@ public class CardTest {
     @Test
     public void getValue() {
         Card card = new Card(2, 2);
-        assertEquals(2, card.getValue());
+        assertEquals(3, card.getValue());
     }
 }
