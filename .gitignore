@@ -1,5 +1,5 @@
 Combinations.png
-.gradle/
+#.gradle/
 build/
 .idea/
 *.iml
