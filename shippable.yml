@@ -7,5 +7,6 @@ jdk:
 build:
   ci:
     # - gradle build
+    - JAVA_HOME='/usr/lib/jvm/java-9-oracle'
     - java -version
     - echo $JAVA_HOME
