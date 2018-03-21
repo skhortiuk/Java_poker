@@ -27,15 +27,15 @@ compileJava {
     }
 }
 
-sourceSets {
-    main {
-        java.srcDir("src/java")
-        resources.srcDir("src/resources")
-    }
-    test {
-        java.srcDir("src/test")
-    }
-}
+//sourceSets {
+//    main {
+//        java.srcDir("src/java")
+//        resources.srcDir("src/resources")
+//    }
+//    test {
+//        java.srcDir("src/test")
+//    }
+//}
 
 
 
