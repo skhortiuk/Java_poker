@@ -1,9 +1,6 @@
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -19,12 +16,9 @@ import model.*;
 import view.FTRcardsView;
 import view.PlayerView;
 
-import javax.management.timer.Timer;
 import java.sql.Time;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 public class Table extends Application {
     private static final int Height = 750;
@@ -203,36 +197,36 @@ public class Table extends Application {
         circleBank = 0;
         clearChips();
         playerMove(false);
-////        1 bot move
-//        makeMove(1);
-////        2 bot move
-//        makeMove(2);
-////        3 bot move
-//        makeMove(3);
-////        4 bot move
-//        makeMove(4);
-////        5 bot move
-//        makeMove(5);
-//        hBox.getChildren().clear();
+//        1 bot move
+        makeMove(1);
+//        2 bot move
+        makeMove(2);
+//        3 bot move
+        makeMove(3);
+//        4 bot move
+        makeMove(4);
+//        5 bot move
+        makeMove(5);
+        hBox.getChildren().clear();
         while (!ifAllChipsEqual()) {
             if (gameRound == -1)
                 break;
             playerMove(true);
             if (ifAllChipsEqual())
                 break;
-//            makeMove(1);
-//            if (ifAllChipsEqual())
-//                break;
-//            makeMove(2);
-//            if (ifAllChipsEqual())
-//                break;
-//            makeMove(3);
-//            if (ifAllChipsEqual())
-//                break;
-//            makeMove(4);
-//            if (ifAllChipsEqual())
-//                break;
-//            makeMove(5);
+            makeMove(1);
+            if (ifAllChipsEqual())
+                break;
+            makeMove(2);
+            if (ifAllChipsEqual())
+                break;
+            makeMove(3);
+            if (ifAllChipsEqual())
+                break;
+            makeMove(4);
+            if (ifAllChipsEqual())
+                break;
+            makeMove(5);
         }
         gameRound++;
     }
@@ -259,7 +253,6 @@ public class Table extends Application {
     }
 
     private void playerMove(boolean raiseVisible) {
-        hBox.getChildren().clear();
         if (!bot[0].inGame)
             return;
         if (!raiseVisible) {
@@ -272,32 +265,8 @@ public class Table extends Application {
             callButton();
             raiseButton();
         }
-
-//        Platform.enterNestedEventLoop(root);
-    }
-
-    private void bots_move() {
+        Platform.enterNestedEventLoop(root);
         hBox.getChildren().clear();
-        while (!ifAllChipsEqual()) {
-            if (gameRound == -1)
-                break;
-            makeMove(1);
-            if (ifAllChipsEqual())
-                break;
-            makeMove(2);
-            if (ifAllChipsEqual())
-                break;
-            makeMove(3);
-            if (ifAllChipsEqual())
-                break;
-            makeMove(4);
-            if (ifAllChipsEqual())
-                break;
-            makeMove(5);
-            if (ifAllChipsEqual())
-                break;
-            playerMove(true);
-        }
     }
 
     private void makeMove(int player, int chips) {
@@ -361,6 +330,9 @@ public class Table extends Application {
 
     private void resetButton() {
         resetButton.setOnAction(event -> {
+            if (Platform.isNestedLoopRunning()) {
+                Platform.exitNestedEventLoop(root, null);
+            }
             for (int i = 0; i < 6; i++) {
                 botView[i].getRoot().getChildren().clear();
             }
@@ -379,18 +351,16 @@ public class Table extends Application {
         hBox.getChildren().addAll(foldButton);
 //        Action
         foldButton.setOnAction(event -> {
-            notify();
             Platform.exitNestedEventLoop(root, null);
             botView[0].del();
             bot[0].inGame = false;
-            bots_move();
         });
     }
 
     private void checkButton() {
         hBox.getChildren().addAll(checkButton);
 //        Action
-        checkButton.setOnAction(event -> bots_move());
+        checkButton.setOnAction(event -> Platform.exitNestedEventLoop(root, null));
     }
 
     private void callButton() {
@@ -398,7 +368,7 @@ public class Table extends Application {
 //        Action
         callButton.setOnAction(event -> {
             makeMove(0, lastChips);
-            bots_move();
+            Platform.exitNestedEventLoop(root, null);
         });
     }
 
@@ -418,25 +388,19 @@ public class Table extends Application {
         bot[0].setChips(tmp);
         botView[0].setChips(tmp);
         botView[0].setStack(bot[0].getStackValue());
-        bots_move();
+        Platform.exitNestedEventLoop(root, null);
     }
 
     private void betButton() {
         hBox.getChildren().addAll(betButton, betField);
 //        Action
-        betButton.setOnAction(event -> {
-            bet();
-            bots_move();
-        });
+        betButton.setOnAction(event -> bet());
     }
 
     private void raiseButton() {
         hBox.getChildren().addAll(raiseButton, betField);
 //        Action
-        raiseButton.setOnAction(event -> {
-            bet();
-            bots_move();
-        });
+        raiseButton.setOnAction(event -> bet());
     }
 
     private void getWinner() {
@@ -560,6 +524,8 @@ public class Table extends Application {
         primaryStage.setTitle("Poker");
         primaryStage.show();
         primaryStage.setOnCloseRequest(t -> {
+            if (Platform.isNestedLoopRunning())
+                resetButton.fire();
             primaryStage.close();
             Main table = new Main();
             Stage stage = new Stage();
