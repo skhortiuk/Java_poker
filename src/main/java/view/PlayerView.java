@@ -48,7 +48,7 @@ public class PlayerView {
 
     public void setChips(int chips) {
         this.chips.getChildren().clear();
-        chipsLable.setText(chips + "");
+        chipsLable.setText(Integer.toString(chips));
         this.chips.getChildren().addAll(chipsLable);
     }
 
@@ -64,7 +64,7 @@ public class PlayerView {
         this.stack.getChildren().clear();
         stackLable.setTextFill(Paint.valueOf("Green"));
         stackLable.setFont(Font.font(15));
-        stackLable.setText("" + number);
+        stackLable.setText(Integer.toString(number));
         this.stack.getChildren().addAll(stackLable);
     }
 

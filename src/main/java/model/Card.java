@@ -1,7 +1,7 @@
 package model;
 
 public class Card {
-    private Cards card;
+    private Cards one_card;
     private Suit suit;
 
     //    Constructor
@@ -11,7 +11,7 @@ public class Card {
     }
 
     String getNameValue() {
-        return card.name();
+        return one_card.name();
     }
 
     public int getSuitValue() {
@@ -19,12 +19,12 @@ public class Card {
     }
 
     public int getValue() {
-        return card.getValue();
+        return one_card.getValue();
     }
 
-    //    Initialization card from int to string
+    //    Initialization one_card from int to string
     private void initCard(int val) {
-        card = Cards.values()[val - 2];
+        one_card = Cards.values()[val - 2];
     }
 
     private void initSuit(int st) {
@@ -32,7 +32,7 @@ public class Card {
     }
 
     enum Cards {
-        Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace;
+        TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE;
 
         public int getValue() {
             return ordinal() + 2;
@@ -40,7 +40,7 @@ public class Card {
     }
 
     enum Suit {
-        Spades, Clubs, Hearts, Diamonds;
+        SPADES, CLUBS, HEARTS, DIAMONDS;
 
         public int getValue() {
             return ordinal() + 1;
@@ -49,23 +49,23 @@ public class Card {
 }
 
 /*
-2 = Two
-3 = Three
-4 = Four
-5 = Five
-6 = Six
-7 = Seven
-8 = Eight
-9 = Nine
-10 = Ten
-11 = Jack
-12 = Queen
-13 = King
-14 = Ace
+2 = TWO
+3 = THREE
+4 = FOUR
+5 = FIVE
+6 = SIX
+7 = SEVEN
+8 = EIGHT
+9 = NINE
+10 = TEN
+11 = JACK
+12 = QUEEN
+13 = KING
+14 = ACE
  */
 /*
-1 = Spades
-2 = Clubs
-3 = Hearts
-4 = Diamonds
+1 = SPADES
+2 = CLUBS
+3 = HEARTS
+4 = DIAMONDS
  */

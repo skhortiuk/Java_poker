@@ -20,8 +20,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Table extends Application {
-    private static final int Height = 750;
-    private static final int Width = 1050;
+    private static final int HEIGHT = 750;
+    private static final int WIDTH = 1050;
 
     private SimpleBot simpleBot = new SimpleBot();
     private MediumBot mediumBot = new MediumBot();
@@ -52,10 +52,10 @@ public class Table extends Application {
     private Label forWinner = new Label();
 
     private Parent createContent() {
-        root.setPrefSize(Width, Height);
+        root.setPrefSize(WIDTH, HEIGHT);
         ImageView background = new ImageView(new Image(getClass().getClassLoader().getResourceAsStream("table/table_background.png")));
-        background.setFitWidth(Width);
-        background.setFitHeight(Height);
+        background.setFitWidth(WIDTH);
+        background.setFitHeight(HEIGHT);
 
         controlButtons.getChildren().addAll(startButton, resetButton);
         controlButtons.setTranslateY(10);
@@ -219,7 +219,7 @@ public class Table extends Application {
         bank += chips;
         circleBank += chips;
         bankLable.setText("Bank: " + bank);
-        circleBankLable.setText("" + circleBank);
+        circleBankLable.setText(Integer.toString(circleBank));
     }
 
     private void makeMove(int player) {
@@ -227,6 +227,7 @@ public class Table extends Application {
             return;
         }
         int move;
+        String start_chat = " Bot[";
         if (player == 1){
             move = simpleBot.think(bot[player].getCards(),bot[player].getStackValue(),bank,lastChips);
         }
@@ -235,20 +236,17 @@ public class Table extends Application {
         }
         if (move == 0) {
             LocalTime localTime = LocalTime.now();
-            System.out.println(Time.valueOf(localTime) + " Bot[" + player + "] Check");
-            gameChat.appendText(Time.valueOf(localTime) + " Bot[" + player + "] Check\n");
+            gameChat.appendText(Time.valueOf(localTime) + start_chat + player + "] Check\n");
             return;
         }
         if (move > 0) {
             LocalTime localTime = LocalTime.now();
-            System.out.println(Time.valueOf(localTime) + " Bot[" + player + "] Set - " + move + " Chips");
-            gameChat.appendText(Time.valueOf(localTime) + " Bot[" + player + "] Set - " + move + " Chips\n");
+            gameChat.appendText(Time.valueOf(localTime) + start_chat + player + "] Set - " + move + " Chips\n");
             makeMove(player, move);
         }
         if (move < 0) {
             LocalTime localTime = LocalTime.now();
-            System.out.println(Time.valueOf(localTime) + " Bot [" + player + "] Fold!");
-            gameChat.appendText(Time.valueOf(localTime) + "Bot [" + player + "] Fold!\n");
+            gameChat.appendText(Time.valueOf(localTime) + start_chat + player + "] Fold!\n");
             botView[player].del();
             bot[player].del();
         }
@@ -258,44 +256,42 @@ public class Table extends Application {
         startButton.setOnAction((ActionEvent event) -> {
             deck.refill();
             createPlayers();
-//            gameRound = 0;
             startButton.setDisable(true);
             game_controll();
         });
     }
 
-    private void fold_click(ActionEvent e) {
-        botView[0].del();
-        bot[0].inGame = false;
-        hBox.getChildren().clear();
-        bots_move();
-    }
+//    private void fold_click(ActionEvent e) {
+//        botView[0].del();
+//        bot[0].inGame = false;
+//        hBox.getChildren().clear();
+//        bots_move();
+//    }
 
-    private void check_click(ActionEvent e){
-        bots_move();
-    }
+//    private void check_click(ActionEvent e){
+//        bots_move();
+//    }
 
-    private void bet_click(ActionEvent e){
-        bet();
-        bots_move();
-    }
+//    private void bet_click(ActionEvent e){
+//        bet();
+//        bots_move();
+//    }
 
-    private void call_click(ActionEvent e){
-        makeMove(0, lastChips);
-        bots_move();
-    }
+//    private void call_click(ActionEvent e){
+//        makeMove(0, lastChips);
+//        bots_move();
+//    }
 
-    private void raise_click(ActionEvent e){
-        bet();
-        bots_move();
-    }
+//    private void raise_click(ActionEvent e){
+//        bet();
+//        bots_move();
+//    }
 
     private void game_controll(){
         table_circle(gameRound, false);
     }
 
     private void table_circle(int round, boolean raise){
-        System.out.println(gameRound);
         if (round == 1 && ifAllChipsEqual()){
             getFlop();
         }
@@ -346,20 +342,27 @@ public class Table extends Application {
 
     private void foldButton() {
         hBox.getChildren().addAll(foldButton);
-//        Action
-        foldButton.setOnAction(this::fold_click);
+        foldButton.setOnAction(event -> {
+            botView[0].del();
+            bot[0].inGame = false;
+            hBox.getChildren().clear();
+            bots_move();
+        });
     }
 
     private void checkButton() {
         hBox.getChildren().addAll(checkButton);
 //        Action
-        checkButton.setOnAction(this::check_click);
+        checkButton.setOnAction(event -> bots_move());
     }
 
     private void callButton() {
         hBox.getChildren().addAll(callButton);
 //        Action
-        callButton.setOnAction(this::call_click);
+        callButton.setOnAction(event -> {
+            makeMove(0, lastChips);
+            bots_move();
+        });
     }
 
     private void bet() {
@@ -383,17 +386,24 @@ public class Table extends Application {
     private void betButton() {
         hBox.getChildren().addAll(betButton, betField);
 //        Action
-        betButton.setOnAction(this::bet_click);
+        betButton.setOnAction(event -> {
+            bet();
+            bots_move();
+        });
     }
 
     private void raiseButton() {
         hBox.getChildren().addAll(raiseButton, betField);
 //        Action
-        raiseButton.setOnAction(this::raise_click);
+        raiseButton.setOnAction(event -> {
+            bet();
+            bots_move();
+        });
     }
 
     private void getWinner() {
         double max = 0;
+        String text_for_winner = "] Win this game with ";
         int t = 0;
         double tmp;
         for (int i = 0; i < 6; i++) {
@@ -415,23 +425,19 @@ public class Table extends Application {
         if (isDraw > 1) {
             for (int i = 0; i < 6; i++) {
                 if (bot[i].isWinner) {
-                    System.out.println("Bot [" + i + "] Win this game with " + bot[i].getCombinationName());
                     LocalTime localTime = LocalTime.now();
-                    gameChat.appendText(Time.valueOf(localTime) + "Bot[" + i + "] Win this game with " + bot[i].getCombinationName() + "!!!!!!!\n");
+                    gameChat.appendText(Time.valueOf(localTime) + "Bot[" + i + text_for_winner + bot[i].getCombinationName() + "!!!!!!!\n");
                     forWinner.setText("Draw!!!!");
                 }
             }
         } else {
             bot[t].isWinner = true;
             for (int i = 0; i < 6; i++) {
-                System.out.println("Bot [" + i + "]" + bot[i].getPower());
-                System.out.println("Bot [" + i + "]" + bot[i].isWinner);
             }
             for (int i = 0; i < 6; i++) {
                 if (bot[i].isWinner) {
-                    System.out.println("Bot [" + i + "] Win this game with " + bot[i].getCombinationName());
                     LocalTime localTime = LocalTime.now();
-                    gameChat.appendText(Time.valueOf(localTime) + "Bot[" + i + "] Win this game with " + bot[i].getCombinationName() + "!!!!!!!\n");
+                    gameChat.appendText(Time.valueOf(localTime) + "Bot[" + i + text_for_winner + bot[i].getCombinationName() + "!!!!!!!\n");
                     forWinner.setText("Bot[" + i + "] Win this game!!!!!!!");
                 }
             }
@@ -503,8 +509,8 @@ public class Table extends Application {
     @Override
     public void start(Stage primaryStage){
         primaryStage.setScene(new Scene(createContent()));
-        primaryStage.setWidth(Width);
-        primaryStage.setHeight(Height);
+        primaryStage.setWidth(WIDTH);
+        primaryStage.setHeight(HEIGHT);
         primaryStage.setResizable(false);
         primaryStage.setTitle("Poker");
         primaryStage.show();

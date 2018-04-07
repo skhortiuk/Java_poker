@@ -120,7 +120,7 @@ public class Combinations {
         int size = cards.size();
         for (int i = size - 1; i > 0; i--) {
             if ((cards.get(i).getValue() == cards.get(i - 1).getValue()) && (firstPair == 0)) {
-                combinationName = "Two pairs of " + cards.get(i).getNameValue();
+                combinationName = "TWO pairs of " + cards.get(i).getNameValue();
                 firstPair = cards.get(i).getValue();
                 continue;
             }
@@ -129,7 +129,6 @@ public class Combinations {
                 secondPair = cards.get(i).getValue();
                 isTwoPair = true;
                 break;
-                //return 40.0 + (double)cards.get(i).getValue();
             }
         }
         if (isTwoPair) {
@@ -156,7 +155,7 @@ public class Combinations {
         for (int i = size - 1; i > 1; i--) {
             if (cards.get(i).getValue() == cards.get(i - 1).getValue()) {
                 if (cards.get(i).getValue() == cards.get(i - 2).getValue()) {
-                    combinationName = "Three of a kind " + cards.get(i).getNameValue();
+                    combinationName = "THREE of a kind " + cards.get(i).getNameValue();
                     card = cards.get(i).getValue();
                     isThreeOfaKind = true;
                     break;
@@ -219,7 +218,7 @@ public class Combinations {
                         if (cards.get(j).getValue() == 4) {
                             for (int k = j; k < size; k++) {
                                 if (cards.get(k).getValue() == 5) {
-                                    combinationName = "Straight to Five";
+                                    combinationName = "Straight to FIVE";
                                     return 95;
                                 }
                             }
@@ -316,7 +315,7 @@ public class Combinations {
                                 hc += (double) cards.get(j).getValue() * 0.01;
                             }
                         }
-                        combinationName = "Four of a kind " + cards.get(i).getNameValue();
+                        combinationName = "FOUR of a kind " + cards.get(i).getNameValue();
                         return 160.0 + (double) cards.get(i).getValue() + hc;
                     }
                 }
@@ -367,7 +366,7 @@ public class Combinations {
                         if (cards.get(j).getValue() == 4 && cards.get(j).getSuitValue() == cardSuit) {
                             for (int k = j; k < size; k++) {
                                 if (cards.get(k).getValue() == 5 && cards.get(k).getSuitValue() == cardSuit) {
-                                    combinationName = "Straight flush to Five";
+                                    combinationName = "Straight flush to FIVE";
                                     return 180;
                                 }
                             }
