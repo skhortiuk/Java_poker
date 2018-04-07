@@ -405,7 +405,7 @@ public class Table extends Application {
         }
         int isDraw = 0;
         for (int i = 0; i < 6; i++) {
-            if (bot[i].inGame && bot[i].getPower() == max) {
+            if (bot[i].inGame && (int)bot[i].getPower() == (int)max) {
                 isDraw++;
                 bot[i].isWinner = true;
             }
