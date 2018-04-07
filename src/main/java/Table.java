@@ -306,8 +306,10 @@ public class Table extends Application {
             getTurn();
         }
         if (gameRound == 4 && ifAllChipsEqual()){
+            hBox.getChildren().clear();
             showCards();
             getWinner();
+            return;
         }
         playerMove(raise);
     }

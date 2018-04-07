@@ -272,7 +272,7 @@ public class Combinations {
         if (cards.size() < 5) {
             return 0;
         }
-        if (onePair() != 0 && threeOfaKind() != 0) {
+        if ((int)onePair() != 0 && (int)threeOfaKind() != 0) {
             int size = cards.size();
             String one = null;
             int one_int = 0;
@@ -311,7 +311,7 @@ public class Combinations {
                     if (cards.get(i).getValue() == cards.get(i - 3).getValue()) {
                         for (int j = size - 1; j >= 0; j--) {
                             if (cards.get(i).getValue() != cards.get(j).getValue()) {
-                                if (hc != 0)
+                                if ((int)hc != 0)
                                     continue;
                                 hc += (double) cards.get(j).getValue() * 0.01;
                             }
