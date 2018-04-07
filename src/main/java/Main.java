@@ -8,6 +8,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.util.logging.Logger;
+
 public class Main extends Application{
 
     public static void main(String[] args) {

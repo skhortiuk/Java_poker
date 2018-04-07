@@ -261,32 +261,6 @@ public class Table extends Application {
         });
     }
 
-//    private void fold_click(ActionEvent e) {
-//        botView[0].del();
-//        bot[0].inGame = false;
-//        hBox.getChildren().clear();
-//        bots_move();
-//    }
-
-//    private void check_click(ActionEvent e){
-//        bots_move();
-//    }
-
-//    private void bet_click(ActionEvent e){
-//        bet();
-//        bots_move();
-//    }
-
-//    private void call_click(ActionEvent e){
-//        makeMove(0, lastChips);
-//        bots_move();
-//    }
-
-//    private void raise_click(ActionEvent e){
-//        bet();
-//        bots_move();
-//    }
-
     private void game_controll(){
         table_circle(gameRound, false);
     }
