@@ -407,8 +407,6 @@ public class Table extends Application {
         } else {
             bot[t].isWinner = true;
             for (int i = 0; i < 6; i++) {
-            }
-            for (int i = 0; i < 6; i++) {
                 if (bot[i].isWinner) {
                     LocalTime localTime = LocalTime.now();
                     gameChat.appendText(Time.valueOf(localTime) + "Bot[" + i + text_for_winner + bot[i].getCombinationName() + "!!!!!!!\n");
