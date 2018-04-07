@@ -1,6 +1,6 @@
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -138,7 +138,6 @@ public class Table extends Application {
         circleBankLable.setTranslateY(350);
         circleBankLable.setTextFill(Paint.valueOf("White"));
 
-        //Test
 
         startButton();
         resetButton();
@@ -157,28 +156,6 @@ public class Table extends Application {
         return root;
     }
 
-    private void gameControl() {
-        if (gameRound == 0) {
-            tableCircle();
-        }
-        if (gameRound == 1) {
-            getFlop();
-            tableCircle();
-        }
-        if (gameRound == 2) {
-            getTurn();
-            tableCircle();
-        }
-        if (gameRound == 3) {
-            getRiver();
-            tableCircle();
-        }
-        if (gameRound == 4) {
-            showCards();
-            getWinner();
-        }
-    }
-
     private void showCards() {
         for (int i = 1; i < 6; i++) {
             if (!bot[i].inGame) {
@@ -190,45 +167,6 @@ public class Table extends Application {
             botView[i].setCards(cards.get(0), true);
             botView[i].setCards(cards.get(1), true);
         }
-    }
-
-    private void tableCircle() {
-        lastChips = 0;
-        circleBank = 0;
-        clearChips();
-        playerMove(false);
-//        1 bot move
-        makeMove(1);
-//        2 bot move
-        makeMove(2);
-//        3 bot move
-        makeMove(3);
-//        4 bot move
-        makeMove(4);
-//        5 bot move
-        makeMove(5);
-        hBox.getChildren().clear();
-        while (!ifAllChipsEqual()) {
-            if (gameRound == -1)
-                break;
-            playerMove(true);
-            if (ifAllChipsEqual())
-                break;
-            makeMove(1);
-            if (ifAllChipsEqual())
-                break;
-            makeMove(2);
-            if (ifAllChipsEqual())
-                break;
-            makeMove(3);
-            if (ifAllChipsEqual())
-                break;
-            makeMove(4);
-            if (ifAllChipsEqual())
-                break;
-            makeMove(5);
-        }
-        gameRound++;
     }
 
     private void clearChips() {
@@ -253,6 +191,7 @@ public class Table extends Application {
     }
 
     private void playerMove(boolean raiseVisible) {
+        hBox.getChildren().clear();
         if (!bot[0].inGame)
             return;
         if (!raiseVisible) {
@@ -265,8 +204,6 @@ public class Table extends Application {
             callButton();
             raiseButton();
         }
-        Platform.enterNestedEventLoop(root);
-        hBox.getChildren().clear();
     }
 
     private void makeMove(int player, int chips) {
@@ -322,19 +259,78 @@ public class Table extends Application {
         startButton.setOnAction((ActionEvent event) -> {
             deck.refill();
             createPlayers();
-            gameRound = 0;
+//            gameRound = 0;
             startButton.setDisable(true);
-            gameControl();
+            game_controll();
         });
+    }
+
+    private void fold_click(ActionEvent e) {
+        botView[0].del();
+        bot[0].inGame = false;
+        hBox.getChildren().clear();
+        bots_move();
+    }
+
+    private void check_click(ActionEvent e){
+        bots_move();
+    }
+
+    private void bet_click(ActionEvent e){
+        bet();
+        bots_move();
+    }
+
+    private void call_click(ActionEvent e){
+        makeMove(0, lastChips);
+        bots_move();
+    }
+
+    private void raise_click(ActionEvent e){
+        bet();
+        bots_move();
+    }
+
+    private void game_controll(){
+        table_circle(gameRound, false);
+    }
+
+    private void table_circle(int round, boolean raise){
+        System.out.println(gameRound);
+        if (round == 1 && ifAllChipsEqual()){
+            getFlop();
+        }
+        if (round == 2 && ifAllChipsEqual()){
+            getTurn();
+        }
+        if (gameRound == 3 && ifAllChipsEqual()){
+            getTurn();
+        }
+        if (gameRound == 4 && ifAllChipsEqual()){
+            showCards();
+            getWinner();
+        }
+        playerMove(raise);
+    }
+
+    private void bots_move(){
+        for (int i = 1; i <= 5; i++){
+            makeMove(i);
+        }
+        if (ifAllChipsEqual()){
+            gameRound++;
+            table_circle(gameRound, false);
+        }
+        else {
+            table_circle(gameRound, true);
+        }
     }
 
     private void resetButton() {
         resetButton.setOnAction(event -> {
-            if (Platform.isNestedLoopRunning()) {
-                Platform.exitNestedEventLoop(root, null);
-            }
             for (int i = 0; i < 6; i++) {
                 botView[i].getRoot().getChildren().clear();
+                bot[0].clearChips();
             }
             gameRound = -1;
             hBox.getChildren().clear();
@@ -350,26 +346,19 @@ public class Table extends Application {
     private void foldButton() {
         hBox.getChildren().addAll(foldButton);
 //        Action
-        foldButton.setOnAction(event -> {
-            Platform.exitNestedEventLoop(root, null);
-            botView[0].del();
-            bot[0].inGame = false;
-        });
+        foldButton.setOnAction(this::fold_click);
     }
 
     private void checkButton() {
         hBox.getChildren().addAll(checkButton);
 //        Action
-        checkButton.setOnAction(event -> Platform.exitNestedEventLoop(root, null));
+        checkButton.setOnAction(this::check_click);
     }
 
     private void callButton() {
         hBox.getChildren().addAll(callButton);
 //        Action
-        callButton.setOnAction(event -> {
-            makeMove(0, lastChips);
-            Platform.exitNestedEventLoop(root, null);
-        });
+        callButton.setOnAction(this::call_click);
     }
 
     private void bet() {
@@ -388,19 +377,18 @@ public class Table extends Application {
         bot[0].setChips(tmp);
         botView[0].setChips(tmp);
         botView[0].setStack(bot[0].getStackValue());
-        Platform.exitNestedEventLoop(root, null);
     }
 
     private void betButton() {
         hBox.getChildren().addAll(betButton, betField);
 //        Action
-        betButton.setOnAction(event -> bet());
+        betButton.setOnAction(this::bet_click);
     }
 
     private void raiseButton() {
         hBox.getChildren().addAll(raiseButton, betField);
 //        Action
-        raiseButton.setOnAction(event -> bet());
+        raiseButton.setOnAction(this::raise_click);
     }
 
     private void getWinner() {
@@ -485,6 +473,9 @@ public class Table extends Application {
     }
 
     private void getFlop() {
+        lastChips = 0;
+        circleBank = 0;
+        clearChips();
         deck.getCard();
         for (int i = 0; i < 3; i++) {
             Card card = deck.getCard();
@@ -496,16 +487,9 @@ public class Table extends Application {
     }
 
     private void getTurn() {
-        deck.getCard();
-        Card card = deck.getCard();
-        for (int i = 0; i < 6; i++) {
-            bot[i].setCards(card);
-        }
-
-        ftr.setCard(card);
-    }
-
-    private void getRiver() {
+        lastChips = 0;
+        circleBank = 0;
+        clearChips();
         deck.getCard();
         Card card = deck.getCard();
         for (int i = 0; i < 6; i++) {
@@ -524,8 +508,6 @@ public class Table extends Application {
         primaryStage.setTitle("Poker");
         primaryStage.show();
         primaryStage.setOnCloseRequest(t -> {
-            if (Platform.isNestedLoopRunning())
-                resetButton.fire();
             primaryStage.close();
             Main table = new Main();
             Stage stage = new Stage();
