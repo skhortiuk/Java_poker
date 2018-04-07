@@ -33,7 +33,7 @@ public class Combinations {
     private double calculatePower() {
         double combination;
         combination = straightFlush();
-        if (combination != 0)
+        if (combination != 0.0f)
             return combination;
         combination = fourOfKind();
         if (combination != 0)
