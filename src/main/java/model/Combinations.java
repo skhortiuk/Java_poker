@@ -36,28 +36,28 @@ public class Combinations {
         if ((int)combination != 0)
             return combination;
         combination = fourOfKind();
-        if (combination != 0)
+        if ((int)combination != 0)
             return combination;
         combination = fullHouse();
-        if (combination != 0)
+        if ((int)combination != 0)
             return combination;
         combination = flush();
-        if (combination != 0)
+        if ((int)combination != 0)
             return combination;
         combination = straight();
-        if (combination != 0)
+        if ((int)combination != 0)
             return combination;
         combination = threeOfaKind();
-        if (combination != 0)
+        if ((int)combination != 0)
             return combination;
         combination = twoPair();
-        if (combination != 0)
+        if ((int)combination != 0)
             return combination;
         combination = onePair();
-        if (combination != 0)
+        if ((int)combination != 0)
             return combination;
         combination = highCard();
-        if (combination != 0)
+        if ((int)combination != 0)
             return combination;
         return 0;
     }
