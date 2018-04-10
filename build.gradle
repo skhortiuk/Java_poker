@@ -4,6 +4,7 @@ version '1.0-SNAPSHOT'
 apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'jacoco'
+apply plugin: "info.solidsoft.pitest"
 
 sourceCompatibility = 1.8
 
@@ -30,16 +31,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-//compileJava {
-//    sourceCompatibility = '9'
-//    targetCompatibility = '9'
-//    options.with {
-//        fork = true
-//        forkOptions.javaHome = new File('/usr/lib/jvm/java-9-oracle/')
-//        compilerArgs.addAll(['--add-exports', 'jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED'])
-//    }
-//}
-
 sourceSets {
     main {
         java.srcDir("src/java")
@@ -50,12 +41,6 @@ sourceSets {
     }
 }
 
-
-
-//Junit4
-
-//Junit4
-
 //Coverage
 
 jacocoTestReport {
@@ -63,3 +48,12 @@ jacocoTestReport {
     description = "Generate Jacoco coverage reports after running tests."
     additionalSourceDirs = files(sourceSets.main.allJava.srcDirs)
 }
+
+pitest {
+    targetClasses = ['seabattlepack.*']
+    outputFormats = ['XML', 'HTML']
+    timestampedReports = false
+}
+
+test.dependsOn 'pitest'
+test.finalizedBy jacocoTestReport
