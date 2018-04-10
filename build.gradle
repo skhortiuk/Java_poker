@@ -50,16 +50,17 @@ sourceSets {
     }
 }
 
-
-
-//Junit4
-
-//Junit4
-
-//Coverage
-
 jacocoTestReport {
     group = "Reporting"
     description = "Generate Jacoco coverage reports after running tests."
     additionalSourceDirs = files(sourceSets.main.allJava.srcDirs)
 }
+
+pitest {
+    targetClasses = ['model.*']
+    outputFormats = ['XML', 'HTML']
+    timestampedReports = false
+}
+
+test.dependsOn 'pitest'
+test.finalizedBy jacocoTestReport
