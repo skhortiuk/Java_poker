@@ -9,11 +9,16 @@ apply plugin: "info.solidsoft.pitest"
 apply plugin: "com.zoltu.git-versioning"
 
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 mainClassName = 'Main'
 
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
 repositories {
-    mavenCentral()
+    maven { url 'http://repo1.maven.org/maven2' }
 }
 
 buildscript {
@@ -28,34 +33,37 @@ buildscript {
     }
 }
 
-apply plugin: "com.zoltu.git-versioning"
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.5'
+}
 
 dependencies {
     compile group: 'de.svenkubiak', name: 'jBCrypt', version: '0.4'
     compile group: 'commons-io', name: 'commons-io', version: '2.5'
-    testCompile 'junit:junit:4.12'
+    testCompile("junit:junit:4.12")
 }
 
-sourceSets {
-    main {
-        java.srcDir("src/java")
-        resources.srcDir("src/resources")
-    }
-    test {
-        java.srcDir("src/test")
+jar {
+    from configurations.compile.collect { zipTree it }
+    manifest {
+        attributes "Main-Class": "seabattlepack.SeaBattle"
     }
 }
 
-//Coverage
+jacoco{
+    toolVersion='0.7.9'
+}
 
-jacocoTestReport {
-    group = "Reporting"
-    description = "Generate Jacoco coverage reports after running tests."
-    additionalSourceDirs = files(sourceSets.main.allJava.srcDirs)
+jacocoTestReport{
+    reports{
+        html.enabled = true;
+        xml.enabled = true;
+        csv.enabled = true;
+    }
 }
 
 pitest {
-    targetClasses = ['seabattlepack.*']
+    targetClasses = ['model.*']
     outputFormats = ['XML', 'HTML']
     timestampedReports = false
 }

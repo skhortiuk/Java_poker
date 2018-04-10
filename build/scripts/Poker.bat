@@ -63,7 +63,7 @@ set CMD_LINE_ARGS=%*
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\Poker-1.0-SNAPSHOT.jar
+set CLASSPATH=%APP_HOME%\lib\Poker-1.1.3.jar;%APP_HOME%\lib\jBCrypt-0.4.jar;%APP_HOME%\lib\commons-io-2.5.jar
 
 @rem Execute Poker
 "%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %POKER_OPTS%  -classpath "%CLASSPATH%" Main %CMD_LINE_ARGS%
