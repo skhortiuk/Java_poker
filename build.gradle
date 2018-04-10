@@ -1,24 +1,16 @@
 group 'Gradle'
 version '1.0-SNAPSHOT'
 
-apply plugin: 'idea'
-apply plugin: 'application'
 apply plugin: 'java'
+apply plugin: 'application'
 apply plugin: 'jacoco'
-apply plugin: "info.solidsoft.pitest"
-apply plugin: "com.zoltu.git-versioning"
 
 sourceCompatibility = 1.8
-targetCompatibility = 1.8
 
 mainClassName = 'Main'
 
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
-}
-
 repositories {
-    maven { url 'http://repo1.maven.org/maven2' }
+    mavenCentral()
 }
 
 buildscript {
@@ -28,45 +20,46 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.3.0'
         classpath "gradle.plugin.com.zoltu.gradle.plugin:git-versioning:3.0.3"
     }
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.5'
-}
+apply plugin: "com.zoltu.git-versioning"
 
 dependencies {
-    compile group: 'de.svenkubiak', name: 'jBCrypt', version: '0.4'
-    compile group: 'commons-io', name: 'commons-io', version: '2.5'
-    testCompile("junit:junit:4.12")
+    testCompile 'junit:junit:4.12'
 }
 
-jar {
-    from configurations.compile.collect { zipTree it }
-    manifest {
-        attributes "Main-Class": "seabattlepack.SeaBattle"
+//compileJava {
+//    sourceCompatibility = '9'
+//    targetCompatibility = '9'
+//    options.with {
+//        fork = true
+//        forkOptions.javaHome = new File('/usr/lib/jvm/java-9-oracle/')
+//        compilerArgs.addAll(['--add-exports', 'jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED'])
+//    }
+//}
+
+sourceSets {
+    main {
+        java.srcDir("src/java")
+        resources.srcDir("src/resources")
+    }
+    test {
+        java.srcDir("src/test")
     }
 }
 
-jacoco{
-    toolVersion='0.7.9'
-}
 
-jacocoTestReport{
-    reports{
-        html.enabled = true;
-        xml.enabled = true;
-        csv.enabled = true;
-    }
-}
 
-pitest {
-    targetClasses = ['model.*']
-    outputFormats = ['XML', 'HTML']
-    timestampedReports = false
-}
+//Junit4
 
-test.dependsOn 'pitest'
-test.finalizedBy jacocoTestReport
+//Junit4
+
+//Coverage
+
+jacocoTestReport {
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports after running tests."
+    additionalSourceDirs = files(sourceSets.main.allJava.srcDirs)
+}
