@@ -1,3 +1,5 @@
+package com;
+
 import javafx.application.Application;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
@@ -7,8 +9,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
-import java.util.logging.Logger;
 
 public class Main extends Application{
 

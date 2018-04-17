@@ -59,7 +59,7 @@ jacocoTestReport {
 }
 
 pitest {
-    targetClasses = ['model.*']
+    targetClasses = ['com.*']
     outputFormats = ['XML', 'HTML']
     timestampedReports = false
 }

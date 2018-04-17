@@ -1,3 +1,5 @@
+package com;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
@@ -11,9 +13,9 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import model.*;
-import view.FTRcardsView;
-import view.PlayerView;
+import com.model.*;
+import com.view.FTRcardsView;
+import com.view.PlayerView;
 
 import java.sql.Time;
 import java.time.LocalTime;

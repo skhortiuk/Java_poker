@@ -1,7 +1,7 @@
-package view;
+package com.view;
 
 import javafx.scene.layout.HBox;
-import model.Card;
+import com.model.Card;
 
 public class FTRcardsView {
     private CardView cardView = new CardView();
