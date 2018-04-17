@@ -1,13 +1,10 @@
 package com.model;
 
 import java.util.Collections;
+import java.util.Deque;
 import java.util.Stack;
 
 public class Deck {
-
-    public Stack<Card> getCards() {
-        return cards;
-    }
 
     private Stack<Card> cards = new Stack<>();
 
