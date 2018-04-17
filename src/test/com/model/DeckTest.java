@@ -10,9 +10,8 @@ public class DeckTest {
     @Test
     public void refill() {
         Deck deck = new Deck();
-        int pre_size = deck.getCards().size();
-        deck.refill(); 
-        assertEquals(pre_size, deck.getCards().size());
+        deck.refill();
+        assertEquals(52, deck.getCards().size());
     }
 
     @Test
