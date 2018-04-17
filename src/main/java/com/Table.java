@@ -27,7 +27,7 @@ public class Table extends Application {
     private static final int HEIGHT = 750;
     private static final int WIDTH = 1050;
 
-    Logger logger = Logger.getLogger(Table.class.getName());
+    private Logger logger = Logger.getLogger(Table.class.getName());
 
     private SimpleBot simpleBot = new SimpleBot();
     private MediumBot mediumBot = new MediumBot();
@@ -502,7 +502,7 @@ public class Table extends Application {
                 table.start(stage);
                 primaryStage.hide();
             } catch (Exception e) {
-                logger.log(Level.CONFIG, "Error");
+                logger.log(Level.CONFIG, "Error in Table.java");
             }
         });
     }
