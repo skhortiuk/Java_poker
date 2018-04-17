@@ -20,10 +20,14 @@ import com.view.PlayerView;
 import java.sql.Time;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Table extends Application {
     private static final int HEIGHT = 750;
     private static final int WIDTH = 1050;
+
+    Logger logger = Logger.getLogger(Table.class.getName());
 
     private SimpleBot simpleBot = new SimpleBot();
     private MediumBot mediumBot = new MediumBot();
@@ -482,6 +486,8 @@ public class Table extends Application {
 
     @Override
     public void start(Stage primaryStage){
+        logger.setLevel(Level.FINE);
+
         primaryStage.setScene(new Scene(createContent()));
         primaryStage.setWidth(WIDTH);
         primaryStage.setHeight(HEIGHT);
@@ -496,7 +502,7 @@ public class Table extends Application {
                 table.start(stage);
                 primaryStage.hide();
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.log(Level.CONFIG, "Error");
             }
         });
     }
