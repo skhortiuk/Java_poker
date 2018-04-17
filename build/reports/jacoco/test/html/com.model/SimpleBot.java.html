@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SimpleBot.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Poker</a> &gt; <a href="index.source.html" class="el_package">com.model</a> &gt; <span class="el_source">SimpleBot.java</span></div><h1>SimpleBot.java</h1><pre class="source lang-java linenums">package com.model;
+
+import java.util.ArrayList;
+
+
+<span class="nc" id="L6">public class SimpleBot implements Bot {</span>
+
+<span class="nc" id="L8">    Combinations combinations = new Combinations();</span>
+
+    @Override
+    public int think(ArrayList&lt;Card&gt; cards, int stack, int bank, int prevRate) {
+<span class="nc" id="L12">        combinations.setCards(cards);</span>
+<span class="nc" id="L13">        combinations.calculate();</span>
+<span class="nc" id="L14">        double power = combinations.getPower();</span>
+<span class="nc bnc" id="L15" title="All 2 branches missed.">        if (stack &gt; 750) {</span>
+//            if can check
+<span class="nc bnc" id="L17" title="All 2 branches missed.">            if (prevRate == 0) {</span>
+<span class="nc bnc" id="L18" title="All 2 branches missed.">                if (power &gt;= 40) {</span>
+<span class="nc" id="L19">                    return 200;</span>
+                }
+//                if have good hand
+<span class="nc bnc" id="L22" title="All 2 branches missed.">                if (power &gt;= 20) {</span>
+<span class="nc" id="L23">                    return 100;</span>
+                }
+//                if have simple hand
+                else {
+<span class="nc" id="L27">                    return 0;</span>
+                }
+            }
+//            if need call
+<span class="nc bnc" id="L31" title="All 2 branches missed.">            if (prevRate &gt; 0) {</span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">                if (power &gt;= 70) {</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">                    if (prevRate &gt;= 500) {</span>
+<span class="nc" id="L34">                        return prevRate;</span>
+                    } else {
+<span class="nc" id="L36">                        return 500;</span>
+                    }
+                }
+<span class="nc bnc" id="L39" title="All 2 branches missed.">                if (power &gt;= 50) {</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">                    if (bank &lt;= 800) {</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">                        if (prevRate &lt;= 100) {</span>
+<span class="nc" id="L42">                            return prevRate+150;</span>
+                        }
+                    } else {
+<span class="nc" id="L45">                        return prevRate;</span>
+                    }
+                }
+<span class="nc bnc" id="L48" title="All 2 branches missed.">                if (power &gt;= 40) {</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">                    if (bank &lt;= 600) {</span>
+<span class="nc" id="L50">                        return prevRate+100;</span>
+                    } else {
+<span class="nc" id="L52">                        return prevRate;</span>
+                    }
+                }
+<span class="nc bnc" id="L55" title="All 2 branches missed.">                if (prevRate &gt;= 20) {</span>
+<span class="nc" id="L56">                    return prevRate;</span>
+                } else {
+<span class="nc" id="L58">                    return -1;</span>
+                }
+            }
+        }
+<span class="nc bnc" id="L62" title="All 2 branches missed.">        if (prevRate == 0) {</span>
+<span class="nc" id="L63">            return 0;</span>
+        }
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        if (power &gt;= 70) {</span>
+<span class="nc" id="L66">            return stack;</span>
+        }
+<span class="nc" id="L68">        return -1;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

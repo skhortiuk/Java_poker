@@ -159,7 +159,7 @@ public class Table extends Application {
 
     private void showCards() {
         for (int i = 1; i < 6; i++) {
-            if (!bot[i].inGame) {
+            if (!bot[i].isWinner()) {
                 continue;
             }
             ArrayList<Card> cards;
@@ -180,7 +180,7 @@ public class Table extends Application {
     private boolean ifAllChipsEqual() {
         boolean tmp = true;
         for (int i = 0; i < 6; i++) {
-            if (!bot[i].inGame || bot[i].allIn) {
+            if (!bot[i].isInGame() || bot[i].isAllIn()) {
                 continue;
             }
             if (bot[i].getChips() != lastChips) {
@@ -193,7 +193,7 @@ public class Table extends Application {
 
     private void playerMove(boolean raiseVisible) {
         hBox.getChildren().clear();
-        if (!bot[0].inGame)
+        if (!bot[0].isInGame())
             return;
         if (!raiseVisible) {
             foldButton();
@@ -225,7 +225,7 @@ public class Table extends Application {
     }
 
     private void makeMove(int player) {
-        if (!bot[player].inGame) {
+        if (!bot[player].isInGame()) {
             return;
         }
         int move;
@@ -320,7 +320,7 @@ public class Table extends Application {
         hBox.getChildren().addAll(foldButton);
         foldButton.setOnAction(event -> {
             botView[0].del();
-            bot[0].inGame = false;
+            bot[0].setInGame(false);
             hBox.getChildren().clear();
             bots_move();
         });
@@ -383,7 +383,7 @@ public class Table extends Application {
         int t = 0;
         double tmp;
         for (int i = 0; i < 6; i++) {
-            if (!bot[i].inGame)
+            if (!bot[i].isInGame())
                 continue;
             tmp = bot[i].getPower();
             if (tmp > max) {
@@ -393,23 +393,23 @@ public class Table extends Application {
         }
         int isDraw = 0;
         for (int i = 0; i < 6; i++) {
-            if (bot[i].inGame && (int)bot[i].getPower() == (int)max) {
+            if (bot[i].isInGame() && (int)bot[i].getPower() == (int)max) {
                 isDraw++;
-                bot[i].isWinner = true;
+                bot[i].setWinner(true);
             }
         }
         if (isDraw > 1) {
             for (int i = 0; i < 6; i++) {
-                if (bot[i].isWinner) {
+                if (bot[i].isWinner()) {
                     LocalTime localTime = LocalTime.now();
                     gameChat.appendText(Time.valueOf(localTime) + "Bot[" + i + text_for_winner + bot[i].getCombinationName() + "!!!!!!!\n");
                     forWinner.setText("Draw!!!!");
                 }
             }
         } else {
-            bot[t].isWinner = true;
+            bot[t].setWinner(true);
             for (int i = 0; i < 6; i++) {
-                if (bot[i].isWinner) {
+                if (bot[i].isWinner()) {
                     LocalTime localTime = LocalTime.now();
                     gameChat.appendText(Time.valueOf(localTime) + "Bot[" + i + text_for_winner + bot[i].getCombinationName() + "!!!!!!!\n");
                     forWinner.setText("Bot[" + i + "] Win this game!!!!!!!");

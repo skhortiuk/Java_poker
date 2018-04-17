@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.model.CardTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-04-17T14:18:44" hostname="mrluck-asus" time="0.007">
+  <properties/>
+  <testcase name="getValue" classname="com.model.CardTest" time="0.007"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

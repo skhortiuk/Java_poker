@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Combinations.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Poker</a> &gt; <a href="index.source.html" class="el_package">com.model</a> &gt; <span class="el_source">Combinations.java</span></div><h1>Combinations.java</h1><pre class="source lang-java linenums">package com.model;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+public class Combinations {
+    private double power;
+<span class="nc" id="L9">    private List&lt;Card&gt; cards = new ArrayList&lt;&gt;();</span>
+    private String combinationName;
+
+<span class="nc" id="L12">    public Combinations() {</span>
+<span class="nc" id="L13">        this.power = 0.00000;</span>
+<span class="nc" id="L14">    }</span>
+
+    String getCombinationName() {
+<span class="nc" id="L17">        return combinationName;</span>
+    }
+
+    void addCards(Card card) {
+<span class="nc" id="L21">        this.cards.add(card);</span>
+<span class="nc" id="L22">    }</span>
+
+    double getPower() {
+<span class="nc" id="L25">        return this.power;</span>
+    }
+
+    void calculate() {
+<span class="nc" id="L29">        cards.sort(Comparator.comparing(Card::getValue));</span>
+<span class="nc" id="L30">        this.power = calculatePower();</span>
+<span class="nc" id="L31">    }</span>
+
+    private double calculatePower() {
+        double combination;
+<span class="nc" id="L35">        combination = straightFlush();</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">        if ((int)combination != 0)</span>
+<span class="nc" id="L37">            return combination;</span>
+<span class="nc" id="L38">        combination = fourOfKind();</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">        if ((int)combination != 0)</span>
+<span class="nc" id="L40">            return combination;</span>
+<span class="nc" id="L41">        combination = fullHouse();</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">        if ((int)combination != 0)</span>
+<span class="nc" id="L43">            return combination;</span>
+<span class="nc" id="L44">        combination = flush();</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">        if ((int)combination != 0)</span>
+<span class="nc" id="L46">            return combination;</span>
+<span class="nc" id="L47">        combination = straight();</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">        if ((int)combination != 0)</span>
+<span class="nc" id="L49">            return combination;</span>
+<span class="nc" id="L50">        combination = threeOfaKind();</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">        if ((int)combination != 0)</span>
+<span class="nc" id="L52">            return combination;</span>
+<span class="nc" id="L53">        combination = twoPair();</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">        if ((int)combination != 0)</span>
+<span class="nc" id="L55">            return combination;</span>
+<span class="nc" id="L56">        combination = onePair();</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">        if ((int)combination != 0)</span>
+<span class="nc" id="L58">            return combination;</span>
+<span class="nc" id="L59">        combination = highCard();</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">        if ((int)combination != 0)</span>
+<span class="nc" id="L61">            return combination;</span>
+<span class="nc" id="L62">        return 0;</span>
+    }
+
+    public void setCards(List&lt;Card&gt; cards) {
+<span class="nc" id="L66">        this.cards = cards;</span>
+<span class="nc" id="L67">    }</span>
+
+    private double highCard() {
+<span class="nc bnc" id="L70" title="All 2 branches missed.">        if (cards.isEmpty())</span>
+<span class="nc" id="L71">            return 0;</span>
+<span class="nc" id="L72">        int size = cards.size();</span>
+<span class="nc" id="L73">        double result = 0;</span>
+<span class="nc" id="L74">        double cof = 1;</span>
+<span class="nc" id="L75">        combinationName = &quot;High card &quot; + cards.get(size - 1).getNameValue();</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">        for (int i = 0; i &lt; size; i++) {</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">            if (i == 5)</span>
+<span class="nc" id="L78">                break;</span>
+<span class="nc" id="L79">            result += cards.get(size - (i + 1)).getValue() * cof;</span>
+<span class="nc" id="L80">            cof *= 0.01;</span>
+        }
+<span class="nc" id="L82">        return result;</span>
+    }
+
+    private double onePair() {
+<span class="nc bnc" id="L86" title="All 2 branches missed.">        if (cards.size() &lt; 2)</span>
+<span class="nc" id="L87">            return 0;</span>
+<span class="nc" id="L88">        int size = cards.size();</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        for (int i = size - 1; i &gt; 0; i--) {</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">            if (cards.get(i).getValue() == cards.get(i - 1).getValue()) {</span>
+<span class="nc" id="L91">                double hc = 0.0;</span>
+<span class="nc" id="L92">                double d = 0.01;</span>
+<span class="nc" id="L93">                int pair2 = i - 1;</span>
+<span class="nc" id="L94">                int kicker = 0;</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">                for (int j = size - 1; j &gt;= 0; j--) {</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">                    if (kicker == 3) {</span>
+<span class="nc" id="L97">                        break;</span>
+                    }
+<span class="nc bnc" id="L99" title="All 4 branches missed.">                    if (j != i &amp;&amp; j != pair2) {</span>
+<span class="nc" id="L100">                        kicker++;</span>
+<span class="nc" id="L101">                        hc += (double) cards.get(j).getValue() * d;</span>
+<span class="nc" id="L102">                        d *= 0.01;</span>
+                    }
+                }
+<span class="nc" id="L105">                combinationName = &quot;Pair of &quot; + cards.get(i).getNameValue();</span>
+<span class="nc" id="L106">                return 20.0 + (double) cards.get(i).getValue() + hc;</span>
+            }
+        }
+<span class="nc" id="L109">        return 0;</span>
+    }
+
+    private double twoPair() {
+<span class="nc bnc" id="L113" title="All 2 branches missed.">        if (cards.size() &lt; 4) {</span>
+<span class="nc" id="L114">            return 0;</span>
+        }
+<span class="nc" id="L116">        int firstPair = 0;</span>
+<span class="nc" id="L117">        int secondPair = 0;</span>
+<span class="nc" id="L118">        boolean isTwoPair = false;</span>
+<span class="nc" id="L119">        double hc = 0.0;</span>
+<span class="nc" id="L120">        int size = cards.size();</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">        for (int i = size - 1; i &gt; 0; i--) {</span>
+<span class="nc bnc" id="L122" title="All 4 branches missed.">            if ((cards.get(i).getValue() == cards.get(i - 1).getValue()) &amp;&amp; (firstPair == 0)) {</span>
+<span class="nc" id="L123">                combinationName = &quot;TWO pairs of &quot; + cards.get(i).getNameValue();</span>
+<span class="nc" id="L124">                firstPair = cards.get(i).getValue();</span>
+<span class="nc" id="L125">                continue;</span>
+            }
+<span class="nc bnc" id="L127" title="All 4 branches missed.">            if ((firstPair != 0) &amp;&amp; (cards.get(i).getValue() == cards.get(i - 1).getValue())) {</span>
+<span class="nc" id="L128">                combinationName += &quot; and &quot; + cards.get(i).getNameValue();</span>
+<span class="nc" id="L129">                secondPair = cards.get(i).getValue();</span>
+<span class="nc" id="L130">                isTwoPair = true;</span>
+<span class="nc" id="L131">                break;</span>
+            }
+        }
+<span class="nc bnc" id="L134" title="All 2 branches missed.">        if (isTwoPair) {</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            for (int i = size - 1; i &gt;= 0; i--) {</span>
+<span class="nc bnc" id="L136" title="All 4 branches missed.">                if (secondPair == cards.get(i).getValue() || firstPair == cards.get(i).getValue())</span>
+<span class="nc" id="L137">                    continue;</span>
+<span class="nc" id="L138">                hc += (double) cards.get(i).getValue() * 0.0001;</span>
+<span class="nc" id="L139">                break;</span>
+            }
+<span class="nc" id="L141">            return 40.0 + (double) firstPair + (double) secondPair * 0.01 + hc;</span>
+        }
+<span class="nc" id="L143">        return 0;</span>
+    }
+
+    private double threeOfaKind() {
+<span class="nc bnc" id="L147" title="All 2 branches missed.">        if (cards.size() &lt; 3) {</span>
+<span class="nc" id="L148">            return 0;</span>
+        }
+<span class="nc" id="L150">        int size = cards.size();</span>
+<span class="nc" id="L151">        double hc = 0.0;</span>
+<span class="nc" id="L152">        double d = 0.01;</span>
+<span class="nc" id="L153">        boolean isThreeOfaKind = false;</span>
+<span class="nc" id="L154">        int card = 0;</span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">        for (int i = size - 1; i &gt; 1; i--) {</span>
+<span class="nc bnc" id="L156" title="All 2 branches missed.">            if (cards.get(i).getValue() == cards.get(i - 1).getValue()) {</span>
+<span class="nc bnc" id="L157" title="All 2 branches missed.">                if (cards.get(i).getValue() == cards.get(i - 2).getValue()) {</span>
+<span class="nc" id="L158">                    combinationName = &quot;THREE of a kind &quot; + cards.get(i).getNameValue();</span>
+<span class="nc" id="L159">                    card = cards.get(i).getValue();</span>
+<span class="nc" id="L160">                    isThreeOfaKind = true;</span>
+<span class="nc" id="L161">                    break;</span>
+//                    return 70 + cards.get(i).getValue();
+                }
+            }
+        }
+<span class="nc bnc" id="L166" title="All 2 branches missed.">        if (isThreeOfaKind) {</span>
+<span class="nc" id="L167">            int tmp = 0;</span>
+<span class="nc bnc" id="L168" title="All 2 branches missed.">            for (int i = size - 1; i &gt;= 0; i--) {</span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">                if (card == cards.get(i).getValue())</span>
+<span class="nc" id="L170">                    continue;</span>
+<span class="nc bnc" id="L171" title="All 2 branches missed.">                if (tmp == 2)</span>
+<span class="nc" id="L172">                    break;</span>
+<span class="nc" id="L173">                hc += (double) cards.get(i).getValue() * d;</span>
+<span class="nc" id="L174">                d *= 0.01;</span>
+<span class="nc" id="L175">                tmp++;</span>
+            }
+<span class="nc" id="L177">            return 70 + (double) card + hc;</span>
+        }
+<span class="nc" id="L179">        return 0;</span>
+    }
+
+    private double straight() {
+<span class="nc bnc" id="L183" title="All 2 branches missed.">        if (cards.size() &lt; 5) {</span>
+<span class="nc" id="L184">            return 0;</span>
+        }
+<span class="nc" id="L186">        int size = cards.size();</span>
+        int valueCard;
+        int hc;
+<span class="nc bnc" id="L189" title="All 2 branches missed.">        for (int i = size - 1; i &gt;= 0; i--) {</span>
+<span class="nc" id="L190">            valueCard = cards.get(i).getValue();</span>
+<span class="nc" id="L191">            hc = i;</span>
+<span class="nc bnc" id="L192" title="All 2 branches missed.">            for (int j = i; j &gt;= 0; j--) {</span>
+<span class="nc bnc" id="L193" title="All 2 branches missed.">                if (valueCard - 1 == cards.get(j).getValue()) {</span>
+<span class="nc" id="L194">                    valueCard--;</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">                    for (int k = j; k &gt;= 0; k--) {</span>
+<span class="nc bnc" id="L196" title="All 2 branches missed.">                        if (valueCard - 1 == cards.get(k).getValue()) {</span>
+<span class="nc" id="L197">                            valueCard--;</span>
+<span class="nc bnc" id="L198" title="All 2 branches missed.">                            for (int l = k; l &gt;= 0; l--) {</span>
+<span class="nc bnc" id="L199" title="All 2 branches missed.">                                if (valueCard - 1 == cards.get(l).getValue()) {</span>
+<span class="nc" id="L200">                                    valueCard--;</span>
+<span class="nc bnc" id="L201" title="All 2 branches missed.">                                    for (int m = l; m &gt;= 0; m--) {</span>
+<span class="nc bnc" id="L202" title="All 2 branches missed.">                                        if (valueCard - 1 == cards.get(m).getValue()) {</span>
+<span class="nc" id="L203">                                            combinationName = &quot;Straight to &quot; + cards.get(hc).getNameValue();</span>
+<span class="nc" id="L204">                                            return 90 + cards.get(hc).getValue();</span>
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+<span class="nc bnc" id="L214" title="All 4 branches missed.">        if ((cards.get(size - 1).getValue() == 14) &amp;&amp; (cards.get(0).getValue() == 2)) {</span>
+<span class="nc bnc" id="L215" title="All 2 branches missed.">            for (int i = 1; i &lt; size; i++) {</span>
+<span class="nc bnc" id="L216" title="All 2 branches missed.">                if (cards.get(i).getValue() == 3) {</span>
+<span class="nc bnc" id="L217" title="All 2 branches missed.">                    for (int j = i; j &lt; size; j++) {</span>
+<span class="nc bnc" id="L218" title="All 2 branches missed.">                        if (cards.get(j).getValue() == 4) {</span>
+<span class="nc bnc" id="L219" title="All 2 branches missed.">                            for (int k = j; k &lt; size; k++) {</span>
+<span class="nc bnc" id="L220" title="All 2 branches missed.">                                if (cards.get(k).getValue() == 5) {</span>
+<span class="nc" id="L221">                                    combinationName = &quot;Straight to FIVE&quot;;</span>
+<span class="nc" id="L222">                                    return 95;</span>
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+<span class="nc" id="L230">        return 0;</span>
+    }
+
+    private double flush() {
+<span class="nc bnc" id="L234" title="All 2 branches missed.">        if (cards.size() &lt; 5) {</span>
+<span class="nc" id="L235">            return 0;</span>
+        }
+<span class="nc" id="L237">        int size = cards.size();</span>
+<span class="nc" id="L238">        int tmp = 1;</span>
+<span class="nc" id="L239">        int hsuitc = 0;</span>
+<span class="nc" id="L240">        double d = 0.01;</span>
+<span class="nc" id="L241">        double hc = 0.0;</span>
+<span class="nc bnc" id="L242" title="All 2 branches missed.">        for (int suit = 0; suit &lt; 5; suit++) {</span>
+<span class="nc bnc" id="L243" title="All 2 branches missed.">            for (int i = size - 1; i &gt;= 0; i--) {</span>
+<span class="nc bnc" id="L244" title="All 2 branches missed.">                if (cards.get(i).getSuitValue() == suit) {</span>
+<span class="nc" id="L245">                    tmp++;</span>
+<span class="nc bnc" id="L246" title="All 2 branches missed.">                    if (tmp == 2)</span>
+<span class="nc" id="L247">                        hsuitc = i;</span>
+                }
+<span class="nc bnc" id="L249" title="All 2 branches missed.">                if (tmp == 6) {</span>
+<span class="nc" id="L250">                    int number = 0;</span>
+<span class="nc bnc" id="L251" title="All 2 branches missed.">                    for (int j = size - 1; j &gt;= 0; j--) {</span>
+<span class="nc bnc" id="L252" title="All 2 branches missed.">                        if (number &gt; 4)</span>
+<span class="nc" id="L253">                            continue;</span>
+<span class="nc bnc" id="L254" title="All 2 branches missed.">                        if (suit == cards.get(j).getSuitValue()) {</span>
+<span class="nc" id="L255">                            hc += (double) cards.get(j).getValue() * d;</span>
+<span class="nc" id="L256">                            d *= 0.01;</span>
+<span class="nc" id="L257">                            number++;</span>
+                        }
+                    }
+<span class="nc" id="L260">                    combinationName = &quot;Flush to &quot; + cards.get(hsuitc).getNameValue();</span>
+<span class="nc" id="L261">                    return 120.0 + (double) cards.get(hsuitc).getValue() + hc;</span>
+                }
+            }
+<span class="nc" id="L264">            tmp = 1;</span>
+<span class="nc" id="L265">            hsuitc = 0;</span>
+        }
+<span class="nc" id="L267">        return 0;</span>
+    }
+
+    private double fullHouse() {
+<span class="nc bnc" id="L271" title="All 2 branches missed.">        if (cards.size() &lt; 5) {</span>
+<span class="nc" id="L272">            return 0;</span>
+        }
+<span class="nc bnc" id="L274" title="All 4 branches missed.">        if ((int)onePair() != 0 &amp;&amp; (int)threeOfaKind() != 0) {</span>
+<span class="nc" id="L275">            int size = cards.size();</span>
+<span class="nc" id="L276">            String one = null;</span>
+<span class="nc" id="L277">            int one_int = 0;</span>
+            //set
+<span class="nc bnc" id="L279" title="All 2 branches missed.">            for (int i = size - 1; i &gt; 1; i--) {</span>
+<span class="nc bnc" id="L280" title="All 2 branches missed.">                if (cards.get(i).getValue() == cards.get(i - 1).getValue()) {</span>
+<span class="nc bnc" id="L281" title="All 2 branches missed.">                    if (cards.get(i).getValue() == cards.get(i - 2).getValue()) {</span>
+<span class="nc" id="L282">                        one = cards.get(i).getNameValue();</span>
+<span class="nc" id="L283">                        one_int = cards.get(i).getValue();</span>
+<span class="nc" id="L284">                        break;</span>
+                    }
+                }
+            }
+            //pair
+<span class="nc bnc" id="L289" title="All 2 branches missed.">            for (int i = size - 1; i &gt; 0; i--) {</span>
+<span class="nc bnc" id="L290" title="All 2 branches missed.">                if (cards.get(i).getValue() == one_int)</span>
+<span class="nc" id="L291">                    continue;</span>
+<span class="nc bnc" id="L292" title="All 2 branches missed.">                if (cards.get(i).getValue() == cards.get(i - 1).getValue()) {</span>
+<span class="nc" id="L293">                    combinationName = &quot;Full house &quot; + one + &quot; of &quot; + cards.get(i).getNameValue();</span>
+<span class="nc" id="L294">                    return 140.0 + (double) one_int + (double) cards.get(i).getValue() * 0.01;</span>
+                }
+            }
+        }
+<span class="nc" id="L298">        return 0;</span>
+    }
+
+    private double fourOfKind() {
+<span class="nc bnc" id="L302" title="All 2 branches missed.">        if (cards.size() &lt; 4) {</span>
+<span class="nc" id="L303">            return 0;</span>
+        }
+<span class="nc" id="L305">        int size = cards.size();</span>
+<span class="nc" id="L306">        double hc = 0;</span>
+<span class="nc bnc" id="L307" title="All 2 branches missed.">        for (int i = size - 1; i &gt; 2; i--) {</span>
+<span class="nc bnc" id="L308" title="All 2 branches missed.">            if (cards.get(i).getValue() == cards.get(i - 1).getValue()) {</span>
+<span class="nc bnc" id="L309" title="All 2 branches missed.">                if (cards.get(i).getValue() == cards.get(i - 2).getValue()) {</span>
+<span class="nc bnc" id="L310" title="All 2 branches missed.">                    if (cards.get(i).getValue() == cards.get(i - 3).getValue()) {</span>
+<span class="nc bnc" id="L311" title="All 2 branches missed.">                        for (int j = size - 1; j &gt;= 0; j--) {</span>
+<span class="nc bnc" id="L312" title="All 2 branches missed.">                            if (cards.get(i).getValue() != cards.get(j).getValue()) {</span>
+<span class="nc bnc" id="L313" title="All 2 branches missed.">                                if ((int)hc != 0)</span>
+<span class="nc" id="L314">                                    continue;</span>
+<span class="nc" id="L315">                                hc += (double) cards.get(j).getValue() * 0.01;</span>
+                            }
+                        }
+<span class="nc" id="L318">                        combinationName = &quot;FOUR of a kind &quot; + cards.get(i).getNameValue();</span>
+<span class="nc" id="L319">                        return 160.0 + (double) cards.get(i).getValue() + hc;</span>
+                    }
+                }
+            }
+        }
+<span class="nc" id="L324">        return 0;</span>
+    }
+
+    private double straightFlush() {
+<span class="nc bnc" id="L328" title="All 2 branches missed.">        if (cards.size() &lt; 5) {</span>
+<span class="nc" id="L329">            return 0;</span>
+        }
+<span class="nc" id="L331">        int size = cards.size();</span>
+        int cardSuit;
+        int valueCard;
+        int hc;
+<span class="nc bnc" id="L335" title="All 2 branches missed.">        for (int i = size - 1; i &gt;= 0; i--) {</span>
+<span class="nc" id="L336">            valueCard = cards.get(i).getValue();</span>
+<span class="nc" id="L337">            cardSuit = cards.get(i).getSuitValue();</span>
+<span class="nc" id="L338">            hc = i;</span>
+<span class="nc bnc" id="L339" title="All 2 branches missed.">            for (int j = i; j &gt;= 0; j--) {</span>
+<span class="nc bnc" id="L340" title="All 4 branches missed.">                if (valueCard - 1 == cards.get(j).getValue() &amp;&amp; cardSuit == cards.get(j).getSuitValue()) {</span>
+<span class="nc" id="L341">                    valueCard--;</span>
+<span class="nc bnc" id="L342" title="All 2 branches missed.">                    for (int k = j; k &gt;= 0; k--) {</span>
+<span class="nc bnc" id="L343" title="All 4 branches missed.">                        if (valueCard - 1 == cards.get(k).getValue() &amp;&amp; cardSuit == cards.get(k).getSuitValue()) {</span>
+<span class="nc" id="L344">                            valueCard--;</span>
+<span class="nc bnc" id="L345" title="All 2 branches missed.">                            for (int l = k; l &gt;= 0; l--) {</span>
+<span class="nc bnc" id="L346" title="All 4 branches missed.">                                if (valueCard - 1 == cards.get(l).getValue() &amp;&amp; cardSuit == cards.get(l).getSuitValue()) {</span>
+<span class="nc" id="L347">                                    valueCard--;</span>
+<span class="nc bnc" id="L348" title="All 2 branches missed.">                                    for (int m = l; m &gt;= 0; m--) {</span>
+<span class="nc bnc" id="L349" title="All 4 branches missed.">                                        if (valueCard - 1 == cards.get(m).getValue() &amp;&amp; cardSuit == cards.get(m).getSuitValue()) {</span>
+<span class="nc" id="L350">                                            combinationName = &quot;Straight flush to &quot; + cards.get(hc).getNameValue();</span>
+<span class="nc" id="L351">                                            return 180 + cards.get(hc).getValue();</span>
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+<span class="nc" id="L361">        cardSuit = cards.get(size - 1).getSuitValue();</span>
+<span class="nc bnc" id="L362" title="All 6 branches missed.">        if ((cards.get(size - 1).getValue() == 14) &amp;&amp; (cards.get(0).getValue() == 2) &amp;&amp; (cards.get(0).getSuitValue() == cardSuit)) {</span>
+<span class="nc bnc" id="L363" title="All 2 branches missed.">            for (int i = 1; i &lt; size; i++) {</span>
+<span class="nc bnc" id="L364" title="All 4 branches missed.">                if (cards.get(i).getValue() == 3 &amp;&amp; cards.get(i).getSuitValue() == cardSuit) {</span>
+<span class="nc bnc" id="L365" title="All 2 branches missed.">                    for (int j = i; j &lt; size; j++) {</span>
+<span class="nc bnc" id="L366" title="All 4 branches missed.">                        if (cards.get(j).getValue() == 4 &amp;&amp; cards.get(j).getSuitValue() == cardSuit) {</span>
+<span class="nc bnc" id="L367" title="All 2 branches missed.">                            for (int k = j; k &lt; size; k++) {</span>
+<span class="nc bnc" id="L368" title="All 4 branches missed.">                                if (cards.get(k).getValue() == 5 &amp;&amp; cards.get(k).getSuitValue() == cardSuit) {</span>
+<span class="nc" id="L369">                                    combinationName = &quot;Straight flush to FIVE&quot;;</span>
+<span class="nc" id="L370">                                    return 180;</span>
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+//        if (straight() != 0 &amp;&amp; flush() != 0) {
+//            //Flush
+//            int tmp_suit = 1;
+//            int suit = 0;
+//            for (int j = 0; j &lt; 5; j++) {
+//                for (int i = 6; i &gt;= 0; i--) {
+//                    if (cards.get(i).getSuitValue() == j) {
+//                        tmp_suit++;
+//                    }
+//                    if (tmp_suit == 6) {
+//                        suit = cards.get(i).getSuitValue();
+//                    }
+//                }
+//                tmp_suit = 1;
+//            }
+//            //Straight
+//            int tmp = 0;
+//            int prevnumber;
+//            int prevsuit;
+//            int hc = 0;
+//            if ((cards.get(cards.size() - 1).getValue() == 14) &amp;&amp; ((cards.get(cards.size() - 1).getSuitValue() == suit)
+//                    &amp;&amp; (cards.get(0).getValue() == 2) &amp;&amp; (cards.get(0).getSuitValue() == suit))) {
+//                if ((cards.get(1).getValue() == 3) &amp;&amp; (cards.get(1).getSuitValue() == suit)) {
+//                    if ((cards.get(2).getValue() == 4) &amp;&amp; (cards.get(2).getSuitValue() == suit)) {
+//                        if ((cards.get(3).getValue() == 5) &amp;&amp; (cards.get(3).getSuitValue() == suit)) {
+//                            combinationName = &quot;Straight flush to five&quot;;
+//                            return 90 + 5;
+//                        }
+//
+//                    }
+//                }
+//            }
+//            for (int i = 6; i &gt; 0; i--) {
+//                prevnumber = cards.get(i - 1).getValue();
+//                prevsuit = cards.get(i - 1).getSuitValue();
+//                if (cards.get(i).getValue() - 1 == prevnumber &amp;&amp; cards.get(i).getSuitValue() == suit &amp;&amp; prevsuit == suit) {
+//                    tmp++;
+//                    if (tmp == 1)
+//                        hc = i;
+//                } else if ((!(cards.get(i).getValue() == prevnumber))) {
+//                    tmp = 0;
+//                }
+//                if (tmp == 4) {
+//                    if (cards.get(hc).getValue() == 14) {
+//                        combinationName = &quot;Royal Flush&quot;;
+//                        return 200;
+//                    }
+//                    combinationName = &quot;Straight Flush to &quot; + cards.get(hc).getNameValue();
+//                    return 180 + cards.get(hc).getValue();
+//                }
+//            }
+//        }
+<span class="nc" id="L430">        return 0;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

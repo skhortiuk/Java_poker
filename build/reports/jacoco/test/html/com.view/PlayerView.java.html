@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlayerView.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Poker</a> &gt; <a href="index.source.html" class="el_package">com.view</a> &gt; <span class="el_source">PlayerView.java</span></div><h1>PlayerView.java</h1><pre class="source lang-java linenums">package com.view;
+
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
+import com.model.Card;
+
+public class PlayerView {
+<span class="nc" id="L11">    private CardView cardView = new CardView();</span>
+<span class="nc" id="L12">    private VBox root = new VBox();</span>
+<span class="nc" id="L13">    private HBox chips = new HBox();</span>
+<span class="nc" id="L14">    private HBox cards = new HBox(5);</span>
+<span class="nc" id="L15">    private HBox name = new HBox();</span>
+<span class="nc" id="L16">    private HBox stack = new HBox();</span>
+<span class="nc" id="L17">    private Label stackLable = new Label();</span>
+<span class="nc" id="L18">    private Label chipsLable = new Label();</span>
+<span class="nc" id="L19">    private Label nameLable = new Label();</span>
+
+<span class="nc" id="L21">    public PlayerView() {</span>
+<span class="nc" id="L22">        chipsLable.setTextFill(Paint.valueOf(&quot;Red&quot;));</span>
+<span class="nc" id="L23">        chipsLable.setFont(Font.font(20));</span>
+<span class="nc" id="L24">        root.getChildren().addAll(this.chips, this.cards, this.name, this.stack);</span>
+<span class="nc" id="L25">        this.chips.setPrefHeight(10);</span>
+<span class="nc" id="L26">        this.cards.setPrefSize(60, 90);</span>
+<span class="nc" id="L27">        chipsLable.setText(&quot;&quot;);</span>
+<span class="nc" id="L28">        this.chips.getChildren().addAll(chipsLable);</span>
+<span class="nc" id="L29">    }</span>
+
+    public void setCards(Card card, boolean Visible) {
+<span class="nc" id="L32">        cardView.setCard(card.getValue(), card.getSuitValue());</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">        if (!Visible) {</span>
+<span class="nc" id="L34">            cards.getChildren().addAll(cardView.getCloseImg());</span>
+        } else {
+<span class="nc" id="L36">            cards.getChildren().addAll(cardView.getCardImg());</span>
+        }
+<span class="nc" id="L38">    }</span>
+
+    public void setPosition(int x, int y) {
+<span class="nc" id="L41">        root.setTranslateX(x);</span>
+<span class="nc" id="L42">        root.setTranslateY(y);</span>
+<span class="nc" id="L43">    }</span>
+
+    public VBox getRoot() {
+<span class="nc" id="L46">        return root;</span>
+    }
+
+    public void setChips(int chips) {
+<span class="nc" id="L50">        this.chips.getChildren().clear();</span>
+<span class="nc" id="L51">        chipsLable.setText(Integer.toString(chips));</span>
+<span class="nc" id="L52">        this.chips.getChildren().addAll(chipsLable);</span>
+<span class="nc" id="L53">    }</span>
+
+    public void setName(String name) {
+<span class="nc" id="L56">        this.name.getChildren().clear();</span>
+<span class="nc" id="L57">        this.name.getChildren().addAll(nameLable);</span>
+<span class="nc" id="L58">        nameLable.setTextFill(Paint.valueOf(&quot;#948608&quot;));</span>
+<span class="nc" id="L59">        nameLable.setFont(Font.font(20));</span>
+<span class="nc" id="L60">        nameLable.setText(name);</span>
+<span class="nc" id="L61">    }</span>
+
+    public void setStack(int number) {
+<span class="nc" id="L64">        this.stack.getChildren().clear();</span>
+<span class="nc" id="L65">        stackLable.setTextFill(Paint.valueOf(&quot;Green&quot;));</span>
+<span class="nc" id="L66">        stackLable.setFont(Font.font(15));</span>
+<span class="nc" id="L67">        stackLable.setText(Integer.toString(number));</span>
+<span class="nc" id="L68">        this.stack.getChildren().addAll(stackLable);</span>
+<span class="nc" id="L69">    }</span>
+
+    public void clearChips() {
+<span class="nc" id="L72">        this.chips.getChildren().clear();</span>
+<span class="nc" id="L73">        chipsLable.setText(&quot;&quot;);</span>
+<span class="nc" id="L74">        this.chips.getChildren().addAll(chipsLable);</span>
+<span class="nc" id="L75">    }</span>
+
+    public void clearCards() {
+<span class="nc" id="L78">        this.cards.getChildren().clear();</span>
+<span class="nc" id="L79">    }</span>
+
+    public void del() {
+<span class="nc" id="L82">        this.root.getChildren().clear();</span>
+<span class="nc" id="L83">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

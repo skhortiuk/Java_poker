@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CardView.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Poker</a> &gt; <a href="index.source.html" class="el_package">com.view</a> &gt; <span class="el_source">CardView.java</span></div><h1>CardView.java</h1><pre class="source lang-java linenums">package com.view;
+
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+class CardView {
+    private ImageView backCard;
+    private ImageView cardImg;
+
+<span class="nc" id="L10">    CardView() {</span>
+
+<span class="nc" id="L12">    }</span>
+
+    void setCard(int valueCard, int suitCard) {
+<span class="nc" id="L15">        this.backCard = new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(&quot;card/card_back_black.png&quot;)));</span>
+<span class="nc" id="L16">        this.cardImg = new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(&quot;card/cards/&quot; + valueCard + &quot;_of_&quot; + suitCard + &quot;.png&quot;)));</span>
+<span class="nc" id="L17">        this.backCard.setFitHeight(90);</span>
+<span class="nc" id="L18">        this.backCard.setFitWidth(60);</span>
+<span class="nc" id="L19">        this.cardImg.setFitHeight(90);</span>
+<span class="nc" id="L20">        this.cardImg.setFitWidth(60);</span>
+<span class="nc" id="L21">    }</span>
+
+    ImageView getCloseImg() {
+<span class="nc" id="L24">        return this.backCard;</span>
+    }
+
+    ImageView getCardImg() {
+<span class="nc" id="L28">        return this.cardImg;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MediumBot.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Poker</a> &gt; <a href="index.source.html" class="el_package">com.model</a> &gt; <span class="el_source">MediumBot.java</span></div><h1>MediumBot.java</h1><pre class="source lang-java linenums">package com.model;
+
+import java.util.ArrayList;
+
+<span class="nc" id="L5">public class MediumBot implements Bot {</span>
+
+
+<span class="nc" id="L8">    private Combinations combinations = new Combinations();</span>
+
+    @Override
+
+    public int think(ArrayList&lt;Card&gt; cards, int stack, int bank, int prevRate) {
+<span class="nc" id="L13">        combinations.setCards(cards);</span>
+<span class="nc" id="L14">        combinations.calculate();</span>
+
+<span class="nc" id="L16">        int firstCardValue = cards.get(0).getValue();</span>
+<span class="nc" id="L17">        int secondCardValue = cards.get(1).getValue();</span>
+
+
+<span class="nc" id="L20">        double power = combinations.getPower();</span>
+
+
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        if (cards.size() == 2) {</span>
+
+
+
+<span class="nc bnc" id="L27" title="All 2 branches missed.">            if (ifCanCheck(prevRate)) {</span>
+
+<span class="nc bnc" id="L29" title="All 2 branches missed.">                if (power &gt; 28) {</span>
+<span class="nc" id="L30">                    return 150;</span>
+                }
+<span class="nc bnc" id="L32" title="All 2 branches missed.">                if (power &gt; 20) {</span>
+<span class="nc" id="L33">                    return 100;</span>
+                }
+
+<span class="nc bnc" id="L36" title="All 2 branches missed.">                if (ifConnectors(firstCardValue,secondCardValue)) {</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">                    if (firstCardValue &gt;= 10) {</span>
+<span class="nc" id="L38">                        return 100;</span>
+                    }
+<span class="nc bnc" id="L40" title="All 2 branches missed.">                    if (firstCardValue &lt; 7) {</span>
+<span class="nc" id="L41">                        return -1;</span>
+                    }
+<span class="nc" id="L43">                    else return 0;</span>
+                }
+
+<span class="nc bnc" id="L46" title="All 4 branches missed.">                if (firstCardValue &gt;= 12 &amp;&amp; secondCardValue &gt;= 10) {</span>
+<span class="nc" id="L47">                    return 100;</span>
+                }
+<span class="nc bnc" id="L49" title="All 4 branches missed.">                if (firstCardValue &gt;= 10 &amp;&amp; secondCardValue &gt;= 8) {</span>
+<span class="nc" id="L50">                    return 50;</span>
+<span class="nc" id="L51">                } else return 0;</span>
+            }
+
+
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            if (prevRate &gt; 0) {</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">                if (power &gt; 30) {</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">                    if (bank &lt;= 300) {</span>
+<span class="nc" id="L58">                        return prevRate + 200;</span>
+<span class="nc" id="L59">                    } else return prevRate;</span>
+                }
+<span class="nc bnc" id="L61" title="All 2 branches missed.">                if (power &gt; 20) {</span>
+<span class="nc" id="L62">                    return prevRate;</span>
+                }
+
+
+<span class="nc bnc" id="L66" title="All 2 branches missed.">                if (ifConnectors(firstCardValue,secondCardValue)) {</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">                    if (firstCardValue &gt;= 12) {</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">                        if (bank &lt; 200) {</span>
+<span class="nc" id="L69">                            return prevRate + 100;</span>
+<span class="nc" id="L70">                        } else return prevRate;</span>
+
+                    }
+<span class="nc bnc" id="L73" title="All 2 branches missed.">                    if (firstCardValue &lt; 9) {</span>
+<span class="nc" id="L74">                        return -1;</span>
+                    }
+<span class="nc" id="L76">                    else return prevRate;</span>
+                }
+
+<span class="nc bnc" id="L79" title="All 4 branches missed.">                if (firstCardValue &gt;= 13 &amp;&amp; secondCardValue &gt;= 11) {</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">                    if (bank &lt;= 400) {</span>
+<span class="nc" id="L81">                        return prevRate + 100;</span>
+<span class="nc" id="L82">                    } else return prevRate;</span>
+                }
+<span class="nc bnc" id="L84" title="All 4 branches missed.">                if (firstCardValue &gt;= 11 &amp;&amp; secondCardValue &gt;= 9) {</span>
+<span class="nc" id="L85">                    return prevRate;</span>
+<span class="nc" id="L86">                } else return -1;</span>
+
+            }
+
+        }
+
+<span class="nc bnc" id="L92" title="All 2 branches missed.">        if (cards.size() == 5) {</span>
+
+
+<span class="nc bnc" id="L95" title="All 2 branches missed.">            if (ifCanCheck(prevRate)) {</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">                if (power &gt;= 60) {</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">                    if (stack &gt;= 800) {</span>
+<span class="nc" id="L98">                        return prevRate + 200;</span>
+<span class="nc" id="L99">                    } else return prevRate;</span>
+                }
+<span class="nc bnc" id="L101" title="All 2 branches missed.">                if (power &gt;= 40) {</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">                    if (stack &gt;= 100) {</span>
+<span class="nc" id="L103">                        return prevRate + 100;</span>
+<span class="nc" id="L104">                    } else return prevRate;</span>
+                }
+<span class="nc bnc" id="L106" title="All 2 branches missed.">                if (power &gt;= 30) {</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">                    if (bank &lt;= 500) {</span>
+<span class="nc" id="L108">                        return prevRate + 100;</span>
+<span class="nc" id="L109">                    } else return prevRate;</span>
+                }
+                else {
+<span class="nc" id="L112">                    return 0;</span>
+                }
+            }
+
+<span class="nc bnc" id="L116" title="All 2 branches missed.">            if (prevRate &gt; 150) {</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">                if (power &gt;= 70) {</span>
+<span class="nc bnc" id="L118" title="All 2 branches missed.">                    if (stack &gt; 600) {</span>
+<span class="nc" id="L119">                        return prevRate + 250;</span>
+<span class="nc" id="L120">                    } else return prevRate;</span>
+                }
+<span class="nc bnc" id="L122" title="All 2 branches missed.">                if (power &gt;= 40) {</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">                    if (bank &lt;= 900) {</span>
+<span class="nc" id="L124">                        return prevRate + 150;</span>
+<span class="nc" id="L125">                    } else return prevRate;</span>
+
+                }
+
+<span class="nc bnc" id="L129" title="All 2 branches missed.">                if (power &gt;= 32) {</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">                    if (bank &lt;= 600) {</span>
+<span class="nc" id="L131">                        return prevRate;</span>
+                    } else {
+<span class="nc" id="L133">                        return -1;</span>
+                    }
+                }
+<span class="nc bnc" id="L136" title="All 2 branches missed.">                if (power &gt;= 28) {</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">                    if (bank &lt;= 400) {</span>
+<span class="nc" id="L138">                        return prevRate;</span>
+                    } else {
+<span class="nc" id="L140">                        return -1;</span>
+                    }
+                }
+
+            }
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            if (prevRate &lt;= 150) {</span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">                if (power &gt;= 70) {</span>
+<span class="nc bnc" id="L147" title="All 2 branches missed.">                    if (stack &gt; 800) {</span>
+<span class="nc" id="L148">                        return prevRate + 200;</span>
+<span class="nc" id="L149">                    } else return prevRate;</span>
+                }
+<span class="nc bnc" id="L151" title="All 2 branches missed.">                if (power &gt;= 40) {</span>
+<span class="nc bnc" id="L152" title="All 2 branches missed.">                    if (bank &lt;= 800) {</span>
+<span class="nc bnc" id="L153" title="All 2 branches missed.">                        if (stack &gt; 700) {</span>
+<span class="nc" id="L154">                            return prevRate + 150;</span>
+<span class="nc" id="L155">                        } else return prevRate;</span>
+                    }
+<span class="nc bnc" id="L157" title="All 2 branches missed.">                    if (bank &lt;= 1200) {</span>
+<span class="nc" id="L158">                        return prevRate;</span>
+
+                    } else {
+<span class="nc" id="L161">                        return -1;</span>
+                    }
+                }
+
+<span class="nc bnc" id="L165" title="All 2 branches missed.">                if (power &gt;= 30) {</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">                    if (bank &lt;= 500) {</span>
+<span class="nc" id="L167">                        return prevRate;</span>
+                    } else {
+<span class="nc" id="L169">                        return -1;</span>
+                    }
+                }
+<span class="nc bnc" id="L172" title="All 2 branches missed.">                if (power &gt;= 20) {</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">                    if (bank &lt;= 300) {</span>
+<span class="nc" id="L174">                        return prevRate;</span>
+                    } else {
+<span class="nc" id="L176">                        return -1;</span>
+                    }
+                }
+
+            }
+        }
+
+<span class="nc bnc" id="L183" title="All 4 branches missed.">        if (cards.size() == 6 || cards.size() == 7) {</span>
+
+<span class="nc bnc" id="L185" title="All 2 branches missed.">            if (ifCanCheck(prevRate)) {</span>
+<span class="nc bnc" id="L186" title="All 2 branches missed.">                if (power &gt;= 60) {</span>
+<span class="nc bnc" id="L187" title="All 2 branches missed.">                    if (stack &gt;= 475) {</span>
+<span class="nc" id="L188">                        return 250;</span>
+<span class="nc" id="L189">                    } else return stack;</span>
+                }
+<span class="nc bnc" id="L191" title="All 2 branches missed.">                if (power &gt;= 50) {</span>
+<span class="nc bnc" id="L192" title="All 2 branches missed.">                    if (stack &gt;= 275) {</span>
+<span class="nc" id="L193">                        return 200;</span>
+<span class="nc" id="L194">                    } else return stack;</span>
+                }
+<span class="nc bnc" id="L196" title="All 2 branches missed.">                if (stack &gt;= 500) {</span>
+
+<span class="nc bnc" id="L198" title="All 2 branches missed.">                    if (power &gt;= 40) {</span>
+
+<span class="nc" id="L200">                        return 150;</span>
+                    }
+<span class="nc bnc" id="L202" title="All 2 branches missed.">                    if (power &gt;= 30) {</span>
+<span class="nc" id="L203">                        return 100;</span>
+                    }
+<span class="nc bnc" id="L205" title="All 2 branches missed.">                    if (power &gt;= 25) {</span>
+<span class="nc" id="L206">                        return 50;</span>
+                    }
+                    else {
+<span class="nc" id="L209">                        return 0;</span>
+                    }
+                }
+            }
+<span class="nc bnc" id="L213" title="All 2 branches missed.">            if (prevRate &gt; 150) {</span>
+<span class="nc bnc" id="L214" title="All 2 branches missed.">                if (power &gt;= 90) {</span>
+<span class="nc bnc" id="L215" title="All 2 branches missed.">                    if (stack &gt; 600) {</span>
+<span class="nc" id="L216">                        return prevRate + 250;</span>
+<span class="nc" id="L217">                    } else return prevRate;</span>
+                }
+<span class="nc bnc" id="L219" title="All 2 branches missed.">                if (power &gt;= 70) {</span>
+<span class="nc bnc" id="L220" title="All 4 branches missed.">                    if (bank &lt;= 1600 &amp;&amp; stack &gt; 600) {</span>
+<span class="nc" id="L221">                        return prevRate + 250;</span>
+<span class="nc" id="L222">                    } else return prevRate;</span>
+                }
+<span class="nc bnc" id="L224" title="All 2 branches missed.">                if (power &gt;= 50) {</span>
+<span class="nc bnc" id="L225" title="All 2 branches missed.">                    if (bank &lt;= 1400) {</span>
+<span class="nc bnc" id="L226" title="All 2 branches missed.">                        if (stack &gt; 500) {</span>
+<span class="nc" id="L227">                            return prevRate + 100;</span>
+<span class="nc" id="L228">                        } else return prevRate;</span>
+                    } else {
+<span class="nc" id="L230">                        return -1;</span>
+                    }
+                }
+<span class="nc bnc" id="L233" title="All 2 branches missed.">                if (power &gt;= 40) {</span>
+<span class="nc bnc" id="L234" title="All 2 branches missed.">                    if (bank &lt;= 1200) {</span>
+<span class="nc" id="L235">                        return prevRate;</span>
+<span class="nc" id="L236">                    } else return -1;</span>
+                }
+<span class="nc bnc" id="L238" title="All 2 branches missed.">                if (power &gt;= 30) {</span>
+<span class="nc bnc" id="L239" title="All 2 branches missed.">                    if (bank &lt;= 950) {</span>
+<span class="nc" id="L240">                        return prevRate;</span>
+                    } else {
+<span class="nc" id="L242">                        return -1;</span>
+                    }
+                }
+<span class="nc bnc" id="L245" title="All 2 branches missed.">                if (power &gt;= 20) {</span>
+<span class="nc bnc" id="L246" title="All 2 branches missed.">                    if (bank &lt;= 650) {</span>
+<span class="nc" id="L247">                        return prevRate;</span>
+                    } else {
+<span class="nc" id="L249">                        return -1;</span>
+                    }
+                }
+
+            }
+<span class="nc bnc" id="L254" title="All 2 branches missed.">            if (prevRate &lt;= 150) {</span>
+<span class="nc bnc" id="L255" title="All 2 branches missed.">                if (power &gt;= 90) {</span>
+<span class="nc bnc" id="L256" title="All 2 branches missed.">                    if (stack &gt;= 650) {</span>
+<span class="nc bnc" id="L257" title="All 2 branches missed.">                        if (bank &lt;= 1900) {</span>
+<span class="nc" id="L258">                            return prevRate + 200;</span>
+<span class="nc" id="L259">                        } else return prevRate;</span>
+<span class="nc" id="L260">                    } else return stack;</span>
+                }
+<span class="nc bnc" id="L262" title="All 2 branches missed.">                if (power &gt;= 70) {</span>
+<span class="nc bnc" id="L263" title="All 2 branches missed.">                    if (stack &gt;= 375) {</span>
+<span class="nc bnc" id="L264" title="All 2 branches missed.">                        if (bank &lt;= 1600) {</span>
+<span class="nc" id="L265">                            return prevRate + 150;</span>
+<span class="nc" id="L266">                        } else return prevRate;</span>
+<span class="nc" id="L267">                    } else return stack;</span>
+                }
+<span class="nc bnc" id="L269" title="All 2 branches missed.">                if (power &gt;= 50) {</span>
+<span class="nc bnc" id="L270" title="All 2 branches missed.">                    if (bank &lt;= 800) {</span>
+<span class="nc bnc" id="L271" title="All 2 branches missed.">                        if (stack &gt;= 300) {</span>
+<span class="nc" id="L272">                                return prevRate+100;</span>
+<span class="nc" id="L273">                        } else return stack;</span>
+                    }
+<span class="nc bnc" id="L275" title="All 2 branches missed.">                    if (bank &lt;= 1300) {</span>
+<span class="nc bnc" id="L276" title="All 2 branches missed.">                        if (stack &gt;= prevRate) {</span>
+<span class="nc" id="L277">                            return prevRate;</span>
+<span class="nc" id="L278">                        }else return -1;</span>
+
+                    } else {
+<span class="nc" id="L281">                        return -1;</span>
+                    }
+                }
+<span class="nc bnc" id="L284" title="All 2 branches missed.">                if (stack &gt;= 600) {</span>
+<span class="nc bnc" id="L285" title="All 2 branches missed.">                    if (power &gt;= 40) {</span>
+<span class="nc bnc" id="L286" title="All 2 branches missed.">                        if (bank &lt;= 1000) {</span>
+<span class="nc" id="L287">                            return prevRate + 50;</span>
+<span class="nc" id="L288">                        } else return prevRate;</span>
+                    }
+<span class="nc bnc" id="L290" title="All 2 branches missed.">                    if (power &gt;= 30) {</span>
+<span class="nc bnc" id="L291" title="All 2 branches missed.">                        if (bank &lt;= 800) {</span>
+<span class="nc" id="L292">                            return prevRate;</span>
+                        } else {
+<span class="nc" id="L294">                            return -1;</span>
+                        }
+                    }
+<span class="nc bnc" id="L297" title="All 2 branches missed.">                    if (power &gt;= 20) {</span>
+<span class="nc bnc" id="L298" title="All 2 branches missed.">                        if (bank &lt;= 550) {</span>
+<span class="nc" id="L299">                            return prevRate;</span>
+                        } else {
+<span class="nc" id="L301">                            return -1;</span>
+                        }
+                    }
+                }
+            }
+        }
+
+<span class="nc bnc" id="L308" title="All 2 branches missed.">        if (stack == 0) {</span>
+<span class="nc" id="L309">            return 0;</span>
+        }
+<span class="nc bnc" id="L311" title="All 2 branches missed.">        if (prevRate == 0) {</span>
+<span class="nc" id="L312">            return 0;</span>
+        }
+
+<span class="nc" id="L315">        return -1;</span>
+    }
+
+    private boolean ifCanCheck(int prevRate) {
+
+<span class="nc bnc" id="L320" title="All 2 branches missed.">        if (prevRate == 0) {</span>
+
+<span class="nc" id="L322">            return true;</span>
+        }
+<span class="nc" id="L324">        else return false;</span>
+    }
+    private boolean ifConnectors(int firstCardValue, int secondCardValue){
+<span class="nc bnc" id="L327" title="All 2 branches missed.">        if (firstCardValue + 1 == secondCardValue){</span>
+<span class="nc" id="L328">            return true;</span>
+        }
+<span class="nc" id="L330">        else return false;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

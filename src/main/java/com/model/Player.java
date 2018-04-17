@@ -3,9 +3,33 @@ package com.model;
 import java.util.ArrayList;
 
 public class Player {
-    public boolean isWinner = false;
-    public boolean inGame;
-    public boolean allIn = false;
+    public boolean isWinner() {
+        return isWinner;
+    }
+
+    public void setWinner(boolean winner) {
+        isWinner = winner;
+    }
+
+    public boolean isInGame() {
+        return inGame;
+    }
+
+    public void setInGame(boolean inGame) {
+        this.inGame = inGame;
+    }
+
+    public boolean isAllIn() {
+        return allIn;
+    }
+
+    public void setAllIn(boolean allIn) {
+        this.allIn = allIn;
+    }
+
+    private boolean isWinner = false;
+    private boolean inGame;
+    private boolean allIn = false;
     private Combinations combinations;
     private int Chips = 0;
     private ArrayList<Card> cards = new ArrayList<>();

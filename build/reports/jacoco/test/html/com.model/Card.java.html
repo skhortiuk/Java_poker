@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Card.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Poker</a> &gt; <a href="index.source.html" class="el_package">com.model</a> &gt; <span class="el_source">Card.java</span></div><h1>Card.java</h1><pre class="source lang-java linenums">package com.model;
+
+public class Card {
+    private Cards one_card;
+    private Suit suit;
+
+    //    Constructor
+<span class="fc" id="L8">    Card(int valueCard, int suitCard) {</span>
+<span class="fc" id="L9">        initCard(valueCard);</span>
+<span class="fc" id="L10">        initSuit(suitCard);</span>
+<span class="fc" id="L11">    }</span>
+
+    String getNameValue() {
+<span class="nc" id="L14">        return one_card.name();</span>
+    }
+
+    public int getSuitValue() {
+<span class="nc" id="L18">        return suit.getValue();</span>
+    }
+
+    public int getValue() {
+<span class="fc" id="L22">        return one_card.getValue();</span>
+    }
+
+    //    Initialization one_card from int to string
+    private void initCard(int val) {
+<span class="fc" id="L27">        one_card = Cards.values()[val - 2];</span>
+<span class="fc" id="L28">    }</span>
+
+    private void initSuit(int st) {
+<span class="fc" id="L31">        suit = Suit.values()[st - 1];</span>
+<span class="fc" id="L32">    }</span>
+
+<span class="pc" id="L34">    enum Cards {</span>
+<span class="fc" id="L35">        TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE;</span>
+
+        public int getValue() {
+<span class="fc" id="L38">            return ordinal() + 2;</span>
+        }
+    }
+
+<span class="pc" id="L42">    enum Suit {</span>
+<span class="fc" id="L43">        SPADES, CLUBS, HEARTS, DIAMONDS;</span>
+
+        public int getValue() {
+<span class="nc" id="L46">            return ordinal() + 1;</span>
+        }
+    }
+}
+
+/*
+2 = TWO
+3 = THREE
+4 = FOUR
+5 = FIVE
+6 = SIX
+7 = SEVEN
+8 = EIGHT
+9 = NINE
+10 = TEN
+11 = JACK
+12 = QUEEN
+13 = KING
+14 = ACE
+ */
+/*
+1 = SPADES
+2 = CLUBS
+3 = HEARTS
+4 = DIAMONDS
+ */
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
