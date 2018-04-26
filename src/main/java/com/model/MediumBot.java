@@ -2,14 +2,16 @@ package com.model;
 
 import java.util.ArrayList;
 
-public class MediumBot extends SimpleBot implements Bot {
+public class MediumBot implements Bot {
 
 
+    private Combinations combinations = new Combinations();
 
     @Override
 
     public int think(ArrayList<Card> cards, int stack, int bank, int prevRate) {
-        
+        combinations.setCards(cards);
+        combinations.calculate();
 
         int firstCardValue = cards.get(0).getValue();
         int secondCardValue = cards.get(1).getValue();
