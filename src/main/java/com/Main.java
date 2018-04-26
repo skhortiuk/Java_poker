@@ -10,7 +10,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Main extends Application{
+
+
+    private Logger logger = Logger.getLogger(Table.class.getName());
 
     public static void main(String[] args) {
         launch(args);
@@ -18,6 +24,7 @@ public class Main extends Application{
 
     @Override
     public void start(Stage primaryStage) {
+        logger.setLevel(Level.FINE);
 
         Group root = new Group();
 
@@ -74,7 +81,7 @@ public class Main extends Application{
                 table.start(stage);
                 primaryStage.hide();
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.log(Level.CONFIG, "Error in Main.java");
             }
             if (!stage.isShowing()) {
                 primaryStage.show();

@@ -9,7 +9,7 @@ public class Combinations {
     private List<Card> cards = new ArrayList<>();
     private String combinationName;
 
-    public Combinations() {
+    Combinations() {
         this.power = 0.00000;
     }
 
@@ -33,31 +33,31 @@ public class Combinations {
     private double calculatePower() {
         double combination;
         combination = straightFlush();
-        if ((int)combination != 0)
+        if ((int) combination != 0)
             return combination;
         combination = fourOfKind();
-        if ((int)combination != 0)
+        if ((int) combination != 0)
             return combination;
         combination = fullHouse();
-        if ((int)combination != 0)
+        if ((int) combination != 0)
             return combination;
         combination = flush();
-        if ((int)combination != 0)
+        if ((int) combination != 0)
             return combination;
         combination = straight();
-        if ((int)combination != 0)
+        if ((int) combination != 0)
             return combination;
         combination = threeOfaKind();
-        if ((int)combination != 0)
+        if ((int) combination != 0)
             return combination;
         combination = twoPair();
-        if ((int)combination != 0)
+        if ((int) combination != 0)
             return combination;
         combination = onePair();
-        if ((int)combination != 0)
+        if ((int) combination != 0)
             return combination;
         combination = highCard();
-        if ((int)combination != 0)
+        if ((int) combination != 0)
             return combination;
         return 0;
     }
@@ -125,7 +125,7 @@ public class Combinations {
                 continue;
             }
             if ((firstPair != 0) && (cards.get(i).getValue() == cards.get(i - 1).getValue())) {
-                combinationName += " and " + cards.get(i).getNameValue();
+                combinationName = String.format("%s and %s", combinationName, cards.get(i).getNameValue());
                 secondPair = cards.get(i).getValue();
                 isTwoPair = true;
                 break;
@@ -153,14 +153,11 @@ public class Combinations {
         boolean isThreeOfaKind = false;
         int card = 0;
         for (int i = size - 1; i > 1; i--) {
-            if (cards.get(i).getValue() == cards.get(i - 1).getValue()) {
-                if (cards.get(i).getValue() == cards.get(i - 2).getValue()) {
-                    combinationName = "THREE of a kind " + cards.get(i).getNameValue();
-                    card = cards.get(i).getValue();
-                    isThreeOfaKind = true;
-                    break;
-//                    return 70 + cards.get(i).getValue();
-                }
+            if (cards.get(i).getValue() == cards.get(i - 1).getValue() && cards.get(i).getValue() == cards.get(i - 2).getValue()) {
+                combinationName = "THREE of a kind " + cards.get(i).getNameValue();
+                card = cards.get(i).getValue();
+                isThreeOfaKind = true;
+                break;
             }
         }
         if (isThreeOfaKind) {
@@ -271,21 +268,17 @@ public class Combinations {
         if (cards.size() < 5) {
             return 0;
         }
-        if ((int)onePair() != 0 && (int)threeOfaKind() != 0) {
+        if ((int) onePair() != 0 && (int) threeOfaKind() != 0) {
             int size = cards.size();
             String one = null;
             int one_int = 0;
-            //set
             for (int i = size - 1; i > 1; i--) {
-                if (cards.get(i).getValue() == cards.get(i - 1).getValue()) {
-                    if (cards.get(i).getValue() == cards.get(i - 2).getValue()) {
-                        one = cards.get(i).getNameValue();
-                        one_int = cards.get(i).getValue();
-                        break;
-                    }
+                if (cards.get(i).getValue() == cards.get(i - 1).getValue() && cards.get(i).getValue() == cards.get(i - 2).getValue()) {
+                    one = cards.get(i).getNameValue();
+                    one_int = cards.get(i).getValue();
+                    break;
                 }
             }
-            //pair
             for (int i = size - 1; i > 0; i--) {
                 if (cards.get(i).getValue() == one_int)
                     continue;
@@ -305,20 +298,16 @@ public class Combinations {
         int size = cards.size();
         double hc = 0;
         for (int i = size - 1; i > 2; i--) {
-            if (cards.get(i).getValue() == cards.get(i - 1).getValue()) {
-                if (cards.get(i).getValue() == cards.get(i - 2).getValue()) {
-                    if (cards.get(i).getValue() == cards.get(i - 3).getValue()) {
-                        for (int j = size - 1; j >= 0; j--) {
-                            if (cards.get(i).getValue() != cards.get(j).getValue()) {
-                                if ((int)hc != 0)
-                                    continue;
-                                hc += (double) cards.get(j).getValue() * 0.01;
-                            }
-                        }
-                        combinationName = "FOUR of a kind " + cards.get(i).getNameValue();
-                        return 160.0 + (double) cards.get(i).getValue() + hc;
+            if (cards.get(i).getValue() == cards.get(i - 1).getValue() && cards.get(i).getValue() == cards.get(i - 2).getValue() && cards.get(i).getValue() == cards.get(i - 3).getValue()) {
+                for (int j = size - 1; j >= 0; j--) {
+                    if (cards.get(i).getValue() != cards.get(j).getValue()) {
+                        if ((int) hc != 0)
+                            continue;
+                        hc += (double) cards.get(j).getValue() * 0.01;
                     }
                 }
+                combinationName = "FOUR of a kind " + cards.get(i).getNameValue();
+                return 160.0 + (double) cards.get(i).getValue() + hc;
             }
         }
         return 0;
@@ -375,58 +364,6 @@ public class Combinations {
                 }
             }
         }
-//        if (straight() != 0 && flush() != 0) {
-//            //Flush
-//            int tmp_suit = 1;
-//            int suit = 0;
-//            for (int j = 0; j < 5; j++) {
-//                for (int i = 6; i >= 0; i--) {
-//                    if (cards.get(i).getSuitValue() == j) {
-//                        tmp_suit++;
-//                    }
-//                    if (tmp_suit == 6) {
-//                        suit = cards.get(i).getSuitValue();
-//                    }
-//                }
-//                tmp_suit = 1;
-//            }
-//            //Straight
-//            int tmp = 0;
-//            int prevnumber;
-//            int prevsuit;
-//            int hc = 0;
-//            if ((cards.get(cards.size() - 1).getValue() == 14) && ((cards.get(cards.size() - 1).getSuitValue() == suit)
-//                    && (cards.get(0).getValue() == 2) && (cards.get(0).getSuitValue() == suit))) {
-//                if ((cards.get(1).getValue() == 3) && (cards.get(1).getSuitValue() == suit)) {
-//                    if ((cards.get(2).getValue() == 4) && (cards.get(2).getSuitValue() == suit)) {
-//                        if ((cards.get(3).getValue() == 5) && (cards.get(3).getSuitValue() == suit)) {
-//                            combinationName = "Straight flush to five";
-//                            return 90 + 5;
-//                        }
-//
-//                    }
-//                }
-//            }
-//            for (int i = 6; i > 0; i--) {
-//                prevnumber = cards.get(i - 1).getValue();
-//                prevsuit = cards.get(i - 1).getSuitValue();
-//                if (cards.get(i).getValue() - 1 == prevnumber && cards.get(i).getSuitValue() == suit && prevsuit == suit) {
-//                    tmp++;
-//                    if (tmp == 1)
-//                        hc = i;
-//                } else if ((!(cards.get(i).getValue() == prevnumber))) {
-//                    tmp = 0;
-//                }
-//                if (tmp == 4) {
-//                    if (cards.get(hc).getValue() == 14) {
-//                        combinationName = "Royal Flush";
-//                        return 200;
-//                    }
-//                    combinationName = "Straight Flush to " + cards.get(hc).getNameValue();
-//                    return 180 + cards.get(hc).getValue();
-//                }
-//            }
-//        }
         return 0;
     }
 }
