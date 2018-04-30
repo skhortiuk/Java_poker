@@ -11,4 +11,13 @@ public class CardTest {
         Card card = new Card(2, 2);
         assertEquals(2, card.getValue());
     }
+
+    @Test
+    public void getNameValue() {
+        Card card = new Card(2, 2);
+        assertEquals("TWO", card.getNameValue());
+    }
+
+    
+
 }
