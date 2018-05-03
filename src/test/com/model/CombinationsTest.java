@@ -12,5 +12,5 @@ public class CombinationsTest {
         assertEquals(20, combinations.getPower(), 0);
 
     }
-   
+
 }
