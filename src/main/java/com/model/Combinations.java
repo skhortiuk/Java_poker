@@ -25,8 +25,8 @@ public class Combinations {
         return this.power;
     }
 
-    void setPower(double numb_power) {
-        power = numb_power;
+    void setPower(double numbpower) {
+        power = numbpower;
     }
 
     void calculate() {
