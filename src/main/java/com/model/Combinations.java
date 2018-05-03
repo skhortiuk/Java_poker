@@ -25,6 +25,10 @@ public class Combinations {
         return this.power;
     }
 
+    void setPower(double numb_power) {
+        power = numb_power;
+    }
+
     void calculate() {
         cards.sort(Comparator.comparing(Card::getValue));
         this.power = calculatePower();
