@@ -41,6 +41,26 @@ public class PlayerTest {
         assertEquals(150, player.getChips());
 
     }
+    @Test
+    public void isAllIn() {
+        Player player = new Player();
+        assertEquals(false, player.isAllIn());
+    }
+    @Test
+    public void clearChips() {
+        Player player = new Player();
+        player.clearChips();
+        assertEquals(0, player.getChips());
+
+    }
+    @Test
+    public void getStackValue() {
+        Player player = new Player();
+        player.addStack(250);
+        assertEquals(250, player.getStackValue());
+
+    }
+
    /* @Test
     public void getCards() {
         Player player = new Player();
