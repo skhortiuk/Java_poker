@@ -2,6 +2,8 @@ package com.model;
 
 import org.junit.Test;
 
+import java.util.Stack;
+
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
@@ -14,7 +16,5 @@ public class DeckTest {
         assertEquals(52, deck.getCards().size());
     }
 
-    @Test
-    public void getCard() {
-    }
+
 }
