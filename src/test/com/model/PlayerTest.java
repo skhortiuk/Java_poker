@@ -106,7 +106,15 @@ public class PlayerTest {
        // assertEquals(0, player.getStackValue());
         assertEquals(true, player.isAllIn());
     }
-
+    @Test
+    public void  ifCanTakeStack() {
+        com.model.Stack stack = new com.model.Stack();
+        player.addStack(500);
+        player.getStack(100);
+        stack.setValue(500);
+        // assertEquals(0, player.getStackValue());
+        assertEquals(true, stack.ifCanTakeStack(200) );
+    }
     @Test
     public void clearChips() {
         player.clearChips();
@@ -119,7 +127,7 @@ public class PlayerTest {
         assertEquals(250, player.getStackValue());
 
     }
-    
+
 
 
 
