@@ -8,6 +8,7 @@ public class Combinations {
     private double power;
     private List<Card> cards = new ArrayList<>();
     private String combinationName;
+    private Card card; //= new Card(5,1);
 
     Combinations() {
         this.power = 0.00000;
@@ -16,9 +17,17 @@ public class Combinations {
     String getCombinationName() {
         return combinationName;
     }
+    void setCombinationName(String string) {
+        combinationName = string;
+    }
 
     void addCards(Card card) {
         this.cards.add(card);
+    }
+
+
+    public Card getCard(int number) {
+        return this.cards.get(number);
     }
 
     double getPower() {

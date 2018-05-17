@@ -12,8 +12,6 @@ import static org.junit.Assert.*;
 public class PlayerTest {
     private Player player;
 
-
-
     @Before
     public  void  beforePlayerTests() throws Exception{
         player = new Player();
