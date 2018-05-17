@@ -42,7 +42,8 @@ public class CombinationsTest {
 
     @Test
     public void calculate() {
-        cards.sort(Comparator.comparing(Card::getValue));
+
+
         combinations.calculate();
 
         assertEquals(0,combinations.getPower(), 0 );

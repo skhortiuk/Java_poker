@@ -8,7 +8,7 @@ public class Combinations {
     private double power;
     private List<Card> cards = new ArrayList<>();
     private String combinationName;
-    private Card card; //= new Card(5,1);
+
 
     Combinations() {
         this.power = 0.00000;
