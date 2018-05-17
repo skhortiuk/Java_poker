@@ -100,17 +100,24 @@ public class PlayerTest {
     }
 
     @Test
-    public void  getStackAllInTrue() {
+    public void  getStackAllInTrueWhileNumber0() {
+        player.addStack(200);
+        player.getStack(200);
+       // assertEquals(0, player.getStackValue());
+        assertEquals(true, player.isAllIn());
+    }
+    @Test
+    public void  getStackAllInTrueWhileNumberIsSmaller() {
         player.addStack(200);
         player.getStack(250);
-       // assertEquals(0, player.getStackValue());
+        // assertEquals(0, player.getStackValue());
         assertEquals(true, player.isAllIn());
     }
     @Test
     public void  ifCanTakeStack() {
         com.model.Stack stack = new com.model.Stack();
         stack.setValue(500);
-        assertEquals(true, stack.ifCanTakeStack(400) );
+        assertEquals(true, stack.ifCanTakeStack(500) );
     }
     @Test
     public void clearChips() {

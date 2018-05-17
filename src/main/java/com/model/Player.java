@@ -65,6 +65,9 @@ public class Player {
     public void getStack(int number) {
         if (stack.ifCanTakeStack(number)) {
             stack.getStack(number);
+            if (stack.getValue()==0){
+                allIn = true;
+            }
         }
         else{
             allIn = true;
