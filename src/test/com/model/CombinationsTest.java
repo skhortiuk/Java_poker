@@ -63,7 +63,14 @@ public class CombinationsTest {
         Card card5 = new Card(10,1);
         Card card6 = new Card(5, 4);
         Card card7 = new Card(12, 4);
-
+        cards.add(card);
+        cards.add(card2);
+        cards.add(card3);
+        cards.add(card4);
+        cards.add(card5);
+        cards.add(card6);
+        cards.add(card7);
+        int size = cards.size();
         combinations.addCards(card);
         combinations.addCards(card2);
         combinations.addCards(card3);
@@ -73,6 +80,9 @@ public class CombinationsTest {
         combinations.addCards(card7);
         combinations.calculate();
         assertEquals(12.10090605, combinations.calculatePower(), 0.000000001);
+        getCombinationName();
+       // String combMane = "High card " + cards.get(size - 1).getNameValue()
+        assertEquals("High card QUEEN","High card " + cards.get(size - 1).getNameValue() );
 
 
     }
