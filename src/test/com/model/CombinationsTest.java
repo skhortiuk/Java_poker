@@ -42,7 +42,9 @@ public class CombinationsTest {
 
     @Test
     public void calculate() {
-
+        Deck deck = new Deck();
+        deck.refill();
+        
 
         combinations.calculate();
 
