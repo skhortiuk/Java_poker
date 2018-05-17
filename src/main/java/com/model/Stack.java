@@ -12,8 +12,9 @@ public class Stack {
     }
 
     public boolean ifCanTakeStack(int number) {
-        return value - number >= 0;
+        return value - number > 0;
     }
+
 
     public void getStack(int number) {
         value -= number;
