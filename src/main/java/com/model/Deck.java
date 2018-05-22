@@ -29,7 +29,7 @@ public class Deck {
         }
     }
 
-    private void shuffle() {
+    public void shuffle() {
         Collections.shuffle(this.cards);
         Collections.shuffle(this.cards);
         Collections.shuffle(this.cards);
