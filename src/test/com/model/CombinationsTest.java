@@ -46,7 +46,7 @@ public class CombinationsTest {
     }
 
 
-    /*@Test
+    @Test
     public void calculate() {
         Deck deck = new Deck();
         deck.refill();
