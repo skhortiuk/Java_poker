@@ -20,6 +20,14 @@ public class Deck {
         }
         shuffle();
     }
+    public void creator() {
+        cards.clear();
+        for (int i = 1; i < 5; i++) {
+            for (int j = 2; j <= 14; j++) {
+                cards.add(new Card(j, i));
+            }
+        }
+    }
 
     private void shuffle() {
         Collections.shuffle(this.cards);

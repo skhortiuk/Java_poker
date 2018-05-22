@@ -19,7 +19,9 @@ public class CardTest {
         assertEquals(4, card.getSuitValue());
     }
 
-
-
-
+    @Test
+    public void getNameValue() {
+        Card card = new Card(3,2);
+        assertEquals("THREE", card.getNameValue());
+    }
 }

@@ -130,10 +130,33 @@ public class PlayerTest {
 
     }
 
+    @Test
+    public void del() {
+        ArrayList<Card> cards;
+        Card card5_1 = new Card(5,1);
+        Card card5_2 = new Card(5,2);
+        player.setCards(card5_1);
+        player.setCards(card5_2);
+        player.del();
+        int sizeCards = player.getCards().size();
 
+        assertEquals(false, player.isInGame());
+        assertEquals(false, player.isWinner());
+        assertEquals( 0, sizeCards);
+    }
 
-
-   /* @Test
+    @Test
+    public void getHandCard() {
+        ArrayList<Card> cards;
+        Card card5_1 = new Card(5,1);
+        Card card5_2 = new Card(5,2);
+        player.setCards(card5_1);
+        player.setCards(card5_2);
+        cards = player.getHandCard();
+        assertEquals(card5_1, cards.get(0));
+        assertEquals(card5_2, cards.get(1));
+    }
+    /* @Test
     public void getComvination() {
         Player player = new Player();
         ArrayList<Card> cards = new ArrayList<>();
