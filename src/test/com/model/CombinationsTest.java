@@ -13,14 +13,14 @@ import static org.junit.Assert.assertSame;
 
 public class CombinationsTest {
     private Combinations combinations;
-  /*  private List<Card> cards;
+    private List<Card> cards;
     private List<Card> cardsSort;
     @Before
     public void beforeCombinationsTest() throws Exception{
         combinations = new Combinations();
         cards = new ArrayList<>();
         cardsSort = new ArrayList<>();
-    }*/
+    }
 
     @Test
     public void getPower() {
@@ -29,7 +29,7 @@ public class CombinationsTest {
         assertEquals(20, combinations.getPower(), 0);
 
     }
-/*
+
     @Test
     public void getCombinationName() {
         combinations.setCombinationName("Pairs");
@@ -313,7 +313,7 @@ public class CombinationsTest {
         assertEquals(2, cards.size());
 
     }
-
+*/
     @Test
     public void setCards() {
         Card card = new Card(2,4);
@@ -322,5 +322,5 @@ public class CombinationsTest {
         cards.add(card);
         cards.add(card2);
         assertEquals(cards.get(1),combinations.getCard(1));
-    }*/
+    }
 }
