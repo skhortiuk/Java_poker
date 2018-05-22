@@ -124,9 +124,7 @@ public class Main extends Application{
         menuExitButtonView.setX((menuBackground.getWidth() - menuAExitButton.getWidth()) / 2);
         menuExitButtonView.setY((menuBackground.getHeight() - menuAExitButton.getHeight()) / 1.4);
         menuExitButtonView.setCursor(Cursor.HAND);
-        menuExitButtonView.setOnMouseClicked(event -> {
-            primaryStage.close();
-        });
+        menuExitButtonView.setOnMouseClicked(event -> primaryStage.close());
         root.getChildren().add(menuExitButtonView);
 
 //Set title

@@ -86,8 +86,8 @@ public class Table extends Application {
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
-        Background background_buttonCall = new Background(backgroundImageCall);
-        callButton.setBackground(background_buttonCall);
+        Background backgroundButtonCall = new Background(backgroundImageCall);
+        callButton.setBackground(backgroundButtonCall);
         callButton.setPrefSize(120, 50);
 
         BackgroundImage backgroundImageRaise = new BackgroundImage(new Image
@@ -96,8 +96,8 @@ public class Table extends Application {
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
-        Background background_buttonRaise = new Background(backgroundImageRaise);
-        raiseButton.setBackground(background_buttonRaise);
+        Background backgroundButtonRaise = new Background(backgroundImageRaise);
+        raiseButton.setBackground(backgroundButtonRaise);
         raiseButton.setPrefSize(120, 50);
 
 
@@ -107,8 +107,8 @@ public class Table extends Application {
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
-        Background background_buttonFold = new Background(backgroundImageFold);
-        foldButton.setBackground(background_buttonFold);
+        Background backgroundButtonFold = new Background(backgroundImageFold);
+        foldButton.setBackground(backgroundButtonFold);
         foldButton.setPrefSize(120, 50);
 
 
@@ -118,8 +118,8 @@ public class Table extends Application {
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
-        Background background_buttonCheck = new Background(backgroundImageCheck);
-        checkButton.setBackground(background_buttonCheck);
+        Background backgroundButtonCheck = new Background(backgroundImageCheck);
+        checkButton.setBackground(backgroundButtonCheck);
         checkButton.setPrefSize(120, 48);
 
 
@@ -129,8 +129,8 @@ public class Table extends Application {
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
-        Background background_buttonBet = new Background(backgroundImageBet);
-        betButton.setBackground(background_buttonBet);
+        Background backgroundButtonBet = new Background(backgroundImageBet);
+        betButton.setBackground(backgroundButtonBet);
         betButton.setPrefSize(120, 50);
         betField.setPrefSize(100, 20);
         betField.setTranslateY(20);
@@ -233,7 +233,7 @@ public class Table extends Application {
             return;
         }
         int move;
-        String start_chat = " Bot[";
+        String startChat = " Bot[";
         if (player == 1){
             move = simpleBot.think(bot[player].getCards(),bot[player].getStackValue(),bank,lastChips);
         }
@@ -242,17 +242,17 @@ public class Table extends Application {
         }
         if (move == 0) {
             LocalTime localTime = LocalTime.now();
-            gameChat.appendText(Time.valueOf(localTime) + start_chat + player + "] Check\n");
+            gameChat.appendText(Time.valueOf(localTime) + startChat + player + "] Check\n");
             return;
         }
         if (move > 0) {
             LocalTime localTime = LocalTime.now();
-            gameChat.appendText(Time.valueOf(localTime) + start_chat + player + "] Set - " + move + " Chips\n");
+            gameChat.appendText(Time.valueOf(localTime) + startChat + player + "] Set - " + move + " Chips\n");
             makeMove(player, move);
         }
         if (move < 0) {
             LocalTime localTime = LocalTime.now();
-            gameChat.appendText(Time.valueOf(localTime) + start_chat + player + "] Fold!\n");
+            gameChat.appendText(Time.valueOf(localTime) + startChat + player + "] Fold!\n");
             botView[player].del();
             bot[player].del();
         }
@@ -383,7 +383,7 @@ public class Table extends Application {
 
     private void getWinner() {
         double max = 0;
-        String text_for_winner = "] Win this game with ";
+        String textForWinner = "] Win this game with ";
         int t = 0;
         double tmp;
         for (int i = 0; i < 6; i++) {
@@ -406,7 +406,7 @@ public class Table extends Application {
             for (int i = 0; i < 6; i++) {
                 if (bot[i].isWinner()) {
                     LocalTime localTime = LocalTime.now();
-                    gameChat.appendText(Time.valueOf(localTime) + "Bot[" + i + text_for_winner + bot[i].getCombinationName() + "!!!!!!!\n");
+                    gameChat.appendText(Time.valueOf(localTime) + "Bot[" + i + textForWinner + bot[i].getCombinationName() + "!!!!!!!\n");
                     forWinner.setText("Draw!!!!");
                 }
             }
@@ -415,7 +415,7 @@ public class Table extends Application {
             for (int i = 0; i < 6; i++) {
                 if (bot[i].isWinner()) {
                     LocalTime localTime = LocalTime.now();
-                    gameChat.appendText(Time.valueOf(localTime) + "Bot[" + i + text_for_winner + bot[i].getCombinationName() + "!!!!!!!\n");
+                    gameChat.appendText(Time.valueOf(localTime) + "Bot[" + i + textForWinner + bot[i].getCombinationName() + "!!!!!!!\n");
                     forWinner.setText("Bot[" + i + "] Win this game!!!!!!!");
                 }
             }
