@@ -45,7 +45,7 @@ public class CombinationsTest {
         assertEquals(card2, combinations.getCard(1));
     }
 
-/*
+
     @Test
     public void calculate() {
         Deck deck = new Deck();
@@ -53,7 +53,7 @@ public class CombinationsTest {
         combinations.calculate();
 
         assertEquals(0,combinations.getPower(), 0 );
-    }*//*
+    }/*
 
     @Test
     public void highCard() {
@@ -301,7 +301,7 @@ public class CombinationsTest {
         combinations.calculate();
         assertEquals(0.0, combinations.calculatePower(), 0.0);
     }
-
+*/
     @Test
     public void cardsSize() {
         Card card = new Card(6,1);
@@ -313,7 +313,7 @@ public class CombinationsTest {
         assertEquals(2, cards.size());
 
     }
-*/
+
     @Test
     public void setCards() {
         Card card = new Card(2,4);
