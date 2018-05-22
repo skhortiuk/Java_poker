@@ -36,6 +36,7 @@ public class Player {
     private ArrayList<Card> handCard = new ArrayList<>();
     private Stack stack;
 
+
     public Player() {
         this.combinations = new Combinations();
         stack = new Stack();
@@ -85,6 +86,9 @@ public class Player {
     public double getPower() {
         this.combinations.calculate();
         return this.combinations.getPower();
+    }
+    void setCombinationName(String string) {
+         this.combinations.setCombinationName(string);
     }
 
     public String getCombinationName() {

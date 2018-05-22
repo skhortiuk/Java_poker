@@ -131,8 +131,13 @@ public class PlayerTest {
     }
 
     @Test
+    public void getCombinationName() {
+        player.setCombinationName("Pairs");
+        assertEquals("Pairs", player.getCombinationName());
+    }
+
+    @Test
     public void del() {
-        ArrayList<Card> cards;
         Card card5_1 = new Card(5,1);
         Card card5_2 = new Card(5,2);
         player.setCards(card5_1);
