@@ -20,7 +20,7 @@ public class Deck {
         }
         shuffle();
     }
-    public void creator() {
+    void creator() {
         cards.clear();
         for (int i = 1; i < 5; i++) {
             for (int j = 2; j <= 14; j++) {
@@ -29,7 +29,7 @@ public class Deck {
         }
     }
 
-    public void shuffle() {
+    void shuffle() {
         Collections.shuffle(this.cards);
         Collections.shuffle(this.cards);
         Collections.shuffle(this.cards);

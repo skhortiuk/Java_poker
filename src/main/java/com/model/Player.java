@@ -98,6 +98,7 @@ public class Player {
     public void del() {
         this.isWinner = false;
         this.inGame = false;
+        this.allIn = false;
         cards.clear();
     }
 
