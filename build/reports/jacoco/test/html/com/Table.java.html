@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Table.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Poker</a> &gt; <a href="index.source.html" class="el_package">com</a> &gt; <span class="el_source">Table.java</span></div><h1>Table.java</h1><pre class="source lang-java linenums">package com;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Table.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Poker</a> &gt; <a href="index.source.html" class="el_package">com</a> &gt; <span class="el_source">Table.java</span></div><h1>Table.java</h1><pre class="source lang-java linenums">package com;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -20,485 +20,491 @@ import com.view.PlayerView;
 import java.sql.Time;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-<span class="nc" id="L24">public class Table extends Application {</span>
+<span class="nc" id="L26">public class Table extends Application {</span>
     private static final int HEIGHT = 750;
     private static final int WIDTH = 1050;
 
-<span class="nc" id="L28">    private SimpleBot simpleBot = new SimpleBot();</span>
-<span class="nc" id="L29">    private MediumBot mediumBot = new MediumBot();</span>
-    private int lastChips;
-<span class="nc" id="L31">    private int bank = 0;</span>
-<span class="nc" id="L32">    private int circleBank = 0;</span>
-    private int gameRound;
-<span class="nc" id="L34">    private Player bot[] = new Player[6];</span>
+<span class="nc" id="L30">    private Logger logger = Logger.getLogger(Table.class.getName());</span>
 
-<span class="nc" id="L36">    private Label bankLable = new Label();</span>
-<span class="nc" id="L37">    private Label circleBankLable = new Label();</span>
-<span class="nc" id="L38">    private Pane root = new Pane();</span>
-<span class="nc" id="L39">    private Group group = new Group();</span>
-<span class="nc" id="L40">    private Deck deck = new Deck();</span>
-<span class="nc" id="L41">    private FTRcardsView ftr = new FTRcardsView();</span>
-<span class="nc" id="L42">    private PlayerView botView[] = new PlayerView[6];</span>
-<span class="nc" id="L43">    private Button resetButton = new Button(&quot;Restart&quot;);</span>
-<span class="nc" id="L44">    private Button foldButton = new Button();</span>
-<span class="nc" id="L45">    private Button checkButton = new Button();</span>
-<span class="nc" id="L46">    private Button callButton = new Button();</span>
-<span class="nc" id="L47">    private Button raiseButton = new Button();</span>
-<span class="nc" id="L48">    private Button betButton = new Button();</span>
-<span class="nc" id="L49">    private Button startButton = new Button(&quot;Start&quot;);</span>
-<span class="nc" id="L50">    private HBox hBox = new HBox();</span>
-<span class="nc" id="L51">    private HBox controlButtons = new HBox(5);</span>
-<span class="nc" id="L52">    private Spinner&lt;Integer&gt; betField = new Spinner&lt;&gt;();</span>
-<span class="nc" id="L53">    private TextArea gameChat = new TextArea();</span>
-<span class="nc" id="L54">    private Label forWinner = new Label();</span>
+<span class="nc" id="L32">    private SimpleBot simpleBot = new SimpleBot();</span>
+<span class="nc" id="L33">    private MediumBot mediumBot = new MediumBot();</span>
+    private int lastChips;
+<span class="nc" id="L35">    private int bank = 0;</span>
+<span class="nc" id="L36">    private int circleBank = 0;</span>
+    private int gameRound;
+<span class="nc" id="L38">    private Player bot[] = new Player[6];</span>
+
+<span class="nc" id="L40">    private Label bankLable = new Label();</span>
+<span class="nc" id="L41">    private Label circleBankLable = new Label();</span>
+<span class="nc" id="L42">    private Pane root = new Pane();</span>
+<span class="nc" id="L43">    private Group group = new Group();</span>
+<span class="nc" id="L44">    private Deck deck = new Deck();</span>
+<span class="nc" id="L45">    private FTRcardsView ftr = new FTRcardsView();</span>
+<span class="nc" id="L46">    private PlayerView botView[] = new PlayerView[6];</span>
+<span class="nc" id="L47">    private Button resetButton = new Button(&quot;Restart&quot;);</span>
+<span class="nc" id="L48">    private Button foldButton = new Button();</span>
+<span class="nc" id="L49">    private Button checkButton = new Button();</span>
+<span class="nc" id="L50">    private Button callButton = new Button();</span>
+<span class="nc" id="L51">    private Button raiseButton = new Button();</span>
+<span class="nc" id="L52">    private Button betButton = new Button();</span>
+<span class="nc" id="L53">    private Button startButton = new Button(&quot;Start&quot;);</span>
+<span class="nc" id="L54">    private HBox hBox = new HBox();</span>
+<span class="nc" id="L55">    private HBox controlButtons = new HBox(5);</span>
+<span class="nc" id="L56">    private Spinner&lt;Integer&gt; betField = new Spinner&lt;&gt;();</span>
+<span class="nc" id="L57">    private TextArea gameChat = new TextArea();</span>
+<span class="nc" id="L58">    private Label forWinner = new Label();</span>
 
     private Parent createContent() {
-<span class="nc" id="L57">        root.setPrefSize(WIDTH, HEIGHT);</span>
-<span class="nc" id="L58">        ImageView background = new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(&quot;table/table_background.png&quot;)));</span>
-<span class="nc" id="L59">        background.setFitWidth(WIDTH);</span>
-<span class="nc" id="L60">        background.setFitHeight(HEIGHT);</span>
+<span class="nc" id="L61">        root.setPrefSize(WIDTH, HEIGHT);</span>
+<span class="nc" id="L62">        ImageView background = new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(&quot;table/table_background.png&quot;)));</span>
+<span class="nc" id="L63">        background.setFitWidth(WIDTH);</span>
+<span class="nc" id="L64">        background.setFitHeight(HEIGHT);</span>
 
-<span class="nc" id="L62">        controlButtons.getChildren().addAll(startButton, resetButton);</span>
-<span class="nc" id="L63">        controlButtons.setTranslateY(10);</span>
-<span class="nc" id="L64">        controlButtons.setTranslateX(10);</span>
-<span class="nc" id="L65">        hBox.setTranslateY(610);</span>
-<span class="nc" id="L66">        hBox.setTranslateX(20);</span>
-<span class="nc" id="L67">        group.getChildren().addAll(controlButtons, hBox);</span>
+<span class="nc" id="L66">        controlButtons.getChildren().addAll(startButton, resetButton);</span>
+<span class="nc" id="L67">        controlButtons.setTranslateY(10);</span>
+<span class="nc" id="L68">        controlButtons.setTranslateX(10);</span>
+<span class="nc" id="L69">        hBox.setTranslateY(610);</span>
+<span class="nc" id="L70">        hBox.setTranslateX(20);</span>
+<span class="nc" id="L71">        group.getChildren().addAll(controlButtons, hBox);</span>
         //temp buttons
 
         //Winner output
-<span class="nc" id="L71">        forWinner.setTranslateX(400);</span>
-<span class="nc" id="L72">        forWinner.setTranslateY(380);</span>
-<span class="nc" id="L73">        forWinner.setTextFill(Paint.valueOf(&quot;Red&quot;));</span>
-<span class="nc" id="L74">        forWinner.setFont(Font.font(20));</span>
-<span class="nc" id="L75">        group.getChildren().addAll(forWinner);</span>
+<span class="nc" id="L75">        forWinner.setTranslateX(400);</span>
+<span class="nc" id="L76">        forWinner.setTranslateY(380);</span>
+<span class="nc" id="L77">        forWinner.setTextFill(Paint.valueOf(&quot;Red&quot;));</span>
+<span class="nc" id="L78">        forWinner.setFont(Font.font(20));</span>
+<span class="nc" id="L79">        group.getChildren().addAll(forWinner);</span>
         //Winner output
 
         //Test
-<span class="nc" id="L79">        BackgroundImage backgroundImageCall = new BackgroundImage(new Image</span>
-<span class="nc" id="L80">                (getClass().getResourceAsStream(&quot;/table/button_call.png&quot;)),</span>
+<span class="nc" id="L83">        BackgroundImage backgroundImageCall = new BackgroundImage(new Image</span>
+<span class="nc" id="L84">                (getClass().getResourceAsStream(&quot;/table/button_call.png&quot;)),</span>
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
-<span class="nc" id="L85">        Background background_buttonCall = new Background(backgroundImageCall);</span>
-<span class="nc" id="L86">        callButton.setBackground(background_buttonCall);</span>
-<span class="nc" id="L87">        callButton.setPrefSize(120, 50);</span>
+<span class="nc" id="L89">        Background background_buttonCall = new Background(backgroundImageCall);</span>
+<span class="nc" id="L90">        callButton.setBackground(background_buttonCall);</span>
+<span class="nc" id="L91">        callButton.setPrefSize(120, 50);</span>
 
-<span class="nc" id="L89">        BackgroundImage backgroundImageRaise = new BackgroundImage(new Image</span>
-<span class="nc" id="L90">                (getClass().getResourceAsStream(&quot;/table/button_raise.png&quot;)),</span>
+<span class="nc" id="L93">        BackgroundImage backgroundImageRaise = new BackgroundImage(new Image</span>
+<span class="nc" id="L94">                (getClass().getResourceAsStream(&quot;/table/button_raise.png&quot;)),</span>
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
-<span class="nc" id="L95">        Background background_buttonRaise = new Background(backgroundImageRaise);</span>
-<span class="nc" id="L96">        raiseButton.setBackground(background_buttonRaise);</span>
-<span class="nc" id="L97">        raiseButton.setPrefSize(120, 50);</span>
+<span class="nc" id="L99">        Background background_buttonRaise = new Background(backgroundImageRaise);</span>
+<span class="nc" id="L100">        raiseButton.setBackground(background_buttonRaise);</span>
+<span class="nc" id="L101">        raiseButton.setPrefSize(120, 50);</span>
 
 
-<span class="nc" id="L100">        BackgroundImage backgroundImageFold = new BackgroundImage(new Image</span>
-<span class="nc" id="L101">                (getClass().getResourceAsStream(&quot;/table/button_fold.png&quot;)),</span>
+<span class="nc" id="L104">        BackgroundImage backgroundImageFold = new BackgroundImage(new Image</span>
+<span class="nc" id="L105">                (getClass().getResourceAsStream(&quot;/table/button_fold.png&quot;)),</span>
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
-<span class="nc" id="L106">        Background background_buttonFold = new Background(backgroundImageFold);</span>
-<span class="nc" id="L107">        foldButton.setBackground(background_buttonFold);</span>
-<span class="nc" id="L108">        foldButton.setPrefSize(120, 50);</span>
+<span class="nc" id="L110">        Background background_buttonFold = new Background(backgroundImageFold);</span>
+<span class="nc" id="L111">        foldButton.setBackground(background_buttonFold);</span>
+<span class="nc" id="L112">        foldButton.setPrefSize(120, 50);</span>
 
 
-<span class="nc" id="L111">        BackgroundImage backgroundImageCheck = new BackgroundImage(new Image</span>
-<span class="nc" id="L112">                (getClass().getResourceAsStream(&quot;/table/button_check.png&quot;)),</span>
+<span class="nc" id="L115">        BackgroundImage backgroundImageCheck = new BackgroundImage(new Image</span>
+<span class="nc" id="L116">                (getClass().getResourceAsStream(&quot;/table/button_check.png&quot;)),</span>
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
-<span class="nc" id="L117">        Background background_buttonCheck = new Background(backgroundImageCheck);</span>
-<span class="nc" id="L118">        checkButton.setBackground(background_buttonCheck);</span>
-<span class="nc" id="L119">        checkButton.setPrefSize(120, 48);</span>
+<span class="nc" id="L121">        Background background_buttonCheck = new Background(backgroundImageCheck);</span>
+<span class="nc" id="L122">        checkButton.setBackground(background_buttonCheck);</span>
+<span class="nc" id="L123">        checkButton.setPrefSize(120, 48);</span>
 
 
-<span class="nc" id="L122">        BackgroundImage backgroundImageBet = new BackgroundImage(new Image</span>
-<span class="nc" id="L123">                (getClass().getResourceAsStream(&quot;/table/button_bet.png&quot;)),</span>
+<span class="nc" id="L126">        BackgroundImage backgroundImageBet = new BackgroundImage(new Image</span>
+<span class="nc" id="L127">                (getClass().getResourceAsStream(&quot;/table/button_bet.png&quot;)),</span>
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
-<span class="nc" id="L128">        Background background_buttonBet = new Background(backgroundImageBet);</span>
-<span class="nc" id="L129">        betButton.setBackground(background_buttonBet);</span>
-<span class="nc" id="L130">        betButton.setPrefSize(120, 50);</span>
-<span class="nc" id="L131">        betField.setPrefSize(100, 20);</span>
-<span class="nc" id="L132">        betField.setTranslateY(20);</span>
+<span class="nc" id="L132">        Background background_buttonBet = new Background(backgroundImageBet);</span>
+<span class="nc" id="L133">        betButton.setBackground(background_buttonBet);</span>
+<span class="nc" id="L134">        betButton.setPrefSize(120, 50);</span>
+<span class="nc" id="L135">        betField.setPrefSize(100, 20);</span>
+<span class="nc" id="L136">        betField.setTranslateY(20);</span>
 
-<span class="nc" id="L134">        bankLable.setTranslateX(460);</span>
-<span class="nc" id="L135">        bankLable.setTranslateY(150);</span>
-<span class="nc" id="L136">        bankLable.setTextFill(Paint.valueOf(&quot;Green&quot;));</span>
+<span class="nc" id="L138">        bankLable.setTranslateX(460);</span>
+<span class="nc" id="L139">        bankLable.setTranslateY(150);</span>
+<span class="nc" id="L140">        bankLable.setTextFill(Paint.valueOf(&quot;Green&quot;));</span>
 
-<span class="nc" id="L138">        circleBankLable.setTranslateX(490);</span>
-<span class="nc" id="L139">        circleBankLable.setTranslateY(350);</span>
-<span class="nc" id="L140">        circleBankLable.setTextFill(Paint.valueOf(&quot;White&quot;));</span>
+<span class="nc" id="L142">        circleBankLable.setTranslateX(490);</span>
+<span class="nc" id="L143">        circleBankLable.setTranslateY(350);</span>
+<span class="nc" id="L144">        circleBankLable.setTextFill(Paint.valueOf(&quot;White&quot;));</span>
 
 
-<span class="nc" id="L143">        startButton();</span>
-<span class="nc" id="L144">        resetButton();</span>
+<span class="nc" id="L147">        startButton();</span>
+<span class="nc" id="L148">        resetButton();</span>
 
 //        Create game chat
-<span class="nc" id="L147">        gameChat.setTranslateX(720);</span>
-<span class="nc" id="L148">        gameChat.setTranslateY(530);</span>
-<span class="nc" id="L149">        gameChat.setPrefSize(285, 110);</span>
-<span class="nc" id="L150">        gameChat.setPadding(Insets.EMPTY);</span>
-<span class="nc" id="L151">        gameChat.setEditable(false);</span>
-<span class="nc" id="L152">        gameChat.setWrapText(true);</span>
+<span class="nc" id="L151">        gameChat.setTranslateX(720);</span>
+<span class="nc" id="L152">        gameChat.setTranslateY(530);</span>
+<span class="nc" id="L153">        gameChat.setPrefSize(285, 110);</span>
+<span class="nc" id="L154">        gameChat.setPadding(Insets.EMPTY);</span>
+<span class="nc" id="L155">        gameChat.setEditable(false);</span>
+<span class="nc" id="L156">        gameChat.setWrapText(true);</span>
 
-<span class="nc" id="L154">        group.getChildren().addAll(ftr.getRoot(), bankLable, circleBankLable, gameChat);</span>
+<span class="nc" id="L158">        group.getChildren().addAll(ftr.getRoot(), bankLable, circleBankLable, gameChat);</span>
 
-<span class="nc" id="L156">        root.getChildren().addAll(background, group);</span>
-<span class="nc" id="L157">        return root;</span>
+<span class="nc" id="L160">        root.getChildren().addAll(background, group);</span>
+<span class="nc" id="L161">        return root;</span>
     }
 
     private void showCards() {
-<span class="nc bnc" id="L161" title="All 2 branches missed.">        for (int i = 1; i &lt; 6; i++) {</span>
-<span class="nc bnc" id="L162" title="All 2 branches missed.">            if (!bot[i].isWinner()) {</span>
-<span class="nc" id="L163">                continue;</span>
+<span class="nc bnc" id="L165" title="All 2 branches missed.">        for (int i = 1; i &lt; 6; i++) {</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">            if (!bot[i].isWinner()) {</span>
+<span class="nc" id="L167">                continue;</span>
             }
             ArrayList&lt;Card&gt; cards;
-<span class="nc" id="L166">            cards = bot[i].getHandCard();</span>
-<span class="nc" id="L167">            botView[i].clearCards();</span>
-<span class="nc" id="L168">            botView[i].setCards(cards.get(0), true);</span>
-<span class="nc" id="L169">            botView[i].setCards(cards.get(1), true);</span>
+<span class="nc" id="L170">            cards = bot[i].getHandCard();</span>
+<span class="nc" id="L171">            botView[i].clearCards();</span>
+<span class="nc" id="L172">            botView[i].setCards(cards.get(0), true);</span>
+<span class="nc" id="L173">            botView[i].setCards(cards.get(1), true);</span>
         }
-<span class="nc" id="L171">    }</span>
+<span class="nc" id="L175">    }</span>
 
     private void clearChips() {
-<span class="nc bnc" id="L174" title="All 2 branches missed.">        for (int i = 0; i &lt; 6; i++) {</span>
-<span class="nc" id="L175">            botView[i].clearChips();</span>
-<span class="nc" id="L176">            bot[i].clearChips();</span>
+<span class="nc bnc" id="L178" title="All 2 branches missed.">        for (int i = 0; i &lt; 6; i++) {</span>
+<span class="nc" id="L179">            botView[i].clearChips();</span>
+<span class="nc" id="L180">            bot[i].clearChips();</span>
         }
-<span class="nc" id="L178">    }</span>
+<span class="nc" id="L182">    }</span>
 
     private boolean ifAllChipsEqual() {
-<span class="nc" id="L181">        boolean tmp = true;</span>
-<span class="nc bnc" id="L182" title="All 2 branches missed.">        for (int i = 0; i &lt; 6; i++) {</span>
-<span class="nc bnc" id="L183" title="All 4 branches missed.">            if (!bot[i].isInGame() || bot[i].isAllIn()) {</span>
-<span class="nc" id="L184">                continue;</span>
+<span class="nc" id="L185">        boolean tmp = true;</span>
+<span class="nc bnc" id="L186" title="All 2 branches missed.">        for (int i = 0; i &lt; 6; i++) {</span>
+<span class="nc bnc" id="L187" title="All 4 branches missed.">            if (!bot[i].isInGame() || bot[i].isAllIn()) {</span>
+<span class="nc" id="L188">                continue;</span>
             }
-<span class="nc bnc" id="L186" title="All 2 branches missed.">            if (bot[i].getChips() != lastChips) {</span>
-<span class="nc" id="L187">                tmp = false;</span>
-<span class="nc" id="L188">                break;</span>
+<span class="nc bnc" id="L190" title="All 2 branches missed.">            if (bot[i].getChips() != lastChips) {</span>
+<span class="nc" id="L191">                tmp = false;</span>
+<span class="nc" id="L192">                break;</span>
             }
         }
-<span class="nc" id="L191">        return tmp;</span>
+<span class="nc" id="L195">        return tmp;</span>
     }
 
     private void playerMove(boolean raiseVisible) {
-<span class="nc" id="L195">        hBox.getChildren().clear();</span>
-<span class="nc bnc" id="L196" title="All 2 branches missed.">        if (!bot[0].isInGame())</span>
-<span class="nc" id="L197">            return;</span>
-<span class="nc bnc" id="L198" title="All 2 branches missed.">        if (!raiseVisible) {</span>
-<span class="nc" id="L199">            foldButton();</span>
-<span class="nc" id="L200">            checkButton();</span>
-<span class="nc" id="L201">            betButton();</span>
+<span class="nc" id="L199">        hBox.getChildren().clear();</span>
+<span class="nc bnc" id="L200" title="All 2 branches missed.">        if (!bot[0].isInGame())</span>
+<span class="nc" id="L201">            return;</span>
+<span class="nc bnc" id="L202" title="All 2 branches missed.">        if (!raiseVisible) {</span>
+<span class="nc" id="L203">            foldButton();</span>
+<span class="nc" id="L204">            checkButton();</span>
+<span class="nc" id="L205">            betButton();</span>
         } else {
-<span class="nc" id="L203">            betField.getValueFactory().setValue(lastChips * 2);</span>
-<span class="nc" id="L204">            foldButton();</span>
-<span class="nc" id="L205">            callButton();</span>
-<span class="nc" id="L206">            raiseButton();</span>
+<span class="nc" id="L207">            betField.getValueFactory().setValue(lastChips * 2);</span>
+<span class="nc" id="L208">            foldButton();</span>
+<span class="nc" id="L209">            callButton();</span>
+<span class="nc" id="L210">            raiseButton();</span>
         }
-<span class="nc" id="L208">    }</span>
+<span class="nc" id="L212">    }</span>
 
     private void makeMove(int player, int chips) {
 
-<span class="nc bnc" id="L212" title="All 4 branches missed.">        if (lastChips &gt; bot[player].getChips() &amp;&amp; lastChips != 0) {</span>
-<span class="nc" id="L213">            bot[player].getStack(chips - bot[player].getChips());</span>
+<span class="nc bnc" id="L216" title="All 4 branches missed.">        if (lastChips &gt; bot[player].getChips() &amp;&amp; lastChips != 0) {</span>
+<span class="nc" id="L217">            bot[player].getStack(chips - bot[player].getChips());</span>
         } else {
-<span class="nc" id="L215">            bot[player].getStack(chips);</span>
+<span class="nc" id="L219">            bot[player].getStack(chips);</span>
         }
-<span class="nc" id="L217">        bot[player].setChips(chips);</span>
-<span class="nc" id="L218">        botView[player].setStack(bot[player].getStackValue());</span>
-<span class="nc" id="L219">        botView[player].setChips(chips);</span>
-<span class="nc" id="L220">        lastChips = chips;</span>
-<span class="nc" id="L221">        bank += chips;</span>
-<span class="nc" id="L222">        circleBank += chips;</span>
-<span class="nc" id="L223">        bankLable.setText(&quot;Bank: &quot; + bank);</span>
-<span class="nc" id="L224">        circleBankLable.setText(Integer.toString(circleBank));</span>
-<span class="nc" id="L225">    }</span>
+<span class="nc" id="L221">        bot[player].setChips(chips);</span>
+<span class="nc" id="L222">        botView[player].setStack(bot[player].getStackValue());</span>
+<span class="nc" id="L223">        botView[player].setChips(chips);</span>
+<span class="nc" id="L224">        lastChips = chips;</span>
+<span class="nc" id="L225">        bank += chips;</span>
+<span class="nc" id="L226">        circleBank += chips;</span>
+<span class="nc" id="L227">        bankLable.setText(&quot;Bank: &quot; + bank);</span>
+<span class="nc" id="L228">        circleBankLable.setText(Integer.toString(circleBank));</span>
+<span class="nc" id="L229">    }</span>
 
     private void makeMove(int player) {
-<span class="nc bnc" id="L228" title="All 2 branches missed.">        if (!bot[player].isInGame()) {</span>
-<span class="nc" id="L229">            return;</span>
+<span class="nc bnc" id="L232" title="All 2 branches missed.">        if (!bot[player].isInGame()) {</span>
+<span class="nc" id="L233">            return;</span>
         }
         int move;
-<span class="nc" id="L232">        String start_chat = &quot; Bot[&quot;;</span>
-<span class="nc bnc" id="L233" title="All 2 branches missed.">        if (player == 1){</span>
-<span class="nc" id="L234">            move = simpleBot.think(bot[player].getCards(),bot[player].getStackValue(),bank,lastChips);</span>
+<span class="nc" id="L236">        String start_chat = &quot; Bot[&quot;;</span>
+<span class="nc bnc" id="L237" title="All 2 branches missed.">        if (player == 1){</span>
+<span class="nc" id="L238">            move = simpleBot.think(bot[player].getCards(),bot[player].getStackValue(),bank,lastChips);</span>
         }
         else {
-<span class="nc" id="L237">            move = mediumBot.think(bot[player].getCards(), bot[player].getStackValue(), bank, lastChips);</span>
+<span class="nc" id="L241">            move = mediumBot.think(bot[player].getCards(), bot[player].getStackValue(), bank, lastChips);</span>
         }
-<span class="nc bnc" id="L239" title="All 2 branches missed.">        if (move == 0) {</span>
-<span class="nc" id="L240">            LocalTime localTime = LocalTime.now();</span>
-<span class="nc" id="L241">            gameChat.appendText(Time.valueOf(localTime) + start_chat + player + &quot;] Check\n&quot;);</span>
-<span class="nc" id="L242">            return;</span>
+<span class="nc bnc" id="L243" title="All 2 branches missed.">        if (move == 0) {</span>
+<span class="nc" id="L244">            LocalTime localTime = LocalTime.now();</span>
+<span class="nc" id="L245">            gameChat.appendText(Time.valueOf(localTime) + start_chat + player + &quot;] Check\n&quot;);</span>
+<span class="nc" id="L246">            return;</span>
         }
-<span class="nc bnc" id="L244" title="All 2 branches missed.">        if (move &gt; 0) {</span>
-<span class="nc" id="L245">            LocalTime localTime = LocalTime.now();</span>
-<span class="nc" id="L246">            gameChat.appendText(Time.valueOf(localTime) + start_chat + player + &quot;] Set - &quot; + move + &quot; Chips\n&quot;);</span>
-<span class="nc" id="L247">            makeMove(player, move);</span>
+<span class="nc bnc" id="L248" title="All 2 branches missed.">        if (move &gt; 0) {</span>
+<span class="nc" id="L249">            LocalTime localTime = LocalTime.now();</span>
+<span class="nc" id="L250">            gameChat.appendText(Time.valueOf(localTime) + start_chat + player + &quot;] Set - &quot; + move + &quot; Chips\n&quot;);</span>
+<span class="nc" id="L251">            makeMove(player, move);</span>
         }
-<span class="nc bnc" id="L249" title="All 2 branches missed.">        if (move &lt; 0) {</span>
-<span class="nc" id="L250">            LocalTime localTime = LocalTime.now();</span>
-<span class="nc" id="L251">            gameChat.appendText(Time.valueOf(localTime) + start_chat + player + &quot;] Fold!\n&quot;);</span>
-<span class="nc" id="L252">            botView[player].del();</span>
-<span class="nc" id="L253">            bot[player].del();</span>
+<span class="nc bnc" id="L253" title="All 2 branches missed.">        if (move &lt; 0) {</span>
+<span class="nc" id="L254">            LocalTime localTime = LocalTime.now();</span>
+<span class="nc" id="L255">            gameChat.appendText(Time.valueOf(localTime) + start_chat + player + &quot;] Fold!\n&quot;);</span>
+<span class="nc" id="L256">            botView[player].del();</span>
+<span class="nc" id="L257">            bot[player].del();</span>
         }
-<span class="nc" id="L255">    }</span>
+<span class="nc" id="L259">    }</span>
 
     private void startButton() {
-<span class="nc" id="L258">        startButton.setOnAction((ActionEvent event) -&gt; {</span>
-<span class="nc" id="L259">            deck.refill();</span>
-<span class="nc" id="L260">            createPlayers();</span>
-<span class="nc" id="L261">            startButton.setDisable(true);</span>
-<span class="nc" id="L262">            game_controll();</span>
-<span class="nc" id="L263">        });</span>
-<span class="nc" id="L264">    }</span>
-
-    private void game_controll(){
-<span class="nc" id="L267">        table_circle(gameRound, false);</span>
+<span class="nc" id="L262">        startButton.setOnAction((ActionEvent event) -&gt; {</span>
+<span class="nc" id="L263">            deck.refill();</span>
+<span class="nc" id="L264">            createPlayers();</span>
+<span class="nc" id="L265">            startButton.setDisable(true);</span>
+<span class="nc" id="L266">            game_controll();</span>
+<span class="nc" id="L267">        });</span>
 <span class="nc" id="L268">    }</span>
 
+    private void game_controll(){
+<span class="nc" id="L271">        table_circle(gameRound, false);</span>
+<span class="nc" id="L272">    }</span>
+
     private void table_circle(int round, boolean raise){
-<span class="nc bnc" id="L271" title="All 4 branches missed.">        if (round == 1 &amp;&amp; ifAllChipsEqual()){</span>
-<span class="nc" id="L272">            getFlop();</span>
+<span class="nc bnc" id="L275" title="All 4 branches missed.">        if (round == 1 &amp;&amp; ifAllChipsEqual()){</span>
+<span class="nc" id="L276">            getFlop();</span>
         }
-<span class="nc bnc" id="L274" title="All 4 branches missed.">        if (round == 2 &amp;&amp; ifAllChipsEqual()){</span>
-<span class="nc" id="L275">            getTurn();</span>
+<span class="nc bnc" id="L278" title="All 4 branches missed.">        if (round == 2 &amp;&amp; ifAllChipsEqual()){</span>
+<span class="nc" id="L279">            getTurn();</span>
         }
-<span class="nc bnc" id="L277" title="All 4 branches missed.">        if (gameRound == 3 &amp;&amp; ifAllChipsEqual()){</span>
-<span class="nc" id="L278">            getTurn();</span>
+<span class="nc bnc" id="L281" title="All 4 branches missed.">        if (gameRound == 3 &amp;&amp; ifAllChipsEqual()){</span>
+<span class="nc" id="L282">            getTurn();</span>
         }
-<span class="nc bnc" id="L280" title="All 4 branches missed.">        if (gameRound == 4 &amp;&amp; ifAllChipsEqual()){</span>
-<span class="nc" id="L281">            hBox.getChildren().clear();</span>
-<span class="nc" id="L282">            showCards();</span>
-<span class="nc" id="L283">            getWinner();</span>
-<span class="nc" id="L284">            return;</span>
+<span class="nc bnc" id="L284" title="All 4 branches missed.">        if (gameRound == 4 &amp;&amp; ifAllChipsEqual()){</span>
+<span class="nc" id="L285">            hBox.getChildren().clear();</span>
+<span class="nc" id="L286">            showCards();</span>
+<span class="nc" id="L287">            getWinner();</span>
+<span class="nc" id="L288">            return;</span>
         }
-<span class="nc" id="L286">        playerMove(raise);</span>
-<span class="nc" id="L287">    }</span>
+<span class="nc" id="L290">        playerMove(raise);</span>
+<span class="nc" id="L291">    }</span>
 
     private void bots_move(){
-<span class="nc bnc" id="L290" title="All 2 branches missed.">        for (int i = 1; i &lt;= 5; i++){</span>
-<span class="nc" id="L291">            makeMove(i);</span>
+<span class="nc bnc" id="L294" title="All 2 branches missed.">        for (int i = 1; i &lt;= 5; i++){</span>
+<span class="nc" id="L295">            makeMove(i);</span>
         }
-<span class="nc bnc" id="L293" title="All 2 branches missed.">        if (ifAllChipsEqual()){</span>
-<span class="nc" id="L294">            gameRound++;</span>
-<span class="nc" id="L295">            table_circle(gameRound, false);</span>
+<span class="nc bnc" id="L297" title="All 2 branches missed.">        if (ifAllChipsEqual()){</span>
+<span class="nc" id="L298">            gameRound++;</span>
+<span class="nc" id="L299">            table_circle(gameRound, false);</span>
         }
         else {
-<span class="nc" id="L298">            table_circle(gameRound, true);</span>
+<span class="nc" id="L302">            table_circle(gameRound, true);</span>
         }
-<span class="nc" id="L300">    }</span>
+<span class="nc" id="L304">    }</span>
 
     private void resetButton() {
-<span class="nc" id="L303">        resetButton.setOnAction(event -&gt; {</span>
-<span class="nc bnc" id="L304" title="All 2 branches missed.">            for (int i = 0; i &lt; 6; i++) {</span>
-<span class="nc" id="L305">                botView[i].getRoot().getChildren().clear();</span>
-<span class="nc" id="L306">                bot[0].clearChips();</span>
+<span class="nc" id="L307">        resetButton.setOnAction(event -&gt; {</span>
+<span class="nc bnc" id="L308" title="All 2 branches missed.">            for (int i = 0; i &lt; 6; i++) {</span>
+<span class="nc" id="L309">                botView[i].getRoot().getChildren().clear();</span>
+<span class="nc" id="L310">                bot[0].clearChips();</span>
             }
-<span class="nc" id="L308">            gameRound = -1;</span>
-<span class="nc" id="L309">            hBox.getChildren().clear();</span>
-<span class="nc" id="L310">            ftr.clear();</span>
-<span class="nc" id="L311">            circleBankLable.setText(&quot;&quot;);</span>
-<span class="nc" id="L312">            bankLable.setText(&quot;&quot;);</span>
-<span class="nc" id="L313">            startButton.setDisable(false);</span>
-<span class="nc" id="L314">            forWinner.setText(&quot;&quot;);</span>
-<span class="nc" id="L315">            bank = 0;</span>
-<span class="nc" id="L316">        });</span>
-<span class="nc" id="L317">    }</span>
+<span class="nc" id="L312">            gameRound = -1;</span>
+<span class="nc" id="L313">            hBox.getChildren().clear();</span>
+<span class="nc" id="L314">            ftr.clear();</span>
+<span class="nc" id="L315">            circleBankLable.setText(&quot;&quot;);</span>
+<span class="nc" id="L316">            bankLable.setText(&quot;&quot;);</span>
+<span class="nc" id="L317">            startButton.setDisable(false);</span>
+<span class="nc" id="L318">            forWinner.setText(&quot;&quot;);</span>
+<span class="nc" id="L319">            bank = 0;</span>
+<span class="nc" id="L320">        });</span>
+<span class="nc" id="L321">    }</span>
 
     private void foldButton() {
-<span class="nc" id="L320">        hBox.getChildren().addAll(foldButton);</span>
-<span class="nc" id="L321">        foldButton.setOnAction(event -&gt; {</span>
-<span class="nc" id="L322">            botView[0].del();</span>
-<span class="nc" id="L323">            bot[0].setInGame(false);</span>
-<span class="nc" id="L324">            hBox.getChildren().clear();</span>
-<span class="nc" id="L325">            bots_move();</span>
-<span class="nc" id="L326">        });</span>
-<span class="nc" id="L327">    }</span>
+<span class="nc" id="L324">        hBox.getChildren().addAll(foldButton);</span>
+<span class="nc" id="L325">        foldButton.setOnAction(event -&gt; {</span>
+<span class="nc" id="L326">            botView[0].del();</span>
+<span class="nc" id="L327">            bot[0].setInGame(false);</span>
+<span class="nc" id="L328">            hBox.getChildren().clear();</span>
+<span class="nc" id="L329">            bots_move();</span>
+<span class="nc" id="L330">        });</span>
+<span class="nc" id="L331">    }</span>
 
     private void checkButton() {
-<span class="nc" id="L330">        hBox.getChildren().addAll(checkButton);</span>
+<span class="nc" id="L334">        hBox.getChildren().addAll(checkButton);</span>
 //        Action
-<span class="nc" id="L332">        checkButton.setOnAction(event -&gt; bots_move());</span>
-<span class="nc" id="L333">    }</span>
+<span class="nc" id="L336">        checkButton.setOnAction(event -&gt; bots_move());</span>
+<span class="nc" id="L337">    }</span>
 
     private void callButton() {
-<span class="nc" id="L336">        hBox.getChildren().addAll(callButton);</span>
+<span class="nc" id="L340">        hBox.getChildren().addAll(callButton);</span>
 //        Action
-<span class="nc" id="L338">        callButton.setOnAction(event -&gt; {</span>
-<span class="nc" id="L339">            makeMove(0, lastChips);</span>
-<span class="nc" id="L340">            bots_move();</span>
-<span class="nc" id="L341">        });</span>
-<span class="nc" id="L342">    }</span>
+<span class="nc" id="L342">        callButton.setOnAction(event -&gt; {</span>
+<span class="nc" id="L343">            makeMove(0, lastChips);</span>
+<span class="nc" id="L344">            bots_move();</span>
+<span class="nc" id="L345">        });</span>
+<span class="nc" id="L346">    }</span>
 
     private void bet() {
-<span class="nc" id="L345">        int tmp = betField.getValue();</span>
-<span class="nc bnc" id="L346" title="All 2 branches missed.">        if (tmp &gt; bot[0].getStackValue()) {</span>
-<span class="nc" id="L347">            tmp = bot[0].getStackValue();</span>
+<span class="nc" id="L349">        int tmp = betField.getValue();</span>
+<span class="nc bnc" id="L350" title="All 2 branches missed.">        if (tmp &gt; bot[0].getStackValue()) {</span>
+<span class="nc" id="L351">            tmp = bot[0].getStackValue();</span>
         }
-<span class="nc bnc" id="L349" title="All 4 branches missed.">        if (lastChips != 0 &amp;&amp; lastChips &gt; bot[0].getChips()) {</span>
-<span class="nc" id="L350">            bot[0].getStack(tmp - bot[0].getChips());</span>
+<span class="nc bnc" id="L353" title="All 4 branches missed.">        if (lastChips != 0 &amp;&amp; lastChips &gt; bot[0].getChips()) {</span>
+<span class="nc" id="L354">            bot[0].getStack(tmp - bot[0].getChips());</span>
         } else {
-<span class="nc" id="L352">            bot[0].getStack(tmp);</span>
+<span class="nc" id="L356">            bot[0].getStack(tmp);</span>
         }
-<span class="nc" id="L354">        bank += tmp;</span>
-<span class="nc" id="L355">        circleBank += tmp;</span>
-<span class="nc" id="L356">        lastChips = tmp;</span>
-<span class="nc" id="L357">        bot[0].setChips(tmp);</span>
-<span class="nc" id="L358">        botView[0].setChips(tmp);</span>
-<span class="nc" id="L359">        botView[0].setStack(bot[0].getStackValue());</span>
-<span class="nc" id="L360">    }</span>
+<span class="nc" id="L358">        bank += tmp;</span>
+<span class="nc" id="L359">        circleBank += tmp;</span>
+<span class="nc" id="L360">        lastChips = tmp;</span>
+<span class="nc" id="L361">        bot[0].setChips(tmp);</span>
+<span class="nc" id="L362">        botView[0].setChips(tmp);</span>
+<span class="nc" id="L363">        botView[0].setStack(bot[0].getStackValue());</span>
+<span class="nc" id="L364">    }</span>
 
     private void betButton() {
-<span class="nc" id="L363">        hBox.getChildren().addAll(betButton, betField);</span>
+<span class="nc" id="L367">        hBox.getChildren().addAll(betButton, betField);</span>
 //        Action
-<span class="nc" id="L365">        betButton.setOnAction(event -&gt; {</span>
-<span class="nc" id="L366">            bet();</span>
-<span class="nc" id="L367">            bots_move();</span>
-<span class="nc" id="L368">        });</span>
-<span class="nc" id="L369">    }</span>
+<span class="nc" id="L369">        betButton.setOnAction(event -&gt; {</span>
+<span class="nc" id="L370">            bet();</span>
+<span class="nc" id="L371">            bots_move();</span>
+<span class="nc" id="L372">        });</span>
+<span class="nc" id="L373">    }</span>
 
     private void raiseButton() {
-<span class="nc" id="L372">        hBox.getChildren().addAll(raiseButton, betField);</span>
+<span class="nc" id="L376">        hBox.getChildren().addAll(raiseButton, betField);</span>
 //        Action
-<span class="nc" id="L374">        raiseButton.setOnAction(event -&gt; {</span>
-<span class="nc" id="L375">            bet();</span>
-<span class="nc" id="L376">            bots_move();</span>
-<span class="nc" id="L377">        });</span>
-<span class="nc" id="L378">    }</span>
+<span class="nc" id="L378">        raiseButton.setOnAction(event -&gt; {</span>
+<span class="nc" id="L379">            bet();</span>
+<span class="nc" id="L380">            bots_move();</span>
+<span class="nc" id="L381">        });</span>
+<span class="nc" id="L382">    }</span>
 
     private void getWinner() {
-<span class="nc" id="L381">        double max = 0;</span>
-<span class="nc" id="L382">        String text_for_winner = &quot;] Win this game with &quot;;</span>
-<span class="nc" id="L383">        int t = 0;</span>
+<span class="nc" id="L385">        double max = 0;</span>
+<span class="nc" id="L386">        String text_for_winner = &quot;] Win this game with &quot;;</span>
+<span class="nc" id="L387">        int t = 0;</span>
         double tmp;
-<span class="nc bnc" id="L385" title="All 2 branches missed.">        for (int i = 0; i &lt; 6; i++) {</span>
-<span class="nc bnc" id="L386" title="All 2 branches missed.">            if (!bot[i].isInGame())</span>
-<span class="nc" id="L387">                continue;</span>
-<span class="nc" id="L388">            tmp = bot[i].getPower();</span>
-<span class="nc bnc" id="L389" title="All 2 branches missed.">            if (tmp &gt; max) {</span>
-<span class="nc" id="L390">                max = tmp;</span>
-<span class="nc" id="L391">                t = i;</span>
+<span class="nc bnc" id="L389" title="All 2 branches missed.">        for (int i = 0; i &lt; 6; i++) {</span>
+<span class="nc bnc" id="L390" title="All 2 branches missed.">            if (!bot[i].isInGame())</span>
+<span class="nc" id="L391">                continue;</span>
+<span class="nc" id="L392">            tmp = bot[i].getPower();</span>
+<span class="nc bnc" id="L393" title="All 2 branches missed.">            if (tmp &gt; max) {</span>
+<span class="nc" id="L394">                max = tmp;</span>
+<span class="nc" id="L395">                t = i;</span>
             }
         }
-<span class="nc" id="L394">        int isDraw = 0;</span>
-<span class="nc bnc" id="L395" title="All 2 branches missed.">        for (int i = 0; i &lt; 6; i++) {</span>
-<span class="nc bnc" id="L396" title="All 4 branches missed.">            if (bot[i].isInGame() &amp;&amp; (int)bot[i].getPower() == (int)max) {</span>
-<span class="nc" id="L397">                isDraw++;</span>
-<span class="nc" id="L398">                bot[i].setWinner(true);</span>
+<span class="nc" id="L398">        int isDraw = 0;</span>
+<span class="nc bnc" id="L399" title="All 2 branches missed.">        for (int i = 0; i &lt; 6; i++) {</span>
+<span class="nc bnc" id="L400" title="All 4 branches missed.">            if (bot[i].isInGame() &amp;&amp; (int)bot[i].getPower() == (int)max) {</span>
+<span class="nc" id="L401">                isDraw++;</span>
+<span class="nc" id="L402">                bot[i].setWinner(true);</span>
             }
         }
-<span class="nc bnc" id="L401" title="All 2 branches missed.">        if (isDraw &gt; 1) {</span>
-<span class="nc bnc" id="L402" title="All 2 branches missed.">            for (int i = 0; i &lt; 6; i++) {</span>
-<span class="nc bnc" id="L403" title="All 2 branches missed.">                if (bot[i].isWinner()) {</span>
-<span class="nc" id="L404">                    LocalTime localTime = LocalTime.now();</span>
-<span class="nc" id="L405">                    gameChat.appendText(Time.valueOf(localTime) + &quot;Bot[&quot; + i + text_for_winner + bot[i].getCombinationName() + &quot;!!!!!!!\n&quot;);</span>
-<span class="nc" id="L406">                    forWinner.setText(&quot;Draw!!!!&quot;);</span>
+<span class="nc bnc" id="L405" title="All 2 branches missed.">        if (isDraw &gt; 1) {</span>
+<span class="nc bnc" id="L406" title="All 2 branches missed.">            for (int i = 0; i &lt; 6; i++) {</span>
+<span class="nc bnc" id="L407" title="All 2 branches missed.">                if (bot[i].isWinner()) {</span>
+<span class="nc" id="L408">                    LocalTime localTime = LocalTime.now();</span>
+<span class="nc" id="L409">                    gameChat.appendText(Time.valueOf(localTime) + &quot;Bot[&quot; + i + text_for_winner + bot[i].getCombinationName() + &quot;!!!!!!!\n&quot;);</span>
+<span class="nc" id="L410">                    forWinner.setText(&quot;Draw!!!!&quot;);</span>
                 }
             }
         } else {
-<span class="nc" id="L410">            bot[t].setWinner(true);</span>
-<span class="nc bnc" id="L411" title="All 2 branches missed.">            for (int i = 0; i &lt; 6; i++) {</span>
-<span class="nc bnc" id="L412" title="All 2 branches missed.">                if (bot[i].isWinner()) {</span>
-<span class="nc" id="L413">                    LocalTime localTime = LocalTime.now();</span>
-<span class="nc" id="L414">                    gameChat.appendText(Time.valueOf(localTime) + &quot;Bot[&quot; + i + text_for_winner + bot[i].getCombinationName() + &quot;!!!!!!!\n&quot;);</span>
-<span class="nc" id="L415">                    forWinner.setText(&quot;Bot[&quot; + i + &quot;] Win this game!!!!!!!&quot;);</span>
+<span class="nc" id="L414">            bot[t].setWinner(true);</span>
+<span class="nc bnc" id="L415" title="All 2 branches missed.">            for (int i = 0; i &lt; 6; i++) {</span>
+<span class="nc bnc" id="L416" title="All 2 branches missed.">                if (bot[i].isWinner()) {</span>
+<span class="nc" id="L417">                    LocalTime localTime = LocalTime.now();</span>
+<span class="nc" id="L418">                    gameChat.appendText(Time.valueOf(localTime) + &quot;Bot[&quot; + i + text_for_winner + bot[i].getCombinationName() + &quot;!!!!!!!\n&quot;);</span>
+<span class="nc" id="L419">                    forWinner.setText(&quot;Bot[&quot; + i + &quot;] Win this game!!!!!!!&quot;);</span>
                 }
             }
         }
-<span class="nc" id="L419">    }</span>
+<span class="nc" id="L423">    }</span>
 
     private void createPlayers() {
-<span class="nc" id="L422">        Group bots = new Group();</span>
-<span class="nc bnc" id="L423" title="All 2 branches missed.">        for (int i = 0; i &lt; 6; i++) {</span>
-<span class="nc" id="L424">            bot[i] = new Player();</span>
-<span class="nc" id="L425">            botView[i] = new PlayerView();</span>
-<span class="nc" id="L426">            bots.getChildren().addAll(botView[i].getRoot());</span>
-<span class="nc" id="L427">            botView[i].setName(&quot;John&quot;);</span>
-<span class="nc" id="L428">            bot[i].addStack(1500);</span>
-<span class="nc" id="L429">            botView[i].setStack(bot[i].getStackValue());</span>
-<span class="nc bnc" id="L430" title="All 2 branches missed.">            if (i != 0) {</span>
-<span class="nc" id="L431">                bot[i].setCards(deck.getCard());</span>
-<span class="nc" id="L432">                bot[i].setCards(deck.getCard());</span>
-<span class="nc" id="L433">                botView[i].setCards(bot[i].getCard(0), false);</span>
-<span class="nc" id="L434">                botView[i].setCards(bot[i].getCard(1), false);</span>
+<span class="nc" id="L426">        Group bots = new Group();</span>
+<span class="nc bnc" id="L427" title="All 2 branches missed.">        for (int i = 0; i &lt; 6; i++) {</span>
+<span class="nc" id="L428">            bot[i] = new Player();</span>
+<span class="nc" id="L429">            botView[i] = new PlayerView();</span>
+<span class="nc" id="L430">            bots.getChildren().addAll(botView[i].getRoot());</span>
+<span class="nc" id="L431">            botView[i].setName(&quot;John&quot;);</span>
+<span class="nc" id="L432">            bot[i].addStack(1500);</span>
+<span class="nc" id="L433">            botView[i].setStack(bot[i].getStackValue());</span>
+<span class="nc bnc" id="L434" title="All 2 branches missed.">            if (i != 0) {</span>
+<span class="nc" id="L435">                bot[i].setCards(deck.getCard());</span>
+<span class="nc" id="L436">                bot[i].setCards(deck.getCard());</span>
+<span class="nc" id="L437">                botView[i].setCards(bot[i].getCard(0), false);</span>
+<span class="nc" id="L438">                botView[i].setCards(bot[i].getCard(1), false);</span>
             }
         }
-<span class="nc" id="L437">        bot[0].setCards(deck.getCard());</span>
-<span class="nc" id="L438">        bot[0].setCards(deck.getCard());</span>
+<span class="nc" id="L441">        bot[0].setCards(deck.getCard());</span>
+<span class="nc" id="L442">        bot[0].setCards(deck.getCard());</span>
 
-<span class="nc" id="L440">        SpinnerValueFactory&lt;Integer&gt; spinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(10, bot[0].getStackValue(), 0, 20);</span>
-<span class="nc" id="L441">        betField.setValueFactory(spinnerValueFactory);</span>
+<span class="nc" id="L444">        SpinnerValueFactory&lt;Integer&gt; spinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(10, bot[0].getStackValue(), 0, 20);</span>
+<span class="nc" id="L445">        betField.setValueFactory(spinnerValueFactory);</span>
 
-<span class="nc" id="L443">        botView[0].setCards(bot[0].getCard(0), true);</span>
-<span class="nc" id="L444">        botView[0].setCards(bot[0].getCard(1), true);</span>
+<span class="nc" id="L447">        botView[0].setCards(bot[0].getCard(0), true);</span>
+<span class="nc" id="L448">        botView[0].setCards(bot[0].getCard(1), true);</span>
 
-<span class="nc" id="L446">        botView[0].setPosition(440, 430);</span>
-<span class="nc" id="L447">        botView[1].setPosition(150, 340);</span>
-<span class="nc" id="L448">        botView[2].setPosition(150, 70);</span>
-<span class="nc" id="L449">        botView[3].setPosition(440, 10);</span>
-<span class="nc" id="L450">        botView[4].setPosition(730, 70);</span>
-<span class="nc" id="L451">        botView[5].setPosition(730, 340);</span>
+<span class="nc" id="L450">        botView[0].setPosition(440, 430);</span>
+<span class="nc" id="L451">        botView[1].setPosition(150, 340);</span>
+<span class="nc" id="L452">        botView[2].setPosition(150, 70);</span>
+<span class="nc" id="L453">        botView[3].setPosition(440, 10);</span>
+<span class="nc" id="L454">        botView[4].setPosition(730, 70);</span>
+<span class="nc" id="L455">        botView[5].setPosition(730, 340);</span>
 
-<span class="nc" id="L453">        group.getChildren().addAll(bots);</span>
-<span class="nc" id="L454">    }</span>
+<span class="nc" id="L457">        group.getChildren().addAll(bots);</span>
+<span class="nc" id="L458">    }</span>
 
     private void getFlop() {
-<span class="nc" id="L457">        lastChips = 0;</span>
-<span class="nc" id="L458">        circleBank = 0;</span>
-<span class="nc" id="L459">        clearChips();</span>
-<span class="nc" id="L460">        deck.getCard();</span>
-<span class="nc bnc" id="L461" title="All 2 branches missed.">        for (int i = 0; i &lt; 3; i++) {</span>
-<span class="nc" id="L462">            Card card = deck.getCard();</span>
-<span class="nc bnc" id="L463" title="All 2 branches missed.">            for (int j = 0; j &lt; 6; j++) {</span>
-<span class="nc" id="L464">                bot[j].setCards(card);</span>
+<span class="nc" id="L461">        lastChips = 0;</span>
+<span class="nc" id="L462">        circleBank = 0;</span>
+<span class="nc" id="L463">        clearChips();</span>
+<span class="nc" id="L464">        deck.getCard();</span>
+<span class="nc bnc" id="L465" title="All 2 branches missed.">        for (int i = 0; i &lt; 3; i++) {</span>
+<span class="nc" id="L466">            Card card = deck.getCard();</span>
+<span class="nc bnc" id="L467" title="All 2 branches missed.">            for (int j = 0; j &lt; 6; j++) {</span>
+<span class="nc" id="L468">                bot[j].setCards(card);</span>
             }
-<span class="nc" id="L466">            ftr.setCard(card);</span>
+<span class="nc" id="L470">            ftr.setCard(card);</span>
         }
-<span class="nc" id="L468">    }</span>
+<span class="nc" id="L472">    }</span>
 
     private void getTurn() {
-<span class="nc" id="L471">        lastChips = 0;</span>
-<span class="nc" id="L472">        circleBank = 0;</span>
-<span class="nc" id="L473">        clearChips();</span>
-<span class="nc" id="L474">        deck.getCard();</span>
-<span class="nc" id="L475">        Card card = deck.getCard();</span>
-<span class="nc bnc" id="L476" title="All 2 branches missed.">        for (int i = 0; i &lt; 6; i++) {</span>
-<span class="nc" id="L477">            bot[i].setCards(card);</span>
+<span class="nc" id="L475">        lastChips = 0;</span>
+<span class="nc" id="L476">        circleBank = 0;</span>
+<span class="nc" id="L477">        clearChips();</span>
+<span class="nc" id="L478">        deck.getCard();</span>
+<span class="nc" id="L479">        Card card = deck.getCard();</span>
+<span class="nc bnc" id="L480" title="All 2 branches missed.">        for (int i = 0; i &lt; 6; i++) {</span>
+<span class="nc" id="L481">            bot[i].setCards(card);</span>
         }
 
-<span class="nc" id="L480">        ftr.setCard(card);</span>
-<span class="nc" id="L481">    }</span>
+<span class="nc" id="L484">        ftr.setCard(card);</span>
+<span class="nc" id="L485">    }</span>
 
     @Override
     public void start(Stage primaryStage){
-<span class="nc" id="L485">        primaryStage.setScene(new Scene(createContent()));</span>
-<span class="nc" id="L486">        primaryStage.setWidth(WIDTH);</span>
-<span class="nc" id="L487">        primaryStage.setHeight(HEIGHT);</span>
-<span class="nc" id="L488">        primaryStage.setResizable(false);</span>
-<span class="nc" id="L489">        primaryStage.setTitle(&quot;Poker&quot;);</span>
-<span class="nc" id="L490">        primaryStage.show();</span>
-<span class="nc" id="L491">        primaryStage.setOnCloseRequest(t -&gt; {</span>
-<span class="nc" id="L492">            primaryStage.close();</span>
-<span class="nc" id="L493">            Main table = new Main();</span>
-<span class="nc" id="L494">            Stage stage = new Stage();</span>
+<span class="nc" id="L489">        logger.setLevel(Level.FINE);</span>
+
+<span class="nc" id="L491">        primaryStage.setScene(new Scene(createContent()));</span>
+<span class="nc" id="L492">        primaryStage.setWidth(WIDTH);</span>
+<span class="nc" id="L493">        primaryStage.setHeight(HEIGHT);</span>
+<span class="nc" id="L494">        primaryStage.setResizable(false);</span>
+<span class="nc" id="L495">        primaryStage.setTitle(&quot;Poker&quot;);</span>
+<span class="nc" id="L496">        primaryStage.show();</span>
+<span class="nc" id="L497">        primaryStage.setOnCloseRequest(t -&gt; {</span>
+<span class="nc" id="L498">            primaryStage.close();</span>
+<span class="nc" id="L499">            Main table = new Main();</span>
+<span class="nc" id="L500">            Stage stage = new Stage();</span>
             try {
-<span class="nc" id="L496">                table.start(stage);</span>
-<span class="nc" id="L497">                primaryStage.hide();</span>
-<span class="nc" id="L498">            } catch (Exception e) {</span>
-<span class="nc" id="L499">                e.printStackTrace();</span>
-<span class="nc" id="L500">            }</span>
-<span class="nc" id="L501">        });</span>
-<span class="nc" id="L502">    }</span>
+<span class="nc" id="L502">                table.start(stage);</span>
+<span class="nc" id="L503">                primaryStage.hide();</span>
+<span class="nc" id="L504">            } catch (Exception e) {</span>
+<span class="nc" id="L505">                logger.log(Level.CONFIG, &quot;Error in Table.java&quot;);</span>
+<span class="nc" id="L506">            }</span>
+<span class="nc" id="L507">        });</span>
+<span class="nc" id="L508">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

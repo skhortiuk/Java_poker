@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Main.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Poker</a> &gt; <a href="index.source.html" class="el_package">com</a> &gt; <span class="el_source">Main.java</span></div><h1>Main.java</h1><pre class="source lang-java linenums">package com;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Main.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Poker</a> &gt; <a href="index.source.html" class="el_package">com</a> &gt; <span class="el_source">Main.java</span></div><h1>Main.java</h1><pre class="source lang-java linenums">package com;
 
 import javafx.application.Application;
 import javafx.scene.Cursor;
@@ -10,126 +10,133 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-<span class="nc" id="L13">public class Main extends Application{</span>
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+<span class="nc" id="L16">public class Main extends Application{</span>
+
+
+<span class="nc" id="L19">    private Logger logger = Logger.getLogger(Table.class.getName());</span>
 
     public static void main(String[] args) {
-<span class="nc" id="L16">        launch(args);</span>
-<span class="nc" id="L17">    }</span>
+<span class="nc" id="L22">        launch(args);</span>
+<span class="nc" id="L23">    }</span>
 
     @Override
     public void start(Stage primaryStage) {
+<span class="nc" id="L27">        logger.setLevel(Level.FINE);</span>
 
-<span class="nc" id="L22">        Group root = new Group();</span>
+<span class="nc" id="L29">        Group root = new Group();</span>
 
 //Load image background
-<span class="nc" id="L25">        Image menuBackground = new Image(getClass().getClassLoader().getResourceAsStream(&quot;menu/background.png&quot;));</span>
+<span class="nc" id="L32">        Image menuBackground = new Image(getClass().getClassLoader().getResourceAsStream(&quot;menu/background.png&quot;));</span>
 
-<span class="nc" id="L27">        ImageView menuBackgroundView = new ImageView(menuBackground);</span>
-<span class="nc" id="L28">        menuBackgroundView.setFitHeight(menuBackground.getHeight());</span>
-<span class="nc" id="L29">        menuBackgroundView.setFitWidth(menuBackground.getWidth());</span>
+<span class="nc" id="L34">        ImageView menuBackgroundView = new ImageView(menuBackground);</span>
+<span class="nc" id="L35">        menuBackgroundView.setFitHeight(menuBackground.getHeight());</span>
+<span class="nc" id="L36">        menuBackgroundView.setFitWidth(menuBackground.getWidth());</span>
 
 //Add menuBackgroundView
-<span class="nc" id="L32">        root.getChildren().add(menuBackgroundView);</span>
+<span class="nc" id="L39">        root.getChildren().add(menuBackgroundView);</span>
 
 //Create scene
-<span class="nc" id="L35">        Scene scene = new Scene(root, menuBackground.getWidth(), menuBackground.getHeight());</span>
+<span class="nc" id="L42">        Scene scene = new Scene(root, menuBackground.getWidth(), menuBackground.getHeight());</span>
 
 //Load ask image
-<span class="nc" id="L38">        Image menuAsk = new Image(getClass().getClassLoader().getResourceAsStream(&quot;./menu/ask.png&quot;));</span>
-<span class="nc" id="L39">        ImageView menuAskView = new ImageView(menuAsk);</span>
-<span class="nc" id="L40">        menuAskView.setFitHeight(menuAsk.getHeight());</span>
-<span class="nc" id="L41">        menuAskView.setFitWidth(menuAsk.getWidth());</span>
-<span class="nc" id="L42">        menuAskView.setY((int) (menuBackground.getHeight() / menuAsk.getHeight()));</span>
-<span class="nc" id="L43">        menuAskView.setX((int) (menuBackground.getWidth() / menuAsk.getWidth()));</span>
-<span class="nc" id="L44">        menuAskView.setCursor(Cursor.HAND);</span>
-<span class="nc" id="L45">        menuAskView.setOnMouseClicked((MouseEvent event) -&gt; {</span>
-<span class="nc" id="L46">            Stage dialog = new Stage();</span>
-<span class="nc" id="L47">            Image askInfo = new Image(getClass().getClassLoader().getResourceAsStream(&quot;poker_hands.jpg&quot;));</span>
-<span class="nc" id="L48">            ImageView askInfoView = new ImageView(askInfo);</span>
-<span class="nc" id="L49">            dialog.setWidth(askInfo.getWidth());</span>
-<span class="nc" id="L50">            dialog.setHeight(askInfo.getHeight());</span>
-<span class="nc" id="L51">            dialog.setTitle(&quot;Info&quot;);</span>
-<span class="nc" id="L52">            dialog.setResizable(false);</span>
-<span class="nc" id="L53">            Group ss = new Group();</span>
-<span class="nc" id="L54">            ss.getChildren().addAll(askInfoView);</span>
-<span class="nc" id="L55">            ss.setOnMouseClicked(event1 -&gt; dialog.close());</span>
-<span class="nc" id="L56">            Scene lol = new Scene(ss);</span>
-<span class="nc" id="L57">            dialog.setScene(lol);</span>
-<span class="nc" id="L58">            dialog.show();</span>
-<span class="nc" id="L59">        });</span>
-<span class="nc" id="L60">        root.getChildren().add(menuAskView);</span>
+<span class="nc" id="L45">        Image menuAsk = new Image(getClass().getClassLoader().getResourceAsStream(&quot;./menu/ask.png&quot;));</span>
+<span class="nc" id="L46">        ImageView menuAskView = new ImageView(menuAsk);</span>
+<span class="nc" id="L47">        menuAskView.setFitHeight(menuAsk.getHeight());</span>
+<span class="nc" id="L48">        menuAskView.setFitWidth(menuAsk.getWidth());</span>
+<span class="nc" id="L49">        menuAskView.setY((int) (menuBackground.getHeight() / menuAsk.getHeight()));</span>
+<span class="nc" id="L50">        menuAskView.setX((int) (menuBackground.getWidth() / menuAsk.getWidth()));</span>
+<span class="nc" id="L51">        menuAskView.setCursor(Cursor.HAND);</span>
+<span class="nc" id="L52">        menuAskView.setOnMouseClicked((MouseEvent event) -&gt; {</span>
+<span class="nc" id="L53">            Stage dialog = new Stage();</span>
+<span class="nc" id="L54">            Image askInfo = new Image(getClass().getClassLoader().getResourceAsStream(&quot;poker_hands.jpg&quot;));</span>
+<span class="nc" id="L55">            ImageView askInfoView = new ImageView(askInfo);</span>
+<span class="nc" id="L56">            dialog.setWidth(askInfo.getWidth());</span>
+<span class="nc" id="L57">            dialog.setHeight(askInfo.getHeight());</span>
+<span class="nc" id="L58">            dialog.setTitle(&quot;Info&quot;);</span>
+<span class="nc" id="L59">            dialog.setResizable(false);</span>
+<span class="nc" id="L60">            Group ss = new Group();</span>
+<span class="nc" id="L61">            ss.getChildren().addAll(askInfoView);</span>
+<span class="nc" id="L62">            ss.setOnMouseClicked(event1 -&gt; dialog.close());</span>
+<span class="nc" id="L63">            Scene lol = new Scene(ss);</span>
+<span class="nc" id="L64">            dialog.setScene(lol);</span>
+<span class="nc" id="L65">            dialog.show();</span>
+<span class="nc" id="L66">        });</span>
+<span class="nc" id="L67">        root.getChildren().add(menuAskView);</span>
 
 //Load start button
-<span class="nc" id="L63">        Image menuStartButton = new Image(getClass().getClassLoader().getResourceAsStream(&quot;./menu/button_start.png&quot;));</span>
-<span class="nc" id="L64">        ImageView menuStartButtonView = new ImageView(menuStartButton);</span>
-<span class="nc" id="L65">        menuStartButtonView.setFitHeight(menuStartButton.getHeight());</span>
-<span class="nc" id="L66">        menuStartButtonView.setFitWidth(menuStartButton.getWidth());</span>
-<span class="nc" id="L67">        menuStartButtonView.setX((menuBackground.getWidth() - menuStartButton.getWidth()) / 2);</span>
-<span class="nc" id="L68">        menuStartButtonView.setY((menuBackground.getHeight() - menuStartButton.getHeight()) / 3.6);</span>
-<span class="nc" id="L69">        menuStartButtonView.setCursor(Cursor.HAND);</span>
-<span class="nc" id="L70">        menuStartButtonView.setOnMouseClicked(event -&gt; {</span>
-<span class="nc" id="L71">            Table table = new Table();</span>
-<span class="nc" id="L72">            Stage stage = new Stage();</span>
+<span class="nc" id="L70">        Image menuStartButton = new Image(getClass().getClassLoader().getResourceAsStream(&quot;./menu/button_start.png&quot;));</span>
+<span class="nc" id="L71">        ImageView menuStartButtonView = new ImageView(menuStartButton);</span>
+<span class="nc" id="L72">        menuStartButtonView.setFitHeight(menuStartButton.getHeight());</span>
+<span class="nc" id="L73">        menuStartButtonView.setFitWidth(menuStartButton.getWidth());</span>
+<span class="nc" id="L74">        menuStartButtonView.setX((menuBackground.getWidth() - menuStartButton.getWidth()) / 2);</span>
+<span class="nc" id="L75">        menuStartButtonView.setY((menuBackground.getHeight() - menuStartButton.getHeight()) / 3.6);</span>
+<span class="nc" id="L76">        menuStartButtonView.setCursor(Cursor.HAND);</span>
+<span class="nc" id="L77">        menuStartButtonView.setOnMouseClicked(event -&gt; {</span>
+<span class="nc" id="L78">            Table table = new Table();</span>
+<span class="nc" id="L79">            Stage stage = new Stage();</span>
             try {
-<span class="nc" id="L74">                table.start(stage);</span>
-<span class="nc" id="L75">                primaryStage.hide();</span>
-<span class="nc" id="L76">            } catch (Exception e) {</span>
-<span class="nc" id="L77">                e.printStackTrace();</span>
-<span class="nc" id="L78">            }</span>
-<span class="nc bnc" id="L79" title="All 2 branches missed.">            if (!stage.isShowing()) {</span>
-<span class="nc" id="L80">                primaryStage.show();</span>
+<span class="nc" id="L81">                table.start(stage);</span>
+<span class="nc" id="L82">                primaryStage.hide();</span>
+<span class="nc" id="L83">            } catch (Exception e) {</span>
+<span class="nc" id="L84">                logger.log(Level.CONFIG, &quot;Error in Main.java&quot;);</span>
+<span class="nc" id="L85">            }</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">            if (!stage.isShowing()) {</span>
+<span class="nc" id="L87">                primaryStage.show();</span>
             }
-<span class="nc" id="L82">        });</span>
-<span class="nc" id="L83">        root.getChildren().add(menuStartButtonView);</span>
+<span class="nc" id="L89">        });</span>
+<span class="nc" id="L90">        root.getChildren().add(menuStartButtonView);</span>
 
 //Load about button
-<span class="nc" id="L86">        Image menuAboutButton = new Image(getClass().getClassLoader().getResourceAsStream(&quot;./menu/button_about.png&quot;));</span>
-<span class="nc" id="L87">        ImageView menuAboutButtonView = new ImageView(menuAboutButton);</span>
-<span class="nc" id="L88">        menuAboutButtonView.setFitHeight(menuAboutButton.getHeight());</span>
-<span class="nc" id="L89">        menuAboutButtonView.setFitWidth(menuAboutButton.getWidth());</span>
-<span class="nc" id="L90">        menuAboutButtonView.setX((menuBackground.getWidth() - menuAboutButton.getWidth()) / 2);</span>
-<span class="nc" id="L91">        menuAboutButtonView.setY((menuBackground.getHeight() - menuAboutButton.getHeight()) / 2);</span>
-<span class="nc" id="L92">        menuAboutButtonView.setCursor(Cursor.HAND);</span>
-<span class="nc" id="L93">        menuAboutButtonView.setOnMouseClicked(event -&gt; {</span>
-<span class="nc" id="L94">            Stage dialog = new Stage();</span>
-<span class="nc" id="L95">            dialog.setWidth(400);</span>
-<span class="nc" id="L96">            dialog.setTitle(&quot;About&quot;);</span>
-<span class="nc" id="L97">            dialog.setHeight(400);</span>
-<span class="nc" id="L98">            dialog.setResizable(false);</span>
-<span class="nc" id="L99">            Group ss = new Group();</span>
-<span class="nc" id="L100">            Scene lol = new Scene(ss);</span>
-<span class="nc" id="L101">            Button button = new Button(&quot;Close&quot;);</span>
-<span class="nc" id="L102">            button.setDefaultButton(true);</span>
-<span class="nc" id="L103">            button.setMinWidth(50);</span>
-<span class="nc" id="L104">            button.setOnMouseClicked(event1 -&gt; dialog.close());</span>
-<span class="nc" id="L105">            ss.getChildren().add(button);</span>
+<span class="nc" id="L93">        Image menuAboutButton = new Image(getClass().getClassLoader().getResourceAsStream(&quot;./menu/button_about.png&quot;));</span>
+<span class="nc" id="L94">        ImageView menuAboutButtonView = new ImageView(menuAboutButton);</span>
+<span class="nc" id="L95">        menuAboutButtonView.setFitHeight(menuAboutButton.getHeight());</span>
+<span class="nc" id="L96">        menuAboutButtonView.setFitWidth(menuAboutButton.getWidth());</span>
+<span class="nc" id="L97">        menuAboutButtonView.setX((menuBackground.getWidth() - menuAboutButton.getWidth()) / 2);</span>
+<span class="nc" id="L98">        menuAboutButtonView.setY((menuBackground.getHeight() - menuAboutButton.getHeight()) / 2);</span>
+<span class="nc" id="L99">        menuAboutButtonView.setCursor(Cursor.HAND);</span>
+<span class="nc" id="L100">        menuAboutButtonView.setOnMouseClicked(event -&gt; {</span>
+<span class="nc" id="L101">            Stage dialog = new Stage();</span>
+<span class="nc" id="L102">            dialog.setWidth(400);</span>
+<span class="nc" id="L103">            dialog.setTitle(&quot;About&quot;);</span>
+<span class="nc" id="L104">            dialog.setHeight(400);</span>
+<span class="nc" id="L105">            dialog.setResizable(false);</span>
+<span class="nc" id="L106">            Group ss = new Group();</span>
+<span class="nc" id="L107">            Scene lol = new Scene(ss);</span>
+<span class="nc" id="L108">            Button button = new Button(&quot;Close&quot;);</span>
+<span class="nc" id="L109">            button.setDefaultButton(true);</span>
+<span class="nc" id="L110">            button.setMinWidth(50);</span>
+<span class="nc" id="L111">            button.setOnMouseClicked(event1 -&gt; dialog.close());</span>
+<span class="nc" id="L112">            ss.getChildren().add(button);</span>
 
-<span class="nc" id="L107">            dialog.setScene(lol);</span>
-<span class="nc" id="L108">            dialog.show();</span>
-<span class="nc" id="L109">        });</span>
-<span class="nc" id="L110">        root.getChildren().add(menuAboutButtonView);</span>
+<span class="nc" id="L114">            dialog.setScene(lol);</span>
+<span class="nc" id="L115">            dialog.show();</span>
+<span class="nc" id="L116">        });</span>
+<span class="nc" id="L117">        root.getChildren().add(menuAboutButtonView);</span>
 
 //Load exit button
-<span class="nc" id="L113">        Image menuAExitButton = new Image(getClass().getClassLoader().getResourceAsStream(&quot;./menu/button_exit.png&quot;));</span>
-<span class="nc" id="L114">        ImageView menuExitButtonView = new ImageView(menuAExitButton);</span>
-<span class="nc" id="L115">        menuExitButtonView.setFitHeight(menuAExitButton.getHeight());</span>
-<span class="nc" id="L116">        menuExitButtonView.setFitWidth(menuAExitButton.getWidth());</span>
-<span class="nc" id="L117">        menuExitButtonView.setX((menuBackground.getWidth() - menuAExitButton.getWidth()) / 2);</span>
-<span class="nc" id="L118">        menuExitButtonView.setY((menuBackground.getHeight() - menuAExitButton.getHeight()) / 1.4);</span>
-<span class="nc" id="L119">        menuExitButtonView.setCursor(Cursor.HAND);</span>
-<span class="nc" id="L120">        menuExitButtonView.setOnMouseClicked(event -&gt; {</span>
-<span class="nc" id="L121">            primaryStage.close();</span>
-<span class="nc" id="L122">        });</span>
-<span class="nc" id="L123">        root.getChildren().add(menuExitButtonView);</span>
+<span class="nc" id="L120">        Image menuAExitButton = new Image(getClass().getClassLoader().getResourceAsStream(&quot;./menu/button_exit.png&quot;));</span>
+<span class="nc" id="L121">        ImageView menuExitButtonView = new ImageView(menuAExitButton);</span>
+<span class="nc" id="L122">        menuExitButtonView.setFitHeight(menuAExitButton.getHeight());</span>
+<span class="nc" id="L123">        menuExitButtonView.setFitWidth(menuAExitButton.getWidth());</span>
+<span class="nc" id="L124">        menuExitButtonView.setX((menuBackground.getWidth() - menuAExitButton.getWidth()) / 2);</span>
+<span class="nc" id="L125">        menuExitButtonView.setY((menuBackground.getHeight() - menuAExitButton.getHeight()) / 1.4);</span>
+<span class="nc" id="L126">        menuExitButtonView.setCursor(Cursor.HAND);</span>
+<span class="nc" id="L127">        menuExitButtonView.setOnMouseClicked(event -&gt; {</span>
+<span class="nc" id="L128">            primaryStage.close();</span>
+<span class="nc" id="L129">        });</span>
+<span class="nc" id="L130">        root.getChildren().add(menuExitButtonView);</span>
 
 //Set title
-<span class="nc" id="L126">        primaryStage.setTitle(&quot;Texas Poker&quot;);</span>
-<span class="nc" id="L127">        primaryStage.setScene(scene);</span>
+<span class="nc" id="L133">        primaryStage.setTitle(&quot;Texas Poker&quot;);</span>
+<span class="nc" id="L134">        primaryStage.setScene(scene);</span>
 
 //Set min &amp; max width and height
-<span class="nc" id="L130">        primaryStage.setResizable(false);</span>
-<span class="nc" id="L131">        primaryStage.show();</span>
-<span class="nc" id="L132">    }</span>
+<span class="nc" id="L137">        primaryStage.setResizable(false);</span>
+<span class="nc" id="L138">        primaryStage.show();</span>
+<span class="nc" id="L139">    }</span>
 }
 //test
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

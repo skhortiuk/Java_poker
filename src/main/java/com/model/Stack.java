@@ -15,6 +15,7 @@ public class Stack {
         return value - number >= 0;
     }
 
+
     public void getStack(int number) {
         value -= number;
     }

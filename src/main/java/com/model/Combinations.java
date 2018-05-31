@@ -9,6 +9,7 @@ public class Combinations {
     private List<Card> cards = new ArrayList<>();
     private String combinationName;
 
+
     Combinations() {
         this.power = 0.00000;
     }
@@ -16,13 +17,25 @@ public class Combinations {
     String getCombinationName() {
         return combinationName;
     }
+    void setCombinationName(String string) {
+        combinationName = string;
+    }
 
     void addCards(Card card) {
         this.cards.add(card);
     }
 
+
+    public Card getCard(int number) {
+        return this.cards.get(number);
+    }
+
     double getPower() {
         return this.power;
+    }
+
+    void setPower(double numbpower) {
+        power = numbpower;
     }
 
     void calculate() {
@@ -30,7 +43,7 @@ public class Combinations {
         this.power = calculatePower();
     }
 
-    private double calculatePower() {
+    public double calculatePower() {
         double combination;
         combination = straightFlush();
         if ((int) combination != 0)
