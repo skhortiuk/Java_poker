@@ -163,9 +163,6 @@ public class Table extends Application {
 
     private void showCards() {
         for (int i = 1; i < 6; i++) {
-            if (!bot[i].isWinner()) {
-                continue;
-            }
             ArrayList<Card> cards;
             cards = bot[i].getHandCard();
             botView[i].clearCards();
