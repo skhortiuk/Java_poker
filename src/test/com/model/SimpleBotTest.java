@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class SimpleBotTest {
     private Combinations combinations;
@@ -139,5 +140,46 @@ public class SimpleBotTest {
     }
 
 
-
+    @Test
+    public void checkStackIsMoreThan750() {
+        assertTrue(simpleBot.getStackBotMoreOrEqual(800, 750));
+    }
+    @Test
+    public void checkPrevRateIsEqual0() {
+        assertTrue(simpleBot.getPrevRateBotEqual(0, 0));
+    }
+    @Test
+    public void checkPrevRateIsMore0() {
+        assertTrue(simpleBot.getPrevRateBotMore(5, 0));
+    }
+    @Test
+    public void checkPrevRateIsMoreOrEqual500() {
+        assertTrue(simpleBot.getPrevRateBotMoreOrEqual(600, 500));
+    } @Test
+    public void checkPrevRateIsLessOrEqual100() {
+        assertTrue(simpleBot.getPrevRateBotLessOrEqual(50, 100));
+    }
+    @Test
+    public void checkBankIsMore600() {
+        assertTrue(simpleBot.getBankBotLessOrEqual(700, 600));
+    }@Test
+    public void checkBankIsMore800() {
+        assertTrue(simpleBot.getBankBotLessOrEqual(1000, 800));
+    }
+    @Test
+    public void checkPowerIsMore40() {
+        assertTrue(simpleBot.getPowerBotMoreOrEqual(40, 40));
+    }
+    @Test
+    public void checkPowerIsMore20() {
+        assertTrue(simpleBot.getPowerBotMoreOrEqual(30, 20));
+    }
+    @Test
+    public void checkPowerIsMore70() {
+        assertTrue(simpleBot.getPowerBotMoreOrEqual(75, 70));
+    }
+    @Test
+    public void checkPowerIsMore50() {
+        assertTrue(simpleBot.getPowerBotMoreOrEqual(55, 50));
+    }
 }
