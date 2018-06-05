@@ -4,23 +4,18 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
 
 public class CombinationsTest {
     private Combinations combinations;
     private List<Card> cards;
-    private List<Card> cardsSort;
 
     @Before
     public void beforeCombinationsTest() throws Exception {
         combinations = new Combinations();
         cards = new ArrayList<>();
-        cardsSort = new ArrayList<>();
     }
 
     @Test
