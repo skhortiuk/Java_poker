@@ -79,7 +79,7 @@ public class CombinationsTest {
         combinations.addCards(new Card(5, 4));
         combinations.addCards(new Card(12, 4));
         combinations.calculate();
-        assertEquals(46.05119, combinations.calculatePower(), 1e-8);
+        assertEquals(46.05119, combinations.calculatePower(), 1e-4);
     }
 
     @Test
