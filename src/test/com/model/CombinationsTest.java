@@ -53,7 +53,7 @@ public class CombinationsTest {
         combinations.calculate();
 
         assertEquals(0,combinations.getPower(), 0 );
-    }/*
+    }
 
     @Test
     public void highCard() {
@@ -301,7 +301,7 @@ public class CombinationsTest {
         combinations.calculate();
         assertEquals(0.0, combinations.calculatePower(), 0.0);
     }
-*/
+
     @Test
     public void cardsSize() {
         Card card = new Card(6,1);
