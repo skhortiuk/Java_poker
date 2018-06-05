@@ -71,7 +71,7 @@ public class DeckTest {
     }
 
     @Test
-    public void is_random_refill() throws Exception{
+    public void is_random_refill() {
         Deck first_deck = new Deck();
         Deck second_deck = new Deck();
         first_deck.refill();
