@@ -52,18 +52,19 @@ public class SimpleBot implements Bot {
                         return prevRate;
                     }
                 }
-                if (prevRate >= 20) {
+                if (power >= 20) {
                     return prevRate;
                 } else {
                     return -1;
                 }
             }
         }
-        if (prevRate == 0) {
-            return 0;
-        }
         if (power >= 70) {
             return stack;
+        }
+
+        if (prevRate == 0) {
+            return 0;
         }
         return -1;
     }
