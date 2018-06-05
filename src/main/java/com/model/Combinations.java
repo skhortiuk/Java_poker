@@ -26,7 +26,7 @@ public class Combinations {
     }
 
 
-    public Card getCard(int number) {
+    Card getCard(int number) {
         return this.cards.get(number);
     }
 
@@ -43,7 +43,7 @@ public class Combinations {
         this.power = calculatePower();
     }
 
-    public double calculatePower() {
+    double calculatePower() {
         double combination;
         combination = straightFlush();
         if ((int) combination != 0)
