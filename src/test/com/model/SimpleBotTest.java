@@ -139,7 +139,7 @@ public class SimpleBotTest {
         assertEquals(-1, move,0);
     }
 
-
+/*
     @Test
     public void checkStackIsMoreThan750() {
         assertTrue(simpleBot.getStackBotMoreOrEqual(800, 750));
@@ -181,5 +181,5 @@ public class SimpleBotTest {
     @Test
     public void checkPowerIsMore50() {
         assertTrue(simpleBot.getPowerBotMoreOrEqual(55, 50));
-    }
+    }*/
 }

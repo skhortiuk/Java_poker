@@ -81,7 +81,7 @@ public class SimpleBot implements Bot {
         return -1;
     }
 
-    
+    /*
     public boolean getStackBotMoreOrEqual(int stackT, int waitResult){
             if (stackT>waitResult) {
                 return condition;
@@ -123,6 +123,6 @@ public class SimpleBot implements Bot {
             return condition;
         } else
             return false;
-    }
+    }*/
 
 }
