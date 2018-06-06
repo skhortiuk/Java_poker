@@ -138,8 +138,6 @@ public class CombinationsTest {
         combinations.addCards(new Card(2, 1));
         combinations.addCards(new Card(3, 2));
         combinations.addCards(new Card(4, 1));
-        combinations.addCards(new Card(7, 3));
-        combinations.addCards(new Card(11, 2));
         combinations.addCards(new Card(5, 4));
         combinations.addCards(new Card(14, 4));
         combinations.calculate();
