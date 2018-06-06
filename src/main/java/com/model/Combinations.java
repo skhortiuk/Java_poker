@@ -221,22 +221,23 @@ public class Combinations {
                 }
             }
         }
-        if ((cards.get(size - 1).getValue() == 14) && (cards.get(0).getValue() == 2)) {
-            for (int i = 1; i < size; i++) {
-                if (cards.get(i).getValue() == 3) {
-                    for (int j = i; j < size; j++) {
-                        if (cards.get(j).getValue() == 4) {
-                            for (int k = j; k < size; k++) {
-                                if (cards.get(k).getValue() == 5) {
-                                    combinationName = "Straight to FIVE";
-                                    return 95;
+        if ((cards.get(size - 1).getValue() == 14))
+            if ((cards.get(0).getValue() == 2)) {
+                for (int i = 1; i < size; i++) {
+                    if (cards.get(i).getValue() == 3) {
+                        for (int j = i; j < size; j++) {
+                            if (cards.get(j).getValue() == 4) {
+                                for (int k = j; k < size; k++) {
+                                    if (cards.get(k).getValue() == 5) {
+                                        combinationName = "Straight to FIVE";
+                                        return 95;
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
-        }
         return 0;
     }
 
