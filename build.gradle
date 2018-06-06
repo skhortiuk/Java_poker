@@ -64,5 +64,5 @@ pitest {
     timestampedReports = false
 }
 
-test.dependsOn 'pitest'
+test.finalizedBy 'pitest'
 test.finalizedBy jacocoTestReport
