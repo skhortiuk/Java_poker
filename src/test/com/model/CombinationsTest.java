@@ -136,6 +136,12 @@ public class CombinationsTest {
     @Test
     public void straightToFive() {
         combinations.addCards(new Card(2, 1));
+        combinations.addCards(new Card(14, 1));
+        combinations.addCards(new Card(9, 1));
+        combinations.addCards(new Card(2, 1));
+        combinations.addCards(new Card(8, 1));
+        combinations.addCards(new Card(7, 1));
+        combinations.addCards(new Card(10, 1));
         combinations.addCards(new Card(3, 2));
         combinations.addCards(new Card(4, 1));
         combinations.addCards(new Card(5, 4));
