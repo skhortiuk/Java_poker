@@ -17,6 +17,7 @@ public class Combinations {
     String getCombinationName() {
         return combinationName;
     }
+
     void setCombinationName(String string) {
         combinationName = string;
     }
@@ -222,22 +223,18 @@ public class Combinations {
             }
         }
         if ((cards.get(size - 1).getValue() == 14))
-            if ((cards.get(0).getValue() == 2)) {
+            if ((cards.get(0).getValue() == 2))
                 for (int i = 1; i < size; i++) {
-                    if (cards.get(i).getValue() == 3) {
+                    if (cards.get(i).getValue() == 3)
                         for (int j = i; j < size; j++) {
-                            if (cards.get(j).getValue() == 4) {
+                            if (cards.get(j).getValue() == 4)
                                 for (int k = j; k < size; k++) {
-                                    if (cards.get(k).getValue() == 5) {
+                                    if (cards.get(k).getValue() == 5)
                                         combinationName = "Straight to FIVE";
-                                        return 95;
-                                    }
+                                    return 95;
                                 }
-                            }
                         }
-                    }
                 }
-            }
         return 0;
     }
 
