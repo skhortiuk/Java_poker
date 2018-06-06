@@ -147,7 +147,8 @@ public class CombinationsTest {
         combinations.addCards(new Card(5, 4));
         combinations.addCards(new Card(14, 4));
         combinations.calculate();
-        assertEquals(95.0, combinations.calculatePower(), 0.0);
+        combinations.calculatePower();
+        assertEquals(95.0, combinations.getPower(), 0.0);
     }
 
     @Test
