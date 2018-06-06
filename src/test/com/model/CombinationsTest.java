@@ -157,6 +157,18 @@ public class CombinationsTest {
     }
 
     @Test
+    public void straightToFive() {
+        combinations.addCards(new Card(12, 2));
+        combinations.addCards(new Card(3, 2));
+        combinations.addCards(new Card(4, 1));
+        combinations.addCards(new Card(5, 4));
+        combinations.addCards(new Card(14, 4));
+        combinations.calculate();
+        combinations.calculatePower();
+        assertEquals(95.0, combinations.getPower(), 0.0);
+    }
+
+    @Test
     public void flush() {
         combinations.addCards(new Card(2, 2));
         combinations.addCards(new Card(3, 2));
