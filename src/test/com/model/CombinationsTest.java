@@ -149,10 +149,6 @@ public class CombinationsTest {
         combinations.calculate();
         combinations.calculatePower();
         assertEquals(95.0, combinations.getPower(), 0.0);
-        assertEquals(new Card(14, 4).getValue(), 14);
-        assertEquals(new Card(3, 3).getValue(), 3);
-        assertEquals(new Card(5, 5).getValue(), 5);
-        assertEquals(new Card(2, 5).getValue(), 2);
         assertEquals("Straight to FIVE", combinations.getCombinationName());
     }
 
