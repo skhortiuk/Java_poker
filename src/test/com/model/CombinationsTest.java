@@ -157,7 +157,7 @@ public class CombinationsTest {
     }
 
     @Test
-    public void straightToFive() {
+    public void notStraightToFive() {
         combinations.addCards(new Card(12, 2));
         combinations.addCards(new Card(3, 2));
         combinations.addCards(new Card(4, 1));
