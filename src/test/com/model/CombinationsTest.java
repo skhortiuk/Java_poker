@@ -155,10 +155,10 @@ public class CombinationsTest {
     @Test
     public void notStraightToFive() {
         combinations.addCards(new Card(12, 2));
-        combinations.addCards(new Card(3, 2));
-        combinations.addCards(new Card(4, 1));
-        combinations.addCards(new Card(5, 4));
-        combinations.addCards(new Card(14, 4));
+        combinations.addCards(new Card(10, 2));
+        combinations.addCards(new Card(7, 1));
+        combinations.addCards(new Card(6, 4));
+        combinations.addCards(new Card(13, 4));
         combinations.calculate();
         combinations.calculatePower();
     }
