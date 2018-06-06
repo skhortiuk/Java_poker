@@ -161,6 +161,7 @@ public class CombinationsTest {
         combinations.addCards(new Card(14, 4));
         combinations.calculate();
         combinations.calculatePower();
+        assertNotEquals(95.0, combinations.getPower(), 0.0);
     }
     @Test
     public void notStraightToFiveAfterTwo() {
@@ -171,6 +172,7 @@ public class CombinationsTest {
         combinations.addCards(new Card(14, 4));
         combinations.calculate();
         combinations.calculatePower();
+        assertNotEquals(95.0, combinations.getPower(), 0.0);
     }
     @Test
     public void notStraightToFiveAfterThree() {
@@ -181,6 +183,7 @@ public class CombinationsTest {
         combinations.addCards(new Card(14, 4));
         combinations.calculate();
         combinations.calculatePower();
+        assertNotEquals(95.0, combinations.getPower(), 0.0);
     }
     @Test
     public void notStraightToFiveAfterFour() {
@@ -191,6 +194,7 @@ public class CombinationsTest {
         combinations.addCards(new Card(14, 4));
         combinations.calculate();
         combinations.calculatePower();
+        assertNotEquals(95.0, combinations.getPower(), 0.0);
     }
 
     @Test
