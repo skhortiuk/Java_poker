@@ -153,12 +153,42 @@ public class CombinationsTest {
     }
 
     @Test
-    public void notStraightToFive() {
+    public void notStraightToFiveAfterAce() {
         combinations.addCards(new Card(12, 2));
         combinations.addCards(new Card(10, 2));
         combinations.addCards(new Card(7, 1));
         combinations.addCards(new Card(6, 4));
-        combinations.addCards(new Card(13, 4));
+        combinations.addCards(new Card(14, 4));
+        combinations.calculate();
+        combinations.calculatePower();
+    }
+    @Test
+    public void notStraightToFiveAfterTwo() {
+        combinations.addCards(new Card(12, 2));
+        combinations.addCards(new Card(10, 2));
+        combinations.addCards(new Card(7, 1));
+        combinations.addCards(new Card(2, 4));
+        combinations.addCards(new Card(14, 4));
+        combinations.calculate();
+        combinations.calculatePower();
+    }
+    @Test
+    public void notStraightToFiveAfterThree() {
+        combinations.addCards(new Card(12, 2));
+        combinations.addCards(new Card(10, 2));
+        combinations.addCards(new Card(3, 1));
+        combinations.addCards(new Card(2, 4));
+        combinations.addCards(new Card(14, 4));
+        combinations.calculate();
+        combinations.calculatePower();
+    }
+    @Test
+    public void notStraightToFiveAfterFour() {
+        combinations.addCards(new Card(12, 2));
+        combinations.addCards(new Card(4, 2));
+        combinations.addCards(new Card(3, 1));
+        combinations.addCards(new Card(2, 4));
+        combinations.addCards(new Card(14, 4));
         combinations.calculate();
         combinations.calculatePower();
     }
