@@ -259,6 +259,18 @@ public class CombinationsTest {
         combinations.calculate();
         assertEquals(171.14, combinations.calculatePower(), 0.0);
     }
+    @Test
+    public void notFourOfKindMaxKicker() {
+        combinations.addCards(new Card(14, 2));
+        combinations.addCards(new Card(11, 4));
+        combinations.addCards(new Card(4, 4));
+        combinations.addCards(new Card(11, 3));
+        combinations.addCards(new Card(11, 1));
+        combinations.addCards(new Card(11, 2));
+        combinations.addCards(new Card(2, 4));
+        combinations.calculate();
+        assertNotEquals(171.12, combinations.calculatePower(), 0.0);
+    }
 
     @Test
     public void straightFlush() {
