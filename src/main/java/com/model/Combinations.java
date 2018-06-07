@@ -277,7 +277,7 @@ public class Combinations {
     }
 
     private double fullHouse() {
-        if (cards.size() < 5) {
+        if (cards.size() < 4) {
             return 0;
         }
         if ((int) onePair() != 0 && (int) threeOfaKind() != 0) {
@@ -308,16 +308,20 @@ public class Combinations {
             return 0;
         }
         int size = cards.size();
+        double hcMax = 0;
         double hc = 0;
         for (int i = size - 1; i > 2; i--) {
             if (cards.get(i).getValue() == cards.get(i - 1).getValue() && cards.get(i).getValue() == cards.get(i - 2).getValue() && cards.get(i).getValue() == cards.get(i - 3).getValue()) {
                 for (int j = size - 1; j >= 0; j--) {
                     if (cards.get(i).getValue() != cards.get(j).getValue()) {
                         hc = (double) cards.get(j).getValue() * 0.01;
-                        combinationName = "FOUR of a kind " + cards.get(i).getNameValue();
-                        return 160.0 + (double) cards.get(i).getValue() + hc;
+                        if (hc > hcMax){
+                            hcMax = hc;
+                        }
                     }
                 }
+                combinationName = "FOUR of a kind " + cards.get(i).getNameValue();
+                return 160.0 + (double) cards.get(i).getValue() + hcMax;
 
 
             }
