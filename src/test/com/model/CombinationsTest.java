@@ -263,6 +263,43 @@ public class CombinationsTest {
     }
 
     @Test
+    public void noStraightFlushAfterFourWhenNoValue() {
+        combinations.addCards(new Card(2, 4));
+        combinations.addCards(new Card(3, 4));
+        combinations.addCards(new Card(4, 4));
+        combinations.addCards(new Card(6, 4));
+        combinations.addCards(new Card(14, 4));
+        combinations.addCards(new Card(10, 1));
+        combinations.addCards(new Card(9, 2));
+        combinations.calculate();
+        assertEquals(134.1406, combinations.calculatePower(), 0.0001);
+    }
+    @Test
+    public void noStraightFlushAfterFourWhenNoSuits() {
+        combinations.addCards(new Card(2, 4));
+        combinations.addCards(new Card(3, 4));
+        combinations.addCards(new Card(4, 4));
+        combinations.addCards(new Card(5, 2));
+        combinations.addCards(new Card(14, 4));
+        combinations.addCards(new Card(10, 1));
+        combinations.addCards(new Card(9, 2));
+        combinations.calculate();
+        assertEquals(95, combinations.calculatePower(), 0.0);
+    }
+    @Test
+    public void noStraightFlushAfterThreeWhenNoValueAndSuits() {
+        combinations.addCards(new Card(2, 4));
+        combinations.addCards(new Card(3, 4));
+        combinations.addCards(new Card(4, 4));
+        combinations.addCards(new Card(6, 3));
+        combinations.addCards(new Card(14, 4));
+        combinations.addCards(new Card(10, 1));
+        combinations.addCards(new Card(9, 2));
+        combinations.calculate();
+        assertEquals(14.1009, combinations.calculatePower(), 0.0001);
+    }
+
+    @Test
     public void returnNull() {
         combinations.calculate();
         assertEquals(0.0, combinations.calculatePower(), 0.0);
