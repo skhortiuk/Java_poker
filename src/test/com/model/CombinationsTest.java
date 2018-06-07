@@ -212,15 +212,15 @@ public class CombinationsTest {
 
     @Test
     public void fullHouse() {
-        combinations.addCards(new Card(2, 2));
-        combinations.addCards(new Card(2, 1));
-        combinations.addCards(new Card(4, 4));
-        combinations.addCards(new Card(11, 3));
-        combinations.addCards(new Card(11, 1));
         combinations.addCards(new Card(11, 2));
+        combinations.addCards(new Card(11, 1));
+        combinations.addCards(new Card(4, 4));
+        combinations.addCards(new Card(2, 3));
+        combinations.addCards(new Card(2, 1));
+        combinations.addCards(new Card(2, 2));
         combinations.addCards(new Card(14, 4));
         combinations.calculate();
-        assertEquals(151.02, combinations.calculatePower(), 0.0);
+        assertEquals(142.11, combinations.calculatePower(), 0.0);
     }
     @Test
     public void notFullHouse() {
