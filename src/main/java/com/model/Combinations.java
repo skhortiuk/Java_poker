@@ -311,13 +311,14 @@ public class Combinations {
         double hc = 0;
         for (int i = size - 1; i > 2; i--) {
             if (cards.get(i).getValue() == cards.get(i - 1).getValue() && cards.get(i).getValue() == cards.get(i - 2).getValue() && cards.get(i).getValue() == cards.get(i - 3).getValue()) {
-                for (int j = size - 1; j > 0; j--) {
+                for (int j = size - 1; j >= 0; j--) {
                     if (cards.get(i).getValue() != cards.get(j).getValue()) {
-                        hc += (double) cards.get(j).getValue() * 0.01;
+                        hc = (double) cards.get(j).getValue() * 0.01;
                         combinationName = "FOUR of a kind " + cards.get(i).getNameValue();
                         return 160.0 + (double) cards.get(i).getValue() + hc;
                     }
                 }
+
 
             }
         }
