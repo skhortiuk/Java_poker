@@ -309,7 +309,7 @@ public class Combinations {
         }
         int size = cards.size();
         double hc = 0;
-        for (int i = size - 1; i > 1; i--) {
+        for (int i = size - 1; i > 2; i--) {
             if (cards.get(i).getValue() == cards.get(i - 1).getValue() && cards.get(i).getValue() == cards.get(i - 2).getValue() && cards.get(i).getValue() == cards.get(i - 3).getValue()) {
                 for (int j = size - 1; j > 0; j--) {
                     if (cards.get(i).getValue() != cards.get(j).getValue()) {
