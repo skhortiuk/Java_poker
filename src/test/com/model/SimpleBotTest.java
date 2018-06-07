@@ -72,6 +72,15 @@ public class SimpleBotTest {
         double move = simpleBot.think(cards, 1200,700, 50);
         assertEquals(200, move,0);
     }
+    @Test
+    public void thinkWhenStackMoreThan750AndPowerIsMoreThan50AndBankIsLessThen800WithPrevRateMore100() {
+        cards.add(new Card(11,4));
+        cards.add(new Card(11,2));
+        cards.add(new Card(7,4));
+        cards.add(new Card(7,2));
+        double move = simpleBot.think(cards, 1200,700, 150);
+        assertEquals(200, move,0);
+    }
 
     @Test
     public void thinkWhenStackMoreThan750AndPowerIsMoreThan50AndBankIsMoreThen800() {

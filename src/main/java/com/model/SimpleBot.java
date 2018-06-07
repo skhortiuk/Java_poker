@@ -52,7 +52,7 @@ public class SimpleBot implements Bot {
                     if (bank <= 800) {
                         if (prevRate <= 100) {
                             return prevRate+150;
-                        }
+                        }else return prevRate + 50;
                     } else {
                         return prevRate;
                     }

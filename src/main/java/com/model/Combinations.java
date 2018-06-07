@@ -260,8 +260,6 @@ public class Combinations {
                 if (tmp == 6) {
                     int number = 0;
                     for (int j = size - 1; j >= 0; j--) {
-                        if (number > 4)
-                            continue;
                         if (suit == cards.get(j).getSuitValue()) {
                             hc += (double) cards.get(j).getValue() * d;
                             d *= 0.01;
@@ -315,13 +313,12 @@ public class Combinations {
             if (cards.get(i).getValue() == cards.get(i - 1).getValue() && cards.get(i).getValue() == cards.get(i - 2).getValue() && cards.get(i).getValue() == cards.get(i - 3).getValue()) {
                 for (int j = size - 1; j >= 0; j--) {
                     if (cards.get(i).getValue() != cards.get(j).getValue()) {
-                        if ((int) hc != 0)
-                            continue;
                         hc += (double) cards.get(j).getValue() * 0.01;
+                        combinationName = "FOUR of a kind " + cards.get(i).getNameValue();
+                        return 160.0 + (double) cards.get(i).getValue() + hc;
                     }
                 }
-                combinationName = "FOUR of a kind " + cards.get(i).getNameValue();
-                return 160.0 + (double) cards.get(i).getValue() + hc;
+
             }
         }
         return 0;

@@ -233,7 +233,7 @@ public class CombinationsTest {
         combinations.addCards(new Card(11, 2));
         combinations.addCards(new Card(14, 4));
         combinations.calculate();
-        assertEquals(171.2, combinations.calculatePower(), 0.0);
+        assertEquals(171.14, combinations.calculatePower(), 0.0);
     }
 
     @Test
