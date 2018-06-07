@@ -222,6 +222,30 @@ public class CombinationsTest {
         combinations.calculate();
         assertEquals(151.02, combinations.calculatePower(), 0.0);
     }
+    @Test
+    public void notFullHouseNotHaveThree() {
+        combinations.addCards(new Card(2, 2));
+        combinations.addCards(new Card(2, 1));
+        combinations.addCards(new Card(4, 4));
+        combinations.addCards(new Card(11, 3));
+        combinations.addCards(new Card(11, 1));
+        combinations.addCards(new Card(10, 2));
+        combinations.addCards(new Card(14, 4));
+        combinations.calculate();
+        assertNotEquals(151.02, combinations.calculatePower(), 0.0);
+    }
+    @Test
+    public void notFullHouseNotHaveTwo() {
+        combinations.addCards(new Card(2, 2));
+        combinations.addCards(new Card(5, 1));
+        combinations.addCards(new Card(4, 4));
+        combinations.addCards(new Card(11, 3));
+        combinations.addCards(new Card(11, 1));
+        combinations.addCards(new Card(11, 2));
+        combinations.addCards(new Card(14, 4));
+        combinations.calculate();
+        assertNotEquals(151.02, combinations.calculatePower(), 0.0);
+    }
 
     @Test
     public void fourOfKind() {
@@ -259,7 +283,8 @@ public class CombinationsTest {
         combinations.addCards(new Card(9, 4));
         combinations.calculate();
         assertNotEquals(190.0, combinations.calculatePower(), 0.0);
-    } @Test
+    }
+    @Test
     public void notStraightFlushAfterFourthCardSuit() {
         combinations.addCards(new Card(2, 2));
         combinations.addCards(new Card(7, 4));

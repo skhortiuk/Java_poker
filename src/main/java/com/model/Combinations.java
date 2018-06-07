@@ -284,7 +284,7 @@ public class Combinations {
             int size = cards.size();
             String one = null;
             int one_int = 0;
-            for (int i = size - 1; i > 1; i--) {
+            for (int i = size - 1; i >= 1; i--) {
                 if (cards.get(i).getValue() == cards.get(i - 1).getValue() && cards.get(i).getValue() == cards.get(i - 2).getValue()) {
                     one = cards.get(i).getNameValue();
                     one_int = cards.get(i).getValue();
@@ -311,7 +311,7 @@ public class Combinations {
         double hc = 0;
         for (int i = size - 1; i > 2; i--) {
             if (cards.get(i).getValue() == cards.get(i - 1).getValue() && cards.get(i).getValue() == cards.get(i - 2).getValue() && cards.get(i).getValue() == cards.get(i - 3).getValue()) {
-                for (int j = size - 1; j >= 0; j--) {
+                for (int j = size - 1; j > 0; j--) {
                     if (cards.get(i).getValue() != cards.get(j).getValue()) {
                         hc += (double) cards.get(j).getValue() * 0.01;
                         combinationName = "FOUR of a kind " + cards.get(i).getNameValue();
