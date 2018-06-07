@@ -263,7 +263,7 @@ public class CombinationsTest {
     }
 
     @Test
-    public void noStraightFlushAfterFourWhenNoValue() {
+    public void notStraightFlushAfterFourWhenNoValue() {
         combinations.addCards(new Card(2, 4));
         combinations.addCards(new Card(3, 4));
         combinations.addCards(new Card(4, 4));
@@ -272,10 +272,10 @@ public class CombinationsTest {
         combinations.addCards(new Card(10, 1));
         combinations.addCards(new Card(9, 2));
         combinations.calculate();
-        assertEquals(134.1406, combinations.calculatePower(), 0.0001);
+        assertNotEquals(180, combinations.calculatePower(), 0.00);
     }
     @Test
-    public void noStraightFlushAfterFourWhenNoSuits() {
+    public void notStraightFlushAfterFourWhenNoSuits() {
         combinations.addCards(new Card(2, 4));
         combinations.addCards(new Card(3, 4));
         combinations.addCards(new Card(4, 4));
@@ -284,10 +284,10 @@ public class CombinationsTest {
         combinations.addCards(new Card(10, 1));
         combinations.addCards(new Card(9, 2));
         combinations.calculate();
-        assertEquals(95, combinations.calculatePower(), 0.0);
+        assertNotEquals(180, combinations.calculatePower(), 0.0);
     }
     @Test
-    public void noStraightFlushAfterThreeWhenNoValueAndSuits() {
+    public void notStraightFlushAfterThreeWhenNoValueAndSuits() {
         combinations.addCards(new Card(2, 4));
         combinations.addCards(new Card(3, 4));
         combinations.addCards(new Card(5, 4));
@@ -296,7 +296,7 @@ public class CombinationsTest {
         combinations.addCards(new Card(10, 1));
         combinations.addCards(new Card(9, 2));
         combinations.calculate();
-        assertEquals(14.1009, combinations.calculatePower(), 0.0001);
+        assertNotEquals(180, combinations.calculatePower(), 0.0);
     }
     @Test
     public void noStraightFlushAfterTwoWhenNoValueAndSuits() {
@@ -308,7 +308,7 @@ public class CombinationsTest {
         combinations.addCards(new Card(10, 1));
         combinations.addCards(new Card(9, 2));
         combinations.calculate();
-        assertEquals(14.1009, combinations.calculatePower(), 0.0001);
+        assertNotEquals(180, combinations.calculatePower(), 0.0);
     }
     @Test
     public void noStraightFlushAfterAceWhenNoValueAndSuits() {
@@ -320,7 +320,7 @@ public class CombinationsTest {
         combinations.addCards(new Card(10, 1));
         combinations.addCards(new Card(9, 2));
         combinations.calculate();
-        assertEquals(14.1009, combinations.calculatePower(), 0.0001);
+        assertNotEquals(180, combinations.calculatePower(), 0.0);
     }
 
     @Test
