@@ -287,6 +287,30 @@ public class CombinationsTest {
         assertNotEquals(180, combinations.calculatePower(), 0.0);
     }
     @Test
+    public void notStraightFlushAfterThreeWhenNoValue() {
+        combinations.addCards(new Card(2, 4));
+        combinations.addCards(new Card(3, 4));
+        combinations.addCards(new Card(6, 4));
+        combinations.addCards(new Card(5, 4));
+        combinations.addCards(new Card(14, 4));
+        combinations.addCards(new Card(10, 1));
+        combinations.addCards(new Card(9, 2));
+        combinations.calculate();
+        assertNotEquals(180, combinations.calculatePower(), 0.0);
+    }
+    @Test
+    public void notStraightFlushAfterThreeWhenNoSuits() {
+        combinations.addCards(new Card(2, 4));
+        combinations.addCards(new Card(3, 4));
+        combinations.addCards(new Card(4, 3));
+        combinations.addCards(new Card(5, 4));
+        combinations.addCards(new Card(14, 4));
+        combinations.addCards(new Card(10, 1));
+        combinations.addCards(new Card(9, 2));
+        combinations.calculate();
+        assertNotEquals(180, combinations.calculatePower(), 0.0);
+    }
+    @Test
     public void notStraightFlushAfterThreeWhenNoValueAndSuits() {
         combinations.addCards(new Card(2, 4));
         combinations.addCards(new Card(3, 4));
