@@ -248,6 +248,29 @@ public class CombinationsTest {
         combinations.calculate();
         assertEquals(190.0, combinations.calculatePower(), 0.0);
     }
+    @Test
+    public void notStraightFlushAfterFourthCardValue() {
+        combinations.addCards(new Card(2, 2));
+        combinations.addCards(new Card(7, 4));
+        combinations.addCards(new Card(5, 4));
+        combinations.addCards(new Card(8, 4));
+        combinations.addCards(new Card(12, 1));
+        combinations.addCards(new Card(10, 4));
+        combinations.addCards(new Card(9, 4));
+        combinations.calculate();
+        assertNotEquals(190.0, combinations.calculatePower(), 0.0);
+    } @Test
+    public void notStraightFlushAfterFourthCardSuit() {
+        combinations.addCards(new Card(2, 2));
+        combinations.addCards(new Card(7, 4));
+        combinations.addCards(new Card(6, 3));
+        combinations.addCards(new Card(8, 4));
+        combinations.addCards(new Card(12, 1));
+        combinations.addCards(new Card(10, 4));
+        combinations.addCards(new Card(9, 4));
+        combinations.calculate();
+        assertNotEquals(190.0, combinations.calculatePower(), 0.0);
+    }
 
     @Test
     public void straightFlushToFive() {
