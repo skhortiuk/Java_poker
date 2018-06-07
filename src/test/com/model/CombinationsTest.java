@@ -223,12 +223,24 @@ public class CombinationsTest {
         assertEquals(151.02, combinations.calculatePower(), 0.0);
     }
     @Test
+    public void notFullHouse() {
+        combinations.addCards(new Card(5, 2));
+        combinations.addCards(new Card(2, 1));
+        combinations.addCards(new Card(4, 4));
+        combinations.addCards(new Card(7, 3));
+        combinations.addCards(new Card(10, 1));
+        combinations.addCards(new Card(11, 2));
+        combinations.addCards(new Card(14, 4));
+        combinations.calculate();
+        assertNotEquals(151.02, combinations.calculatePower(), 0.0);
+    }
+    @Test
     public void notFullHouseNotHaveThree() {
         combinations.addCards(new Card(2, 2));
         combinations.addCards(new Card(2, 1));
         combinations.addCards(new Card(4, 4));
         combinations.addCards(new Card(11, 3));
-        combinations.addCards(new Card(11, 1));
+        combinations.addCards(new Card(8, 1));
         combinations.addCards(new Card(10, 2));
         combinations.addCards(new Card(14, 4));
         combinations.calculate();
@@ -250,14 +262,27 @@ public class CombinationsTest {
     @Test
     public void fourOfKind() {
         combinations.addCards(new Card(2, 2));
-        combinations.addCards(new Card(11, 4));
-        combinations.addCards(new Card(4, 4));
+        combinations.addCards(new Card(6, 4));
+        combinations.addCards(new Card(7, 4));
         combinations.addCards(new Card(11, 3));
         combinations.addCards(new Card(11, 1));
         combinations.addCards(new Card(11, 2));
-        combinations.addCards(new Card(14, 4));
+        combinations.addCards(new Card(11, 4));
         combinations.calculate();
-        assertEquals(171.14, combinations.calculatePower(), 0.0);
+        assertEquals(171.07, combinations.calculatePower(), 0.0);
+    }
+
+    @Test
+    public void fourOfKindWithHighKicker() {
+        combinations.addCards(new Card(2, 2));
+        combinations.addCards(new Card(11, 4));
+        combinations.addCards(new Card(7, 4));
+        combinations.addCards(new Card(5, 3));
+        combinations.addCards(new Card(5, 1));
+        combinations.addCards(new Card(5, 2));
+        combinations.addCards(new Card(5, 4));
+        combinations.calculate();
+        assertEquals(165.11, combinations.calculatePower(), 0.0);
     }
     @Test
     public void notFourOfKind() {
